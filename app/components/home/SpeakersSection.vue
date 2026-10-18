@@ -2,13 +2,13 @@
 import { ref, computed } from 'vue'
 import { speakers } from '../../data/mockData'
 
-const featuredSpeakers = speakers.filter(s => s.featured).slice(0, 6)
+const featuredSpeakers = speakers.filter(s => s.featured).slice(0, 3)
 
 // Filtres interactifs par secteur d'expertise
 const activeFilter = ref<string>('all')
 
 const filterOptions = [
-  { id: 'all', label: 'Tous les profils' },
+  { id: 'all', label: 'Sélection d\'Honneur' },
   { id: 'finance', label: 'Capital & Investissement' },
   { id: 'tech', label: 'Tech & Infrastructures' },
   { id: 'policy', label: 'Institutions & Patronat' }
@@ -26,14 +26,16 @@ const getCategory = (s: any) => {
 }
 
 const displayedSpeakers = computed(() => {
-  if (activeFilter.value === 'all') return featuredSpeakers
-  return featuredSpeakers.filter(s => getCategory(s) === activeFilter.value)
+  const pool = activeFilter.value === 'all'
+    ? speakers.filter(s => s.featured)
+    : speakers.filter(s => getCategory(s) === activeFilter.value)
+  return pool.slice(0, 3)
 })
 </script>
 
 <template>
   <section class="speakers-curated-section">
-    <!-- REFLETS AMBIANTS DOUX (DONNE DU RELIEF AU VERRE SUR FOND BLANC) -->
+    <!-- FOND DE SECTION BLANC LUMINEUX AVEC HALOS DE RÉFRACTION SUBTILS -->
     <div class="ambient-glow glow-blue" aria-hidden="true"></div>
     <div class="ambient-glow glow-gold" aria-hidden="true"></div>
 
@@ -79,7 +81,7 @@ const displayedSpeakers = computed(() => {
         </div>
       </div>
 
-      <!-- GRILLE ÉDITORIALE EN MONOLITHES VITREUX (GLASSMORPHISME + NEUMORPHISME) -->
+      <!-- GRILLE DE CARTES EN FOND BLEU NUIT GLASSMORPHISME & NEUMORPHISME -->
       <div class="speakers-vitreous-grid">
         <NuxtLink 
           v-for="(s, i) in displayedSpeakers" 
@@ -88,33 +90,38 @@ const displayedSpeakers = computed(() => {
           to="/speakers" 
           class="vitreous-card"
         >
-          <!-- CARTOUCHE SUPÉRIEURE : MÉDAILLON EN RELIEF + IDENTIFIANTS INSTITUTIONNELS -->
-          <div class="card-identity-header">
-            <!-- Médaillon Monogramme Sculpté (Conception Sceau de Prestige) -->
-            <div class="cameo-seal">
-              <div class="cameo-well">
-                <div class="cameo-lens">
-                  <span class="cameo-monogram">{{ s.initials }}</span>
-                </div>
-              </div>
+          <!-- SCÈNE VISUELLE EN VERRE DÉPOLI AVEC MONOGRAMME FILIGRANE (FIN DU MÉDAILLON ROND) -->
+          <div class="card-visual-stage">
+            <div class="stage-glow" aria-hidden="true"></div>
+
+            <!-- MONOGRAMME ÉDITORIAL EN FILIGRANE SOYEUX -->
+            <div class="stage-monogram-watermark" aria-hidden="true">
+              {{ s.initials }}
             </div>
 
-            <!-- Identité & Pays en typographie éditoriale (Évite le cliché des 2 pilules d'angle) -->
-            <div class="identity-lead">
-              <div class="country-dossier">
-                <span class="country-flag-dot"></span>
-                <span class="country-text">{{ s.country }}</span>
+            <!-- BADGES FLOTTANTS EN VERRE SUR LA SCÈNE VISUELLE -->
+            <div class="stage-badges-bar">
+              <div class="stage-country-capsule">
+                <span class="country-beacon"></span>
+                <span class="country-name">{{ s.country }}</span>
               </div>
-              <h3 class="speaker-name">{{ s.name }}</h3>
-              <p class="speaker-role">{{ s.role }}</p>
-              <p class="speaker-org">{{ s.organization }}</p>
+              <span v-if="s.topics && s.topics[0]" class="stage-topic-capsule">
+                {{ s.topics[0] }}
+              </span>
             </div>
+          </div>
+
+          <!-- IDENTITÉ & TITRES DU SPEAKER -->
+          <div class="card-identity-block">
+            <h3 class="speaker-name">{{ s.name }}</h3>
+            <p class="speaker-role">{{ s.role }}</p>
+            <p class="speaker-org">{{ s.organization }}</p>
           </div>
 
           <!-- SÉPARATEUR EN FILIGRANE D'OR -->
           <div class="card-gold-separator" aria-hidden="true"></div>
 
-          <!-- CHAMBRE BIO EN VERRE DÉPOLI (BIO COMPLÈTE SANS TRONCATURE ABRUPTE) -->
+          <!-- CHAMBRE BIO EN VERRE DÉPOLI NOCTURNE -->
           <div class="card-bio-chamber">
             <p class="bio-text">{{ s.bio }}</p>
           </div>
@@ -168,39 +175,41 @@ const displayedSpeakers = computed(() => {
 
 <style scoped>
 /* ==========================================================================
-   CANEVAS LUMINEUX & MINÉRAL (#F6F9FD) — PERMET LE JEU D'OMBRES DOUCES ET DE VERRE
+   CANEVAS DE SECTION BLANC LUMINEUX
    ========================================================================== */
 .speakers-curated-section {
   position: relative;
   padding: 104px 0 112px;
-  background-color: #F6F9FD;
+  background-color: #FFFFFF;
   color: var(--ayif-navy);
+  border-top: 1px solid #E8EFF7;
+  border-bottom: 1px solid #E8EFF7;
   overflow: hidden;
 }
 
-/* LUEURS DIFFUSES EN FOND (RÉFRACTION DOUCE POUR LE VERRE DÉPOLI) */
+/* HALOS DIFFUS POUR DONNER DE LA VIE AU FOND BLANC */
 .ambient-glow {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(90px);
+  filter: blur(100px);
   z-index: 1;
 }
 
 .glow-blue {
-  width: 520px;
-  height: 520px;
+  width: 550px;
+  height: 550px;
   top: -120px;
-  left: -120px;
-  background: radial-gradient(circle, rgba(7, 87, 184, 0.05) 0%, transparent 70%);
+  left: -100px;
+  background: radial-gradient(circle, rgba(7, 87, 184, 0.06) 0%, transparent 70%);
 }
 
 .glow-gold {
-  width: 480px;
-  height: 480px;
+  width: 500px;
+  height: 500px;
   bottom: -100px;
   right: -100px;
-  background: radial-gradient(circle, rgba(217, 162, 27, 0.045) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(217, 162, 27, 0.05) 0%, transparent 70%);
 }
 
 .speakers-wrap {
@@ -246,7 +255,7 @@ const displayedSpeakers = computed(() => {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ayif-blue);
+  color: var(--color-accent);
 }
 
 .section-title {
@@ -274,22 +283,21 @@ const displayedSpeakers = computed(() => {
   gap: 12px;
   padding: 10px 18px 10px 22px;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   box-shadow: 
-    6px 8px 18px rgba(8, 43, 85, 0.05),
-    -6px -6px 16px #FFFFFF;
+    4px 6px 16px rgba(8, 43, 85, 0.06),
+    -4px -4px 12px #FFFFFF;
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .neu-all-link:hover {
   transform: translateY(-2px);
+  border-color: var(--color-accent);
   box-shadow: 
-    8px 12px 24px rgba(7, 87, 184, 0.12),
-    -6px -6px 18px #FFFFFF;
+    6px 12px 22px rgba(7, 87, 184, 0.12),
+    -4px -4px 14px #FFFFFF;
 }
 
 .link-label {
@@ -343,13 +351,13 @@ const displayedSpeakers = computed(() => {
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  background: #E8EEF5;
+  background: #F1F5F9;
   padding: 6px;
   border-radius: 99px;
   box-shadow: 
-    inset 3px 3px 8px rgba(8, 43, 85, 0.07), 
-    inset -3px -3px 8px #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+    inset 2px 2px 6px rgba(8, 43, 85, 0.06), 
+    inset -2px -2px 6px #FFFFFF;
+  border: 1px solid #E2E8F0;
 }
 
 .neu-tray-pill {
@@ -369,19 +377,18 @@ const displayedSpeakers = computed(() => {
   color: var(--ayif-navy);
 }
 
-/* État actif : coussin de verre érigé au-dessus du rail */
 .neu-tray-pill.active {
   background: #FFFFFF;
   color: var(--ayif-blue);
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  border: 1px solid #E2E8F0;
   box-shadow: 
-    3px 4px 12px rgba(8, 43, 85, 0.08), 
-    -2px -2px 8px #FFFFFF;
+    2px 3px 10px rgba(8, 43, 85, 0.08), 
+    -2px -2px 6px #FFFFFF;
 }
 
 /* ==========================================================================
-   GRILLE EN MONOLITHES VITREUX (GLASSMORPHISME + NEUMORPHISME HAUTE PRÉCISION)
+   GRILLE EN CARTES BLEU NUIT GLASSMORPHISME & NEUMORPHISME
    ========================================================================== */
 .speakers-vitreous-grid {
   display: grid;
@@ -393,149 +400,187 @@ const displayedSpeakers = computed(() => {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(246, 250, 254, 0.76) 100%);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: linear-gradient(155deg, #092C56 0%, #051C36 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.5px solid rgba(217, 162, 27, 0.4);
   border-radius: 26px;
-  padding: 30px;
+  padding: 26px;
   text-decoration: none;
   box-shadow: 
-    12px 18px 40px rgba(8, 43, 85, 0.05),
-    -10px -10px 26px #FFFFFF,
-    inset 0 1.5px 2px #FFFFFF,
-    inset 0 -1px 2px rgba(8, 43, 85, 0.02);
+    14px 20px 44px rgba(8, 43, 85, 0.16),
+    0 4px 14px rgba(8, 43, 85, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
 .vitreous-card:hover {
   transform: translateY(-6px);
-  background: linear-gradient(145deg, #FFFFFF 0%, rgba(248, 251, 255, 0.95) 100%);
-  border-color: rgba(46, 167, 242, 0.45);
+  border-color: rgba(217, 162, 27, 0.6);
+  border-top-color: var(--color-gold);
   box-shadow: 
-    18px 26px 48px rgba(7, 87, 184, 0.12),
-    -12px -12px 30px #FFFFFF,
-    inset 0 2px 2px #FFFFFF;
+    18px 28px 52px rgba(8, 43, 85, 0.28),
+    0 8px 20px rgba(7, 87, 184, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
 /* ==========================================================================
-   CARTOUCHE SUPÉRIEURE : MÉDAILLON EN RELIEF + IDENTITÉ ÉDITORIALE
+   SCÈNE VISUELLE VITREUSE HAUTE DÉFINITION (REMPLACE LE MÉDAILLON ROND)
    ========================================================================== */
-.card-identity-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-/* Sceau Cameo Sculpté (Monogramme en relief noble) */
-.cameo-seal {
-  flex-shrink: 0;
-}
-
-.cameo-well {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #EDF3F9;
-  padding: 5px;
-  box-shadow: 
-    inset 3px 3px 7px rgba(8, 43, 85, 0.07), 
-    inset -3px -3px 7px #FFFFFF;
-}
-
-.cameo-lens {
+.card-visual-stage {
+  position: relative;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #FFFFFF 0%, #E6EFF8 100%);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  height: 190px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #07254A 0%, #031427 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    2px 3px 8px rgba(8, 43, 85, 0.08), 
-    -2px -2px 6px #FFFFFF;
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+/* Lueur d'ambiance bleutée au centre de la scène visuelle */
+.stage-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 167, 242, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+.vitreous-card:hover .stage-glow {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(217, 162, 27, 0.2) 0%, transparent 70%);
+}
+
+/* Monogramme sérif noble en filigrane soyeux */
+.stage-monogram-watermark {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.cameo-monogram {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 64px;
   font-weight: 800;
-  color: var(--ayif-navy);
-  letter-spacing: 0.04em;
-  transition: color 0.3s ease;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.2);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vitreous-card:hover .cameo-lens {
-  background: var(--ayif-navy);
-  box-shadow: 0 6px 18px rgba(7, 87, 184, 0.25);
+.vitreous-card:hover .stage-monogram-watermark {
+  color: rgba(217, 162, 27, 0.45);
+  transform: scale(1.05);
 }
 
-.vitreous-card:hover .cameo-monogram {
-  color: var(--color-gold);
+/* Badges flottants en verre dépoli sur la scène visuelle */
+.stage-badges-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 
-/* Lead Typographique */
-.identity-lead {
-  flex: 1;
-  min-width: 0;
-}
-
-.country-dossier {
+.stage-country-capsule {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 6px;
+  background: rgba(3, 18, 38, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 5px 12px;
+  border-radius: 99px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.country-flag-dot {
+.country-beacon {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-gold);
-  box-shadow: 0 0 6px rgba(217, 162, 27, 0.5);
+  box-shadow: 0 0 8px rgba(217, 162, 27, 0.8);
 }
 
-.country-text {
+.country-name {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #6C7F95;
+  color: var(--color-gold);
+}
+
+.stage-topic-capsule {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: #D6E4F0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 5px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   IDENTITÉ & TITRES DU SPEAKER
+   ========================================================================== */
+.card-identity-block {
+  margin-bottom: 6px;
 }
 
 .speaker-name {
   font-family: var(--font-serif);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--ayif-navy);
+  color: #FFFFFF;
   line-height: 1.25;
-  margin: 0 0 4px 0;
+  margin: 0 0 5px 0;
   transition: color 0.2s ease;
 }
 
 .vitreous-card:hover .speaker-name {
-  color: var(--ayif-blue);
+  color: #FFFFFF;
 }
 
 .speaker-role {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 500;
-  color: #556B84;
+  color: #9FB8D2;
   line-height: 1.35;
   margin: 0 0 3px 0;
 }
 
 .speaker-org {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
-  color: var(--ayif-blue);
+  color: #2EA7F2;
   line-height: 1.35;
   margin: 0;
 }
@@ -546,22 +591,22 @@ const displayedSpeakers = computed(() => {
 .card-gold-separator {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, rgba(217, 162, 27, 0.35) 0%, rgba(8, 43, 85, 0.05) 50%, transparent 100%);
+  background: linear-gradient(90deg, rgba(217, 162, 27, 0.45) 0%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
   margin: 18px 0;
 }
 
 /* ==========================================================================
-   CHAMBRE BIO EN VERRE DÉPOLI
+   CHAMBRE BIO EN VERRE DÉPOLI NOCTURNE
    ========================================================================== */
 .card-bio-chamber {
   flex: 1;
-  background: rgba(239, 245, 252, 0.5);
+  background: rgba(255, 255, 255, 0.045);
   border-radius: 14px;
   padding: 16px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
-    inset 2px 2px 5px rgba(8, 43, 85, 0.04), 
-    inset -2px -2px 5px #FFFFFF;
+    inset 1px 1px 3px rgba(0, 0, 0, 0.25), 
+    inset -1px -1px 3px rgba(255, 255, 255, 0.04);
   margin-bottom: 20px;
 }
 
@@ -569,7 +614,7 @@ const displayedSpeakers = computed(() => {
   font-family: var(--font-sans);
   font-size: 13.5px;
   line-height: 1.65;
-  color: #455A72;
+  color: #D1DFEC;
   margin: 0;
 }
 
@@ -588,20 +633,19 @@ const displayedSpeakers = computed(() => {
   font-family: var(--font-sans);
   font-size: 11.5px;
   font-weight: 700;
-  color: var(--ayif-navy);
+  color: #E2EBF5;
   padding: 5px 12px;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 
-    2px 3px 7px rgba(8, 43, 85, 0.04), 
-    -2px -2px 6px #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
 }
 
 .vitreous-card:hover .topic-gem {
-  border-color: rgba(7, 87, 184, 0.2);
-  color: var(--ayif-blue);
+  background: rgba(46, 167, 242, 0.15);
+  border-color: rgba(46, 167, 242, 0.4);
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -614,11 +658,9 @@ const displayedSpeakers = computed(() => {
   justify-content: space-between;
   padding: 10px 14px 10px 18px;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 
-    3px 4px 10px rgba(8, 43, 85, 0.04), 
-    -3px -3px 8px #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   transition: all 0.25s ease;
 }
 
@@ -626,7 +668,7 @@ const displayedSpeakers = computed(() => {
   font-family: var(--font-sans);
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--ayif-navy);
+  color: #E6EFF8;
   transition: color 0.2s ease;
 }
 
@@ -634,14 +676,11 @@ const displayedSpeakers = computed(() => {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #F0F5FA;
-  box-shadow: 
-    2px 2px 5px rgba(8, 43, 85, 0.08), 
-    -2px -2px 5px #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ayif-navy);
+  color: var(--color-gold);
   transition: all 0.25s ease;
 }
 
@@ -652,9 +691,8 @@ const displayedSpeakers = computed(() => {
 }
 
 .vitreous-card:hover .card-action-bar {
-  background: var(--ayif-navy);
-  border-color: var(--ayif-navy);
-  box-shadow: 0 6px 18px rgba(8, 43, 85, 0.2);
+  background: rgba(217, 162, 27, 0.18);
+  border-color: rgba(217, 162, 27, 0.45);
 }
 
 .vitreous-card:hover .action-text {
@@ -673,14 +711,12 @@ const displayedSpeakers = computed(() => {
 .speakers-cta-casket {
   margin-top: 60px;
   padding: 32px 40px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(246, 250, 254, 0.8) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: #F8FAFD;
+  border: 1px solid #E2E8F0;
   border-radius: 24px;
   box-shadow: 
-    14px 20px 44px rgba(8, 43, 85, 0.06), 
-    -12px -12px 30px #FFFFFF;
+    10px 16px 36px rgba(8, 43, 85, 0.06), 
+    -8px -8px 24px #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -699,10 +735,10 @@ const displayedSpeakers = computed(() => {
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  background: #EDF3F9;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   box-shadow: 
-    inset 2px 2px 6px rgba(8, 43, 85, 0.08), 
-    inset -2px -2px 6px #FFFFFF;
+    2px 3px 8px rgba(8, 43, 85, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -788,7 +824,11 @@ const displayedSpeakers = computed(() => {
   }
 
   .vitreous-card {
-    padding: 24px;
+    padding: 20px;
+  }
+
+  .card-visual-stage {
+    height: 170px;
   }
 
   .speakers-cta-casket {
