@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { forumEditions } from '../../data/mockData'
 import type { ForumEdition } from '../../types'
+import AnimatedCounter from '../../components/common/AnimatedCounter.vue'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
@@ -15,6 +16,20 @@ const edition = computed<ForumEdition | undefined>(() => {
 const otherEditions = computed(() => {
   return forumEditions.filter(e => e.slug !== slug.value)
 })
+
+// Helper to determine icon type matching each stat
+const getStatIconType = (index: number, label: string) => {
+  const l = label.toLowerCase()
+  if (l.includes('participant') || l.includes('délégué')) return 'people'
+  if (l.includes('pays')) return 'globe'
+  if (l.includes('deal') || l.includes('engagement') || l.includes('financ') || l.includes('volume') || l.includes('enveloppe')) return 'finance'
+  if (l.includes('fond') || l.includes('banque') || l.includes('bailleur')) return 'bank'
+  if (l.includes('startup') || l.includes('finaliste')) return 'startup'
+  if (l.includes('lauréat') || l.includes('gagnant') || l.includes('prix') || l.includes('trophée')) return 'trophy'
+  
+  const fallback = ['people', 'globe', 'finance', 'bank', 'startup', 'trophy']
+  return fallback[index % fallback.length]
+}
 
 // Download modal / feedback simulation
 const isDownloading = ref(false)
@@ -70,9 +85,10 @@ useHead(() => {
       </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="edition-hero navy">
-      <div class="wrap">
+    <!-- HERO SECTION WITH ILLUSTRATIVE BACKGROUND -->
+    <header class="edition-hero navy" :style="{ backgroundImage: `url(${edition.coverImage})` }">
+      <div class="hero-overlay"></div>
+      <div class="wrap hero-content-wrap">
         <div class="hero-top-meta">
           <span 
             class="status-badge"
@@ -196,9 +212,13 @@ useHead(() => {
       </div>
     </section>
 
-    <!-- SECTION 2: STANDARDIZED IMPACT INDICATORS (STATS GRID) -->
-    <section class="section-stats navy">
-      <div class="wrap">
+    <!-- SECTION 2: STANDARDIZED IMPACT INDICATORS (BANNER STYLE AS REQUESTED) -->
+    <section 
+      class="section-stats-banner"
+      :style="{ backgroundImage: `url(${edition.coverImage})` }"
+    >
+      <div class="stats-banner-overlay"></div>
+      <div class="wrap stats-content-wrap">
         <div class="section-head text-center">
           <span class="sub-kicker">Indicateurs de Performance</span>
           <h2 class="section-h2 text-white">Chiffres Clés &amp; Retombées Mesurées</h2>
@@ -207,11 +227,76 @@ useHead(() => {
           </p>
         </div>
 
-        <div class="stats-grid">
-          <div v-for="stat in edition.stats" :key="stat.label" class="edition-stat-card">
-            <div class="stat-number">{{ stat.value }}</div>
-            <div class="stat-title">{{ stat.label }}</div>
-            <div v-if="stat.detail" class="stat-detail">{{ stat.detail }}</div>
+        <div class="stats-banner-grid">
+          <div 
+            v-for="(stat, idx) in edition.stats" 
+            :key="stat.label" 
+            class="stat-banner-item"
+          >
+            <!-- ORGANIC PEBBLE BADGE WITH OFFSET CURVED ACCENT (MATCHING USER REFERENCE) -->
+            <div class="stat-icon-badge">
+              <!-- People Icon -->
+              <svg v-if="getStatIconType(idx, stat.label) === 'people'" class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+
+              <!-- Globe Icon -->
+              <svg v-else-if="getStatIconType(idx, stat.label) === 'globe'" class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+
+              <!-- Finance Icon -->
+              <svg v-else-if="getStatIconType(idx, stat.label) === 'finance'" class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+
+              <!-- Bank Icon -->
+              <svg v-else-if="getStatIconType(idx, stat.label) === 'bank'" class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="21" x2="21" y2="21"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <polyline points="5 6 12 3 19 6"/>
+                <line x1="4" y1="10" x2="4" y2="21"/>
+                <line x1="20" y1="10" x2="20" y2="21"/>
+                <line x1="8" y1="14" x2="8" y2="17"/>
+                <line x1="12" y1="14" x2="12" y2="17"/>
+                <line x1="16" y1="14" x2="16" y2="17"/>
+              </svg>
+
+              <!-- Startup Icon -->
+              <svg v-else-if="getStatIconType(idx, stat.label) === 'startup'" class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+
+              <!-- Trophy Icon -->
+              <svg v-else class="badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"/>
+                <path d="M6 4h12a2 2 0 0 1 2 2v3a6 6 0 0 1-12 0V6a2 2 0 0 1 2-2z"/>
+              </svg>
+            </div>
+
+            <!-- NUMERIC COUNTER -->
+            <div class="stat-banner-number">
+              <AnimatedCounter :value="stat.value" />
+            </div>
+
+            <!-- STAT LABEL (WITH + PREFIX AS IN REFERENCE) -->
+            <div class="stat-banner-label">
+              + {{ stat.label }}
+            </div>
+
+            <!-- DETAIL CAPTION -->
+            <div v-if="stat.detail" class="stat-banner-detail">
+              {{ stat.detail }}
+            </div>
           </div>
         </div>
       </div>
@@ -472,10 +557,27 @@ useHead(() => {
 
 /* HERO */
 .edition-hero {
-  padding-top: 40px;
-  padding-bottom: 70px;
-  background-color: var(--navy-bg);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 50px;
+  padding-bottom: 75px;
   border-bottom: 1px solid var(--navy-line);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(8, 43, 85, 0.90);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-top-meta {
@@ -741,11 +843,29 @@ useHead(() => {
   color: var(--text-muted);
 }
 
-/* SECTION 2: STATS */
-.section-stats {
-  padding: 80px 0;
-  background-color: var(--navy-bg);
+/* SECTION 2: STATS BANNER (MATCHING USER REFERENCE DESIGN) */
+.section-stats-banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 88px 0;
+  border-top: 1px solid var(--navy-line);
   border-bottom: 1px solid var(--navy-line);
+  overflow: hidden;
+}
+
+.stats-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(8, 43, 85, 0.88); /* deep solid navy tint, NO gradient */
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.stats-content-wrap {
+  position: relative;
+  z-index: 2;
 }
 
 .text-center {
@@ -763,44 +883,88 @@ useHead(() => {
   margin: 0 auto 48px;
 }
 
-.stats-grid {
+.stats-banner-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  align-items: flex-start;
 }
 
-.edition-stat-card {
-  background-color: #0b3464;
-  border: 1px solid var(--navy-line);
-  padding: 28px 24px;
-  border-radius: 4px;
-  transition: transform 0.2s ease;
+.stat-banner-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease;
 }
 
-.edition-stat-card:hover {
-  transform: translateY(-2px);
+.stat-banner-item:hover {
+  transform: translateY(-4px);
 }
 
-.stat-number {
+/* Organic pebble badge matching user reference image */
+.stat-icon-badge {
+  width: 76px;
+  height: 64px;
+  background-color: var(--color-gold);
+  border-radius: 46% 54% 48% 52% / 54% 46% 54% 46%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+  color: var(--ayif-white);
+  transition: transform 0.3s ease;
+}
+
+.stat-icon-badge::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  width: 100%;
+  height: 100%;
+  border-radius: 46% 54% 48% 52% / 54% 46% 54% 46%;
+  border-right: 2.5px solid var(--color-accent);
+  border-bottom: 2.5px solid var(--color-accent);
+  pointer-events: none;
+}
+
+.stat-banner-item:hover .stat-icon-badge {
+  transform: scale(1.08);
+}
+
+.badge-svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--ayif-white);
+  stroke-width: 2.2;
+}
+
+.stat-banner-number {
   font-family: var(--font-serif);
-  font-size: var(--fs-stat);
+  font-size: 32px;
   font-weight: 800;
-  color: var(--color-accent);
-  line-height: 1;
+  color: #ffffff;
+  line-height: 1.1;
   margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
-.stat-title {
-  font-size: var(--fs-body);
-  font-weight: 700;
-  color: var(--navy-text);
-  margin-bottom: 6px;
-}
-
-.stat-detail {
+.stat-banner-label {
+  font-family: var(--font-sans);
   font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.stat-banner-detail {
+  font-size: 11px;
   color: var(--navy-muted);
-  line-height: 1.45;
+  line-height: 1.4;
+  max-width: 170px;
 }
 
 /* SECTION 3: HIGHLIGHTS */
