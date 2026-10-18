@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ==========================================================================
+   CHARTE GRAPHIQUE OFFICIELLE — AYIF BENIN 2026
+   Initialisation unique des couleurs et des variables pour mode clair et sombre
+   Charte : 
+     - Bleu nuit #082B55 (principale)
+     - Bleu #0757B8 (secondaire)
+     - Bleu clair #2EA7F2 (accents, chiffres, survols)
+     - Blanc #FFFFFF
+     - Or #D9A21B (rare, texte seulement)
+     - Aucun dégradé
+   ========================================================================== */
+
+:root {
+  /* --- PALETTE DE MARQUE AYIF (initialisée une seule fois) --- */
+  --ayif-navy: #082B55;
+  --ayif-blue: #0757B8;
+  --ayif-sky: #2EA7F2;
+  --ayif-white: #FFFFFF;
+  --ayif-gold: #D9A21B;
+
+  /* --- TYPOGRAPHIE --- */
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- ECHELLE TYPOGRAPHIQUE (initialisee une seule fois) ---
+     Toutes les tailles du site passent par ces variables. */
+  --fs-display: clamp(2.25rem, 4.6vw, 3.5rem);   /* titre du hero d'accueil */
+  --fs-h1: clamp(1.875rem, 3.6vw, 2.75rem);      /* titre des pages internes */
+  --fs-h2: clamp(1.5rem, 2.6vw, 2.125rem);       /* titres de section */
+  --fs-h3: 1.25rem;                              /* titres de cartes */
+  --fs-h4: 1.125rem;                             /* sous-titres, sessions */
+  --fs-stat: clamp(1.75rem, 3.2vw, 2.5rem);      /* chiffres cles, compte a rebours */
+  --fs-lead: 1.0625rem;                          /* paragraphes d'introduction */
+  --fs-body: 0.9375rem;                          /* texte courant */
+  --fs-sm: 0.8125rem;                            /* texte secondaire */
+  --fs-xs: 0.6875rem;                            /* etiquettes, badges */
+
+  /* --- VARIABLES SÉMANTIQUES : MODE CLAIR --- */
+  --bg-page: var(--ayif-white);
+  --text-page: var(--ayif-navy);
+  --text-muted: rgba(8, 43, 85, 0.72);
+  --line-color: rgba(8, 43, 85, 0.18);
+
+  --card-bg: var(--ayif-white);
+  --card-border: rgba(8, 43, 85, 0.12);
+  --bg-surface: #F8FAFC;
+  --border-line: rgba(8, 43, 85, 0.16);
+
+  /* Blocs sections Bleu Nuit */
+  --navy-bg: var(--ayif-navy);
+  --navy-text: var(--ayif-white);
+  --navy-muted: rgba(255, 255, 255, 0.78);
+  --navy-line: rgba(255, 255, 255, 0.15);
+
+  /* Blocs sections Bleu */
+  --blue-bg: var(--ayif-blue);
+  --blue-text: var(--ayif-white);
+  --blue-muted: rgba(255, 255, 255, 0.85);
+
+  /* Header */
+  --header-bg-solid: var(--ayif-navy);
+  --header-border: rgba(255, 255, 255, 0.15);
+
+  /* Boutons & Liens */
+  --btn-primary-bg: var(--ayif-blue);
+  --btn-primary-text: var(--ayif-white);
+  --btn-primary-hover-bg: var(--ayif-white);
+  --btn-primary-hover-text: var(--ayif-navy);
+
+  --btn-ghost-border: rgba(255, 255, 255, 0.45);
+  --btn-ghost-text: var(--ayif-white);
+  --btn-ghost-hover-bg: rgba(255, 255, 255, 0.12);
+
+  /* Sponsors */
+  --sponsor-bg: var(--ayif-white);
+  --sponsor-text: var(--text-muted);
+
+  /* Accents */
+  --color-accent: var(--ayif-sky);
+  --color-gold: var(--ayif-gold);
+
+  color-scheme: light;
+}
+
+/* --- VARIABLES SÉMANTIQUES : MODE SOMBRE (initialisée une seule fois) --- */
+:root.dark,
+[data-theme='dark'],
+.dark {
+  --bg-page: #041224;
+  --text-page: #F0F6FC;
+  --text-muted: rgba(220, 235, 252, 0.72);
+  --line-color: rgba(46, 167, 242, 0.22);
+
+  --card-bg: #07203E;
+  --card-border: rgba(46, 167, 242, 0.25);
+  --bg-surface: #07203E;
+  --border-line: rgba(46, 167, 242, 0.22);
+
+  /* Blocs sections Bleu Nuit en mode sombre */
+  --navy-bg: #06182F;
+  --navy-text: var(--ayif-white);
+  --navy-muted: rgba(255, 255, 255, 0.82);
+  --navy-line: rgba(255, 255, 255, 0.18);
+
+  /* Blocs sections Bleu en mode sombre */
+  --blue-bg: #0757B8;
+  --blue-text: var(--ayif-white);
+  --blue-muted: rgba(255, 255, 255, 0.88);
+
+  /* Header */
+  --header-bg-solid: #030D1B;
+  --header-border: rgba(46, 167, 242, 0.25);
+
+  /* Boutons & Liens */
+  --btn-primary-bg: var(--ayif-blue);
+  --btn-primary-text: var(--ayif-white);
+  --btn-primary-hover-bg: var(--ayif-sky);
+  --btn-primary-hover-text: #041224;
+
+  --btn-ghost-border: rgba(255, 255, 255, 0.6);
+  --btn-ghost-text: var(--ayif-white);
+  --btn-ghost-hover-bg: rgba(255, 255, 255, 0.16);
+
+  /* Sponsors */
+  --sponsor-bg: #07203E;
+  --sponsor-text: rgba(240, 246, 252, 0.85);
+
+  /* Accents */
+  --color-accent: var(--ayif-sky);
+  --color-gold: var(--ayif-gold);
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   STYLES GLOBAUX & RESET
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-page);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Typographie de base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h3 {
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Utilitaires conteneurs & sections */
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 88px 0;
+}
+
+/* Classes thématiques pour les sections pleines */
+.navy {
+  background-color: var(--navy-bg);
+  color: var(--navy-text);
+}
+
+.blue {
+  background-color: var(--blue-bg);
+  color: var(--blue-text);
+}
+
+/* ==========================================================================
+   BOUTONS & LIENS RÉUTILISABLES
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  font-family: var(--font-sans);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+.btn.primary:hover {
+  background-color: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
+}
+
+.btn.ghost {
+  border-color: var(--btn-ghost-border);
+  color: var(--btn-ghost-text);
+  background-color: transparent;
+}
+
+.btn.ghost:hover {
+  background-color: var(--btn-ghost-hover-bg);
+}
+
+.link {
+  display: inline-block;
+  margin-top: 26px;
+  font-weight: 700;
+  color: var(--navy-text);
+  border-bottom: 2px solid var(--navy-text);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link.dark {
+  color: var(--text-page);
+  border-color: var(--text-page);
+  margin: 0;
+}
+
+.link.dark:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.intro {
+  margin-top: 14px;
+  font-size: var(--fs-lead);
+  color: var(--text-muted);
+  max-width: 520px;
+}
+
+.intro.light {
+  color: var(--navy-muted);
+}
+
+/* ==========================================================================
+   ANIMATIONS & ACCESSIBILITÉ
+   ========================================================================== */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.d2 {
+  animation-delay: 0.15s;
+}
+
+.d3 {
+  animation-delay: 0.3s;
+}
+
+.d4 {
+  animation-delay: 0.45s;
+}
+
+/* --- Apparition au scroll (directive v-reveal) --- */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal-up { transform: translateY(36px); }
+.reveal-left { transform: translateX(-48px); }
+.reveal-right { transform: translateX(48px); }
+.reveal-zoom { transform: scale(0.94); }
+.reveal-fade { transform: none; }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Defilement continu (bandeaux sponsors, themes) --- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* --- Zoom lent sur les images de fond --- */
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* --- Transitions entre les pages --- */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* --- Soulignement anime des liens texte --- */
+.link-anim {
+  position: relative;
+}
+.link-anim::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.link-anim:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .marquee-track {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
