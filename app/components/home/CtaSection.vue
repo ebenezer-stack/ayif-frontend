@@ -4,7 +4,7 @@
       <span v-reveal class="cta-kicker">Rejoignez le mouvement économique</span>
       <h2 v-reveal="{ effect: 'zoom', delay: 100 }">Be part of Africa’s next investment conversation.</h2>
       <p v-reveal="{ effect: 'up', delay: 200 }" class="cta-lead">
-        Les opportunités de co-investissement, d'expansion commerciale et de partenariats stratégiques se concrétisent à Cotonou du 12 au 14 Novembre 2026.
+        Les opportunités de co-investissement, d'expansion commerciale et de partenariats stratégiques se concrétisent à Cotonou du 03 au 05 Décembre 2026.
       </p>
       <div v-reveal="{ effect: 'up', delay: 300 }" class="cta-actions">
         <NuxtLink to="/reservation" class="btn primary cta-btn">

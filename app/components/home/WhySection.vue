@@ -30,6 +30,9 @@ import { pillars } from '../../data/mockData'
 .why-section {
   padding: 88px 0;
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 
@@ -45,6 +48,8 @@ import { pillars } from '../../data/mockData'
 }
 
 .split {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 56px;

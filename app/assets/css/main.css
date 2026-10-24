@@ -81,6 +81,9 @@
   --color-accent: var(--ayif-sky);
   --color-gold: var(--ayif-gold);
 
+  /* Motif géométrique patrimonial officiel AYIF (zéro dégradé) */
+  --bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z M28 12 L44 28 L28 44 L12 28 Z M28 23 L33 28 L28 33 L23 28 Z M0 12 L12 0 M44 0 L56 12 M0 44 L12 56 M44 56 L56 44 M0 23 L5 28 L0 33 M56 23 L51 28 L56 33 M23 0 L28 5 L33 0 M23 56 L28 51 L33 56' fill='none' stroke='%23082B55' stroke-width='1' stroke-opacity='0.055'/%3E%3C/svg%3E");
+
   color-scheme: light;
 }
 
@@ -131,6 +134,9 @@
   --color-accent: var(--ayif-sky);
   --color-gold: var(--ayif-gold);
 
+  /* Motif géométrique patrimonial en mode sombre */
+  --bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z M28 12 L44 28 L28 44 L12 28 Z M28 23 L33 28 L28 33 L23 28 Z M0 12 L12 0 M44 0 L56 12 M0 44 L12 56 M44 56 L56 44 M0 23 L5 28 L0 33 M56 23 L51 28 L56 33 M23 0 L28 5 L33 0 M23 56 L28 51 L33 56' fill='none' stroke='%232EA7F2' stroke-width='1' stroke-opacity='0.045'/%3E%3C/svg%3E");
+
   color-scheme: dark;
 }
 
@@ -151,12 +157,39 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
   font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ==========================================================================
+   TRAME GÉOMÉTRIQUE OFFICIELLE — APPLIQUÉE À TOUTES LES SECTIONS CLAIRES
+   ========================================================================== */
+.why-section,
+.themes-section,
+.speakers-curated-section,
+.program-section,
+.sponsors-section,
+.blog-section,
+.programme-page,
+.partners-page,
+.speakers-page,
+.reservation-page,
+.about-page,
+.editions-page,
+.ed-detail-page,
+.blog-page,
+.article-page,
+.bg-pattern-light {
+  background-image: var(--bg-pattern) !important;
+  background-repeat: repeat !important;
+  background-size: 56px 56px !important;
 }
 
 /* Typographie de base */

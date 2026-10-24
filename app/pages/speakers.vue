@@ -13,10 +13,11 @@ useHead({
   ]
 })
 
+const selectedEdition = ref<'2026' | '2025'>('2026')
 const selectedFilter = ref('ALL')
 
 const filters = [
-  { id: 'ALL', label: 'Tous les intervenants' },
+  { id: 'ALL', label: 'Tous les intervenants 2025' },
   { id: 'Nigeria', label: 'Nigeria' },
   { id: 'Bénin', label: 'Bénin' },
   { id: 'Sénégal', label: 'Sénégal' },
@@ -27,8 +28,9 @@ const filters = [
 ]
 
 const filteredSpeakers = computed<Speaker[]>(() => {
-  if (selectedFilter.value === 'ALL') return speakers
-  return speakers.filter(s => {
+  const editionSpeakers = speakers.filter(s => (s.editionYear || 2025) === 2025)
+  if (selectedFilter.value === 'ALL') return editionSpeakers
+  return editionSpeakers.filter(s => {
     return s.country === selectedFilter.value || 
       s.topics.some(t => t.toLowerCase().includes(selectedFilter.value.toLowerCase()))
   })
@@ -61,7 +63,7 @@ const submitCandidacy = () => {
         <span class="sub-kicker">Panel d’Excellence</span>
         <h1 class="hero-title">Les Voix de l’Économie Africaine</h1>
         <p class="hero-lead">
-          Plus de 50 investisseurs de premier plan, décideurs institutionnels et fondateurs chevronnés réunis pour inspirer, orienter et financer la jeunesse africaine.
+          Chaque édition de l'AYIF possède sa liste dédiée d’intervenants. Découvrez les personnalités officielles par année et suivez les annonces du forum 2026.
         </p>
         <div class="meta-strip">
           <span>{{ EVENT_DATES_LABEL }}</span>
@@ -74,25 +76,69 @@ const submitCandidacy = () => {
     <!-- SPEAKERS LIST & FILTERS -->
     <section class="sp-content">
       <div class="wrap">
-        <!-- BARRE DE FILTRES -->
-        <div class="filter-strip">
-          <span class="filter-label">Filtrer par pays / spécialité :</span>
-          <div class="filter-pills">
-            <button 
-              v-for="f in filters" 
-              :key="f.id"
-              type="button"
-              class="pill-btn"
-              :class="{ active: selectedFilter === f.id }"
-              @click="selectedFilter = f.id"
-            >
-              {{ f.label }}
+        <!-- SÉLECTEUR D'ÉDITIONS -->
+        <div class="edition-nav-strip">
+          <button 
+            type="button" 
+            class="edition-selector-btn"
+            :class="{ active: selectedEdition === '2026' }"
+            @click="selectedEdition = '2026'"
+          >
+            <span class="ed-title">Édition 2026 · Cotonou</span>
+            <span class="ed-sub">Annonce officielle en cours</span>
+          </button>
+          <button 
+            type="button" 
+            class="edition-selector-btn"
+            :class="{ active: selectedEdition === '2025' }"
+            @click="selectedEdition = '2025'"
+          >
+            <span class="ed-title">Rétrospective 2025 · Abuja</span>
+            <span class="ed-sub">Intervenants confirmés</span>
+          </button>
+        </div>
+
+        <!-- CONTENU ÉDITION 2026 : ANNONCE EN COURS -->
+        <div v-if="selectedEdition === '2026'" class="speakers-pending-card">
+          <div class="pending-badge">
+            <span class="p-dot"></span>
+            <span>Sélection Officielle 2026 en Cours de Confirmation</span>
+          </div>
+          <h2 class="pending-title">La Liste Officielle des Intervenants 2026 sera Dévoilée Prochainement</h2>
+          <p class="pending-text">
+            Chaque année a sa propre liste d'intervenants. Pour l’édition AYIF Bénin 2026 (03 au 05 Décembre 2026 au Palais des Congrès de Cotonou), les intervenants officiels, panélistes ministériels, fondateurs de renom et investisseurs seront ajoutés au fur et à mesure de la validation de leurs délégations par le comité d’organisation. Pour chaque nouvelle édition future, une liste spécifique sera inaugurée.
+          </p>
+          <div class="pending-actions">
+            <a href="#candidature" class="btn primary">
+              Proposer une intervention 2026
+            </a>
+            <button type="button" class="btn outline-dark" @click="selectedEdition = '2025'">
+              Consulter les intervenants d'Abuja 2025
             </button>
           </div>
         </div>
 
-        <!-- GRILLE DÉTAILLÉE DES SPEAKERS -->
-        <div class="speakers-grid">
+        <!-- CONTENU ÉDITION 2025 : INTERVENANTS HISTORIQUES -->
+        <div v-else>
+          <!-- BARRE DE FILTRES -->
+          <div class="filter-strip">
+            <span class="filter-label">Filtrer par pays / spécialité (Abuja 2025) :</span>
+            <div class="filter-pills">
+              <button 
+                v-for="f in filters" 
+                :key="f.id"
+                type="button"
+                class="pill-btn"
+                :class="{ active: selectedFilter === f.id }"
+                @click="selectedFilter = f.id"
+              >
+                {{ f.label }}
+              </button>
+            </div>
+          </div>
+
+          <!-- GRILLE DÉTAILLÉE DES SPEAKERS 2025 -->
+          <div class="speakers-grid">
           <div 
             v-for="s in filteredSpeakers" 
             :key="s.id" 
@@ -121,6 +167,7 @@ const submitCandidacy = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -206,6 +253,9 @@ const submitCandidacy = () => {
 <style scoped>
 .speakers-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 
@@ -330,19 +380,34 @@ const submitCandidacy = () => {
 
 .sp-photo {
   aspect-ratio: 4 / 5;
-  border-radius: 4px;
+  border-radius: 6px;
   display: grid;
   place-items: center;
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--navy-line);
+  border: 1px solid rgba(217, 162, 27, 0.35);
+  background-color: var(--ayif-navy);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M22 0 L44 22 L22 44 L0 22 Z' fill='none' stroke='%23D9A21B' stroke-width='1.1' stroke-opacity='0.24'/%3E%3Cpath d='M22 8 L36 22 L22 36 L8 22 Z' fill='none' stroke='%232EA7F2' stroke-width='0.8' stroke-opacity='0.18'/%3E%3Crect x='20.5' y='20.5' width='3' height='3' fill='%23D9A21B' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 44px 44px;
+  background-repeat: repeat;
 }
 
 .sp-photo span {
   font-family: var(--font-serif);
   font-size: var(--fs-stat);
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  background-color: rgba(4, 18, 36, 0.88);
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  position: relative;
+  z-index: 2;
 }
 
 .sp-photo em {
@@ -561,5 +626,119 @@ const submitCandidacy = () => {
   .sp-photo {
     max-width: 120px;
   }
+}
+
+/* SÉLECTEUR D'ÉDITIONS & CARTE D'ANNONCE 2026 */
+.edition-nav-strip {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.edition-selector-btn {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-line);
+  padding: 16px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.edition-selector-btn:hover {
+  border-color: var(--color-gold);
+}
+
+.edition-selector-btn.active {
+  background-color: var(--ayif-blue);
+  border-color: var(--color-gold);
+}
+
+.ed-title {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-page);
+}
+
+.ed-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.edition-selector-btn.active .ed-title {
+  color: var(--ayif-white);
+}
+
+.edition-selector-btn.active .ed-sub {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.speakers-pending-card {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(200, 168, 75, 0.4);
+  border-radius: 8px;
+  padding: 48px;
+  margin-bottom: 48px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+}
+
+.pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(200, 168, 75, 0.15);
+  border: 1px solid rgba(200, 168, 75, 0.4);
+  color: #8c6d1f;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.p-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+}
+
+.pending-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--ayif-blue);
+  margin: 0 0 16px;
+  line-height: 1.25;
+}
+
+.pending-text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-page);
+  max-width: 800px;
+  margin: 0 0 32px;
+}
+
+.pending-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn.outline-dark {
+  background-color: transparent;
+  color: var(--ayif-blue);
+  border: 1px solid var(--border-line);
+}
+
+.btn.outline-dark:hover {
+  border-color: var(--ayif-blue);
+  background-color: rgba(10, 26, 47, 0.04);
 }
 </style>

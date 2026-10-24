@@ -2,8 +2,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { EVENT_TARGET_DATE } from '../../data/mockData'
 
-/* Barre de compte a rebours compacte, posee a cheval sur le bas du hero. */
-
 interface TimeLeft {
   days: number
   hours: number
@@ -25,7 +23,6 @@ const compute = (): TimeLeft => {
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-// Valeurs neutres au rendu serveur pour eviter un decalage d'hydratation
 const time = ref<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 let timer: ReturnType<typeof setInterval> | null = null
 
@@ -37,87 +34,102 @@ onMounted(() => {
 onBeforeUnmount(() => {
   if (timer) clearInterval(timer)
 })
-
-const units = [
-  { key: 'days', label: 'Jours' },
-  { key: 'hours', label: 'Heures' },
-  { key: 'minutes', label: 'Minutes' },
-  { key: 'seconds', label: 'Secondes' }
-] as const
 </script>
 
 <template>
-  <div class="cd-bar" role="timer" aria-label="Temps restant avant l'ouverture du forum">
-    <template v-for="(u, i) in units" :key="u.key">
-      <div class="cd-unit">
-        <span class="cd-num">{{ u.key === 'days' ? time.days : pad(time[u.key]) }}</span>
-        <span class="cd-label">{{ u.label }}</span>
-      </div>
-      <span v-if="i < units.length - 1" class="cd-sep" aria-hidden="true">:</span>
-    </template>
+  <div class="cd-simple" role="timer" aria-label="Compte à rebours avant l'ouverture de l'AYIF 2026">
+    <div class="cd-item">
+      <span class="cd-val">{{ time.days }}</span>
+      <span class="cd-lbl">Jours</span>
+    </div>
+
+    <div class="cd-line" aria-hidden="true"></div>
+
+    <div class="cd-item">
+      <span class="cd-val">{{ pad(time.hours) }}</span>
+      <span class="cd-lbl">Heures</span>
+    </div>
+
+    <div class="cd-line" aria-hidden="true"></div>
+
+    <div class="cd-item">
+      <span class="cd-val">{{ pad(time.minutes) }}</span>
+      <span class="cd-lbl">Minutes</span>
+    </div>
+
+    <div class="cd-line" aria-hidden="true"></div>
+
+    <div class="cd-item">
+      <span class="cd-val">{{ pad(time.seconds) }}</span>
+      <span class="cd-lbl">Secondes</span>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.cd-bar {
+.cd-simple {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(14px, 4vw, 48px);
-  background-color: var(--ayif-blue);
-  color: var(--ayif-white);
-  padding: 26px clamp(20px, 5vw, 64px);
-  border-radius: 6px;
-  box-shadow: 0 24px 48px -20px rgba(4, 18, 36, 0.55);
+  justify-content: space-between;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background-color: var(--ayif-navy, #082B55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 24px clamp(24px, 4vw, 56px);
+  box-shadow: 0 16px 36px rgba(4, 18, 36, 0.35);
+  color: #FFFFFF;
 }
 
-.cd-unit {
+.cd-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 64px;
+  flex: 1;
 }
 
-.cd-num {
-  font-family: var(--font-serif);
-  font-size: var(--fs-stat);
-  font-weight: 800;
+.cd-val {
+  font-family: var(--font-sans);
+  font-size: clamp(2.1rem, 3.8vw, 2.85rem);
+  font-weight: 700;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
-.cd-label {
-  margin-top: 6px;
+.cd-lbl {
+  margin-top: 8px;
+  font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.05em;
 }
 
-.cd-sep {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  color: var(--color-gold);
-  padding-bottom: 22px;
+.cd-line {
+  width: 1px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
 }
 
-@media (max-width: 520px) {
-  .cd-bar {
-    padding: 18px 12px;
-    gap: 8px;
+@media (max-width: 600px) {
+  .cd-simple {
+    padding: 14px 18px;
+    border-radius: 6px;
+    max-width: 360px;
   }
-  .cd-unit {
-    min-width: 52px;
+  .cd-val {
+    font-size: 1.45rem;
   }
-  .cd-label {
+  .cd-lbl {
     font-size: 10px;
-    letter-spacing: 0.06em;
+    margin-top: 4px;
   }
-  .cd-sep {
-    padding-bottom: 16px;
+  .cd-line {
+    height: 24px;
   }
 }
 </style>

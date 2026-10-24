@@ -7,11 +7,11 @@ import { footerCols } from '../../data/mockData'
     <div class="wrap fg">
       <div class="brand-col">
         <NuxtLink to="/" class="fl">
-          AYIF <i>Benin 2026</i>
+          AYIF <i>Africa Youth Investment Forum</i>
         </NuxtLink>
         <p class="desc">
           Africa Youth Investment Forum.<br />
-          12 — 14 Novembre 2026 · Cotonou, Bénin.<br />
+          03 — 05 Décembre 2026 · Cotonou, Bénin.<br />
           Le carrefour panafricain des capitaux et de l’entrepreneuriat jeunesse.
         </p>
         <div class="organizers-note">

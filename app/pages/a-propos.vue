@@ -173,6 +173,9 @@ useHead({
 <style scoped>
 .about-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 

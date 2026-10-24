@@ -31,13 +31,30 @@ export interface Speaker {
   bio: string
   topics: string[]
   featured?: boolean
+  editionYear?: number
+}
+
+export interface GeneralProgramDay {
+  dayNumber: number
+  dayId?: 'day1' | 'day2' | 'day3'
+  dateLabel: string
+  actionWord?: string
+  action?: string
+  dayTitle?: string
+  theme: string
+  description?: string
+  narrative?: string
+  bulletPoints?: string[]
+  items?: string[]
+  objective: string
+  highlights?: string[]
 }
 
 export interface Session {
   id: string
   day: 'day1' | 'day2' | 'day3'
   dayLabel: string
-  time: string
+  time?: string
   type: 'KEYNOTE' | 'PANEL' | 'STARTUP PITCH' | 'INVESTMENT SESSION' | 'NETWORKING B2B' | 'ATELIER'
   title: string
   description: string
@@ -92,7 +109,7 @@ export interface BlogPost {
   slug: string
   title: string
   excerpt: string
-  category: 'Investissement' | 'Entrepreneuriat' | 'Cotonou 2026' | 'Innovation' | 'Coulisses'
+  category: 'Investissement' | 'Entrepreneuriat' | 'Cotonou 2026' | 'Innovation' | 'Coulisses' | 'Rétrospective 2025'
   author: string
   authorRole: string
   date: string        // ISO, ex: 2026-09-14

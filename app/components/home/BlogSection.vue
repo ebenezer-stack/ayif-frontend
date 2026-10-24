@@ -60,6 +60,9 @@ const latestPosts = blogPosts.slice(0, 3)
 .blog-section {
   padding: 88px 0;
   background-color: var(--bg-surface);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
   border-top: 1px solid var(--border-line);
 }

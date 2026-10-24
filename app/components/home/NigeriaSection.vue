@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nigeriaStats } from '../../data/mockData'
+import { nigeriaStats, nigeriaGallery } from '../../data/mockData'
 import AnimatedCounter from '../common/AnimatedCounter.vue'
 </script>
 
@@ -19,6 +19,7 @@ import AnimatedCounter from '../common/AnimatedCounter.vue'
         </NuxtLink>
       </div>
 
+      <!-- STATISTIQUES CLES -->
       <dl class="s3">
         <div
           v-for="(s, i) in nigeriaStats"
@@ -31,6 +32,37 @@ import AnimatedCounter from '../common/AnimatedCounter.vue'
           <p class="sub-detail">{{ s.detail }}</p>
         </div>
       </dl>
+
+      <!-- GALERIE PHOTOS AYIF 2025 -->
+      <div class="gallery-block">
+        <div class="gallery-header">
+          <span class="gallery-kicker">Moments Forts en Images</span>
+          <h3 class="gallery-title">Rétrospective Photographique Abuja 2025</h3>
+        </div>
+
+        <div class="gallery-grid">
+          <figure 
+            v-for="(item, idx) in nigeriaGallery" 
+            :key="idx" 
+            class="gallery-item"
+            v-reveal="{ effect: 'up', delay: idx * 100 }"
+          >
+            <div class="img-wrapper">
+              <img 
+                :src="item.image" 
+                :alt="item.title"
+                loading="lazy"
+                class="gallery-img"
+              />
+              <div class="overlay-grad"></div>
+            </div>
+            <figcaption class="item-caption">
+              <strong class="item-title">{{ item.title }}</strong>
+              <p class="item-sub">{{ item.caption }}</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -74,7 +106,7 @@ import AnimatedCounter from '../common/AnimatedCounter.vue'
   background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--navy-line);
   padding: 32px 24px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .num {
@@ -100,10 +132,114 @@ import AnimatedCounter from '../common/AnimatedCounter.vue'
   color: var(--navy-muted);
 }
 
+/* Galerie Photos */
+.gallery-block {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--navy-line);
+}
+
+.gallery-header {
+  margin-bottom: 28px;
+}
+
+.gallery-kicker {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+
+.gallery-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy-text);
+  margin: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--navy-line);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
+}
+
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+.overlay-grad {
+  display: none;
+}
+
+.item-caption {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy-text);
+  line-height: 1.3;
+}
+
+.item-sub {
+  font-size: 12px;
+  color: var(--navy-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
   .s3 {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

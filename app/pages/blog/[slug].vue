@@ -145,7 +145,7 @@ const copyArticleLink = () => {
               <span class="side-kicker">Rejoindre l'événement</span>
               <h3>Participez aux échanges en direct à Cotonou</h3>
               <p>
-                Les 12, 13 et 14 Novembre 2026, retrouvez les auteurs et investisseurs au Palais des Congrès pour approfondir ces thématiques.
+                Du 03 au 05 Décembre 2026, retrouvez les auteurs et investisseurs au Palais des Congrès pour approfondir ces thématiques.
               </p>
               <NuxtLink to="/reservation" class="btn primary side-btn">
                 Réserver mon pass
@@ -203,6 +203,9 @@ const copyArticleLink = () => {
 <style scoped>
 .post-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 

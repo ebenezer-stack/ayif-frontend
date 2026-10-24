@@ -1,55 +1,26 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { sessions, EVENT_DATES_LABEL, EVENT_LOCATION } from '../data/mockData'
-import type { Session } from '../types'
+import { generalProgram, EVENT_DATES_LABEL, EVENT_LOCATION } from '../data/mockData'
+import type { GeneralProgramDay } from '../types'
 
 useHead({
-  title: 'Programme Officiel — AYIF Bénin 2026',
+  title: 'Programme Général — Africa Youth Investment Forum (AYIF)',
   meta: [
     {
       name: 'description',
-      content: 'Consultez le programme complet des 3 jours de l’Africa Youth Investment Forum (AYIF) Cotonou 2026. Panels, keynotes, pitchs de startups et rencontres B2B.'
+      content: 'Découvrez le programme général des 3 jours de l’Africa Youth Investment Forum (AYIF) Bénin 2026 : Rassembler, Accélérer, Transformer. Immersion terrain, clinique d’entreprise et gala.'
     }
   ]
 })
 
-const activeDay = ref<'all' | 'day1' | 'day2' | 'day3'>('all')
-const activeType = ref<string>('ALL')
+const activeDayTab = ref<number | 'all'>('all')
 
-const daysList = [
-  { id: 'all', label: 'L’ensemble des 3 jours', date: '12 — 14 Nov 2026' },
-  { id: 'day1', label: 'Jour 1 : Politiques & Capitaux', date: 'Jeudi 12 Nov 2026' },
-  { id: 'day2', label: 'Jour 2 : Pitchs, PME & Gala', date: 'Vendredi 13 Nov 2026' },
-  { id: 'day3', label: 'Jour 3 : ZLECAf & B2B', date: 'Samedi 14 Nov 2026' }
-]
-
-const typesList = [
-  { id: 'ALL', label: 'Tous les formats' },
-  { id: 'KEYNOTE', label: 'Keynotes & Cérémonies' },
-  { id: 'PANEL', label: 'Panels Stratégiques' },
-  { id: 'STARTUP PITCH', label: 'Pitch Competition' },
-  { id: 'INVESTMENT SESSION', label: 'Sessions Investissement' },
-  { id: 'NETWORKING B2B', label: 'Networking & B2B' },
-  { id: 'ATELIER', label: 'Ateliers & Masterclasses' }
-]
-
-const filteredSessions = computed<Session[]>(() => {
-  return sessions.filter(s => {
-    const matchDay = activeDay.value === 'all' || s.day === activeDay.value
-    const matchType = activeType.value === 'ALL' || s.type === activeType.value
-    return matchDay && matchType
-  })
-})
-
-// Favoris / Agenda personnel
-const bookmarkedSessions = ref<string[]>([])
-const toggleBookmark = (sessionId: string) => {
-  if (bookmarkedSessions.value.includes(sessionId)) {
-    bookmarkedSessions.value = bookmarkedSessions.value.filter(id => id !== sessionId)
-  } else {
-    bookmarkedSessions.value.push(sessionId)
+const filteredDays = computed<GeneralProgramDay[]>(() => {
+  if (activeDayTab.value === 'all') {
+    return generalProgram
   }
-}
+  return generalProgram.filter(d => d.dayNumber === activeDayTab.value)
+})
 </script>
 
 <template>
@@ -57,114 +28,125 @@ const toggleBookmark = (sessionId: string) => {
     <!-- HERO SECTION -->
     <section class="prog-hero navy">
       <div class="wrap">
-        <span class="sub-kicker">Agenda Détaillé</span>
-        <h1 class="hero-title">Programme du Forum AYIF 2026</h1>
+        <span class="sub-kicker">Architecture Officielle</span>
+        <h1 class="hero-title">Programme Général AYIF 2026</h1>
         <p class="hero-lead">
-          Trois jours intensifs structurés autour des enjeux concrets du financement, de l'expansion régionale et des alliances d'affaires entre jeunes entrepreneurs et bailleurs de fonds.
+          Trois journées conçues pour faire converger l'écosystème entrepreneurial continental : de la communion institutionnelle à l'accélération concrète des affaires, jusqu'à l'immersion productive et la célébration d'excellence.
         </p>
         <div class="meta-strip">
-          <span>{{ EVENT_DATES_LABEL }}</span>
+          <span class="meta-item">{{ EVENT_DATES_LABEL }}</span>
           <span class="dot">·</span>
-          <span>{{ EVENT_LOCATION }}</span>
+          <span class="meta-item">{{ EVENT_LOCATION }}</span>
+          <span class="dot">·</span>
+          <span class="meta-badge">Programme Général sans horodatage fixe</span>
         </div>
       </div>
     </section>
 
-    <!-- PROGRAM NAVIGATION & FILTERS -->
+    <!-- PROGRAM CONTAINER -->
     <section class="prog-container">
       <div class="wrap">
-        <!-- ONGLET JOURS -->
-        <div class="day-tabs">
+        <!-- TABS JOURS -->
+        <div class="day-tabs" role="tablist">
           <button 
-            v-for="d in daysList" 
-            :key="d.id"
             type="button"
             class="day-tab-btn"
-            :class="{ active: activeDay === d.id }"
-            @click="activeDay = d.id as any"
+            :class="{ active: activeDayTab === 'all' }"
+            @click="activeDayTab = 'all'"
           >
-            <span class="day-label">{{ d.label }}</span>
-            <span class="day-date">{{ d.date }}</span>
+            <span class="day-num">Vue d'ensemble</span>
+            <span class="day-label">Les 3 Journées</span>
+            <span class="day-date">03 — 05 Décembre 2026</span>
+          </button>
+
+          <button 
+            v-for="d in generalProgram" 
+            :key="d.dayNumber"
+            type="button"
+            class="day-tab-btn"
+            :class="{ active: activeDayTab === d.dayNumber }"
+            @click="activeDayTab = d.dayNumber"
+          >
+            <span class="day-num">Jour {{ d.dayNumber }}</span>
+            <span class="day-label">{{ d.action }}</span>
+            <span class="day-date">{{ d.dateLabel }}</span>
           </button>
         </div>
 
-        <!-- FILTRES FORMATS -->
-        <div class="format-filters-bar">
-          <span class="filter-hint">Filtrer par format :</span>
-          <div class="filters-scroll">
-            <button 
-              v-for="t in typesList" 
-              :key="t.id"
-              type="button"
-              class="type-pill-btn"
-              :class="{ active: activeType === t.id }"
-              @click="activeType = t.id"
-            >
-              {{ t.label }}
-            </button>
-          </div>
-        </div>
-
-        <!-- LISTE DES SESSIONS -->
-        <div class="sessions-timeline">
-          <div v-if="filteredSessions.length === 0" class="empty-state">
-            <p>Aucune session ne correspond aux filtres sélectionnés.</p>
-            <button type="button" class="btn primary" @click="activeDay = 'all'; activeType = 'ALL'">
-              Réinitialiser les filtres
-            </button>
-          </div>
-
+        <!-- DAYS LIST -->
+        <div class="general-program-list">
           <article 
-            v-for="s in filteredSessions" 
-            :key="s.id" 
-            class="session-card"
+            v-for="day in filteredDays" 
+            :key="day.dayNumber" 
+            class="program-day-card"
           >
-            <div class="sess-time-col">
-              <time class="sess-hour">{{ s.time }}</time>
-              <span class="sess-day-tag">{{ s.dayLabel.split('—')[0] }}</span>
-              <span class="sess-place">{{ s.place }}</span>
-            </div>
+            <!-- Card Header -->
+            <header class="day-card-header">
+              <div class="day-badge-wrap">
+                <span class="day-pill">JOUR {{ day.dayNumber }}</span>
+                <span class="action-tag">{{ day.action }}</span>
+                <span class="date-tag">{{ day.dateLabel }}</span>
+              </div>
+              <h2 class="day-card-title">
+                JOUR {{ day.dayNumber }} — {{ day.action }} : {{ day.theme }}
+              </h2>
+            </header>
 
-            <div class="sess-body-col">
-              <div class="sess-top-row">
-                <span class="sess-badge">{{ s.type }}</span>
-                <button 
-                  type="button" 
-                  class="bookmark-btn"
-                  :class="{ bookmarked: bookmarkedSessions.includes(s.id) }"
-                  :aria-label="bookmarkedSessions.includes(s.id) ? 'Retirer de mon agenda' : 'Ajouter à mon agenda'"
-                  @click="toggleBookmark(s.id)"
-                >
-                  <svg v-if="bookmarkedSessions.includes(s.id)" class="bm-svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                  <svg v-else class="bm-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                  <span>{{ bookmarkedSessions.includes(s.id) ? 'Ajouté à mon agenda' : 'Ajouter à mon agenda' }}</span>
-                </button>
+            <!-- Card Body -->
+            <div class="day-card-body">
+              <div class="narrative-box">
+                <p class="narrative-text">{{ day.narrative }}</p>
               </div>
 
-              <h2 class="sess-title">{{ s.title }}</h2>
-              <p class="sess-desc">{{ s.description }}</p>
+              <!-- Points du programme -->
+              <div class="program-points-section">
+                <h3 class="section-subtitle">Au programme de la journée :</h3>
+                <ul class="points-list">
+                  <li v-for="(item, idx) in day.items" :key="idx" class="point-item">
+                    <span class="bullet-marker"></span>
+                    <span class="point-content">{{ item }}</span>
+                  </li>
+                </ul>
+              </div>
 
-              <div class="sess-speakers-row">
-                <span class="sp-lead">Intervenants :</span>
-                <strong class="sp-names">{{ s.speakers }}</strong>
+              <!-- Objectif Clé -->
+              <div class="objective-card">
+                <div class="obj-header">
+                  <span class="obj-badge">Objectif</span>
+                </div>
+                <p class="obj-text">
+                  <strong>Objectif :</strong> {{ day.objective }}
+                </p>
+              </div>
+
+              <!-- Points Forts & Lieux -->
+              <div v-if="day.highlights && day.highlights.length" class="highlights-row">
+                <span class="hl-label">Temps forts & Lieux :</span>
+                <div class="hl-tags">
+                  <span v-for="(hl, hIdx) in day.highlights" :key="hIdx" class="hl-tag">
+                    {{ hl }}
+                  </span>
+                </div>
               </div>
             </div>
           </article>
         </div>
 
-        <!-- TÉLÉCHARGEMENT PROGRAMME PDF BANNER -->
-        <div class="download-banner navy">
-          <div class="dl-content">
-            <h3>Emportez le livret du programme officiel</h3>
-            <p>Recevez la brochure complète avec le profil des 50 speakers et le plan des salles du Palais des Congrès.</p>
+        <!-- CALL TO ACTION BANNER -->
+        <div class="participate-banner navy">
+          <div class="banner-body">
+            <span class="banner-kicker">Participez à l’Édition 2026</span>
+            <h3 class="banner-title">Préparez votre venue à Cotonou</h3>
+            <p class="banner-text">
+              Les places pour la Clinique entrepreneuriale, les visites de terrain (GDIZ, Fruits Tillous, Ouidah) et le Dîner de Gala sont attribuées selon les catégories de pass.
+            </p>
           </div>
-          <div class="dl-actions">
+          <div class="banner-cta">
             <NuxtLink to="/reservation" class="btn primary">
-              Réserver mon accès pour assister aux sessions
+              Réserver mon pass officiel
+            </NuxtLink>
+            <NuxtLink to="/contact" class="btn outline">
+              Poser une question à l’organisation
             </NuxtLink>
           </div>
         </div>
@@ -176,6 +158,9 @@ const toggleBookmark = (sessionId: string) => {
 <style scoped>
 .programme-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 
@@ -210,21 +195,32 @@ const toggleBookmark = (sessionId: string) => {
   font-size: var(--fs-lead);
   line-height: 1.55;
   color: var(--navy-muted);
-  max-width: 760px;
+  max-width: 820px;
   margin: 0 0 28px;
 }
 
 .meta-strip {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 14px;
   color: var(--color-accent);
   font-weight: 600;
+  flex-wrap: wrap;
 }
 
 .meta-strip .dot {
-  opacity: 0.5;
+  opacity: 0.4;
+}
+
+.meta-badge {
+  background-color: rgba(200, 168, 75, 0.15);
+  color: var(--color-gold);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(200, 168, 75, 0.3);
 }
 
 /* Onglets & Conteneur */
@@ -235,15 +231,15 @@ const toggleBookmark = (sessionId: string) => {
 .day-tabs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 14px;
+  margin-bottom: 48px;
 }
 
 .day-tab-btn {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-line);
-  padding: 18px 14px;
-  border-radius: 4px;
+  padding: 18px 16px;
+  border-radius: 6px;
   cursor: pointer;
   text-align: left;
   display: flex;
@@ -253,17 +249,27 @@ const toggleBookmark = (sessionId: string) => {
 }
 
 .day-tab-btn:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
 }
 
 .day-tab-btn.active {
   background-color: var(--ayif-blue);
-  border-color: var(--ayif-blue);
+  border-color: var(--color-gold);
+  box-shadow: 0 6px 18px rgba(10, 26, 47, 0.12);
+}
+
+.day-num {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: var(--color-gold);
 }
 
 .day-label {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-page);
 }
@@ -278,252 +284,308 @@ const toggleBookmark = (sessionId: string) => {
 }
 
 .day-tab-btn.active .day-date {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* Filtres formats */
-.format-filters-bar {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 44px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-line);
-  flex-wrap: wrap;
-}
-
-.filter-hint {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-muted);
-}
-
-.filters-scroll {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.type-pill-btn {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-line);
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-page);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.type-pill-btn:hover {
-  border-color: var(--color-accent);
-}
-
-.type-pill-btn.active {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--ayif-white);
-}
-
-/* Liste des sessions */
-.sessions-timeline {
+/* Program Days List */
+.general-program-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   margin-bottom: 64px;
 }
 
-.session-card {
+.program-day-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-line);
-  padding: 32px;
-  border-radius: 4px;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 32px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease;
 }
 
-.session-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
+.program-day-card:hover {
+  border-color: rgba(200, 168, 75, 0.4);
 }
 
-.sess-time-col {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  border-right: 1px solid var(--border-line);
-  padding-right: 20px;
+.day-card-header {
+  padding: 32px 36px 24px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-line);
 }
 
-.sess-hour {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h4);
-  font-weight: 700;
-  color: var(--ayif-blue);
-}
-
-.sess-day-tag {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-gold);
-}
-
-.sess-place {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-.sess-top-row {
+.day-badge-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
-.sess-badge {
-  display: inline-block;
+.day-pill {
   background-color: var(--ayif-blue);
   color: var(--ayif-white);
-  padding: 3px 12px;
-  border-radius: 99px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.bookmark-btn {
-  background: none;
-  border: 1px solid var(--border-line);
-  border-radius: 99px;
-  padding: 4px 12px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
+
+.action-tag {
+  background-color: rgba(200, 168, 75, 0.15);
+  color: #8c6d1f;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.date-tag {
+  font-size: 13px;
   color: var(--text-muted);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
-.bm-svg {
-  width: 14px;
-  height: 14px;
+.day-card-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ayif-blue);
+  margin: 0;
+  line-height: 1.3;
 }
 
-.bookmark-btn:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+.day-card-body {
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.bookmark-btn.bookmarked {
-  background-color: rgba(217, 162, 27, 0.12);
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+.narrative-box {
+  background-color: rgba(10, 26, 47, 0.02);
+  border-left: 4px solid var(--ayif-blue);
+  padding: 18px 22px;
+  border-radius: 0 6px 6px 0;
 }
 
-.sess-title {
-  font-size: var(--fs-h3);
+.narrative-text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-page);
+  margin: 0;
+}
+
+.section-subtitle {
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.25;
-  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--text-page);
 }
 
-.sess-desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin: 0 0 18px;
+.bullet-marker {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  margin-top: 7px;
+  flex-shrink: 0;
 }
 
-.sess-speakers-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--border-line);
+.point-content {
+  flex: 1;
 }
 
-.sp-lead {
-  color: var(--text-muted);
-}
-
-.sp-names {
-  color: var(--color-accent);
-}
-
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
+.objective-card {
   background-color: var(--bg-surface);
-  border: 1px dashed var(--border-line);
-  border-radius: 4px;
+  border: 1px solid rgba(200, 168, 75, 0.3);
+  border-radius: 6px;
+  padding: 20px 24px;
 }
 
-.empty-state p {
-  font-size: var(--fs-body);
-  color: var(--text-muted);
-  margin-bottom: 16px;
+.obj-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8c6d1f;
+  margin-bottom: 6px;
 }
 
-/* Download Banner */
-.download-banner {
-  padding: 44px 40px;
-  border-radius: 4px;
-  border: 1px solid var(--navy-line);
+.obj-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ayif-blue);
+}
+
+.highlights-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-line);
   flex-wrap: wrap;
-  gap: 24px;
 }
 
-.dl-content h3 {
-  font-size: var(--fs-h3);
+.hl-label {
+  font-size: 13px;
   font-weight: 700;
-  margin: 0 0 6px;
+  color: var(--text-muted);
+}
+
+.hl-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hl-tag {
+  background-color: rgba(10, 26, 47, 0.06);
+  color: var(--ayif-blue);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Banner CTA */
+.participate-banner {
+  background-color: var(--navy-bg);
   color: var(--navy-text);
+  border-radius: 8px;
+  padding: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 36px;
+  border: 1px solid var(--navy-line);
 }
 
-.dl-content p {
-  margin: 0;
-  font-size: var(--fs-body);
+.banner-kicker {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.banner-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy-text);
+  margin: 0 0 10px;
+}
+
+.banner-text {
+  font-size: 15px;
   color: var(--navy-muted);
+  max-width: 620px;
+  margin: 0;
+  line-height: 1.5;
 }
 
-@media (max-width: 900px) {
+.banner-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn.primary {
+  background-color: var(--color-gold);
+  color: var(--ayif-blue);
+  border: 1px solid var(--color-gold);
+}
+
+.btn.primary:hover {
+  background-color: #b5933a;
+  color: var(--ayif-white);
+}
+
+.btn.outline {
+  background-color: transparent;
+  color: var(--navy-text);
+  border: 1px solid var(--navy-line);
+}
+
+.btn.outline:hover {
+  border-color: var(--ayif-white);
+  color: var(--ayif-white);
+}
+
+@media (max-width: 1024px) {
   .day-tabs {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .session-card {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .participate-banner {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .sess-time-col {
-    border-right: none;
-    border-bottom: 1px solid var(--border-line);
-    padding-right: 0;
-    padding-bottom: 14px;
+  .banner-cta {
+    width: 100%;
+    flex-direction: row;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .day-tabs {
     grid-template-columns: 1fr;
   }
 
-  .download-banner {
+  .day-card-header,
+  .day-card-body {
+    padding: 24px 20px;
+  }
+
+  .day-card-title {
+    font-size: 20px;
+  }
+
+  .banner-cta {
     flex-direction: column;
-    text-align: center;
   }
 }
 </style>

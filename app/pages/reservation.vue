@@ -101,11 +101,11 @@ const faqList = [
   },
   {
     q: 'Puis-je transférer mon pass à un confrère en cas d’empêchement ?',
-    a: 'Oui, les pass sont cessibles jusqu’à 10 jours ouvrés avant l’ouverture du forum (avant le 2 Novembre 2026). Il suffit d’adresser une demande avec la référence de votre réservation au comité d’accréditation.'
+    a: 'Oui, les pass sont cessibles jusqu’à 10 jours ouvrés avant l’ouverture du forum (avant le 20 Novembre 2026). Il suffit d’adresser une demande avec la référence de votre réservation au comité d’accréditation.'
   },
   {
     q: 'Quels sont les repas et services inclus avec mon pass ?',
-    a: 'Tous les pass incluent les pauses-café et les déjeuners de networking officiels durant les 3 journées de l’événement. Les Pass VIP et Investisseurs incluent en supplément le Dîner de Gala Économique du 13 Novembre et les navettes VIP aéroport.'
+    a: 'Tous les pass incluent les pauses-café et les déjeuners de networking officiels durant les 3 journées de l’événement (03 au 05 Décembre 2026). Les Pass VIP et Investisseurs incluent en supplément le Dîner de Gala AYIF & remise des Awards du 05 Décembre 2026, les visites de terrain (GDIZ, Des Fruits Tillous, Ouidah) et les navettes VIP aéroport.'
   },
   {
     q: 'Comment s’effectue la sélection pour les rendez-vous d’affaires B2B ?',
@@ -556,13 +556,13 @@ const toggleFaq = (idx: number) => {
                       <path d="M16 16h5v5"></path>
                     </svg>
                   </span>
-                  <span>Pass cessible et modifiable sans frais jusqu'au 2 Nov 2026</span>
+                  <span>Pass cessible et modifiable sans frais jusqu'au 20 Novembre 2026</span>
                 </div>
               </div>
 
               <div class="sum-venue">
                 <strong>Lieu de retrait du badge :</strong>
-                <p>Guichet d'enregistrement AYIF, Hall Principal du Palais des Congrès de Cotonou dès le 11 Novembre 2026 à 14h00.</p>
+                <p>Guichet d'enregistrement AYIF, Hall Principal du Palais des Congrès de Cotonou dès le 02 Décembre 2026 à 14h00.</p>
               </div>
             </div>
           </div>
@@ -616,6 +616,9 @@ const toggleFaq = (idx: number) => {
 <style scoped>
 .reservation-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 

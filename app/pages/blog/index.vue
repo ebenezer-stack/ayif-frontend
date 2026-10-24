@@ -18,6 +18,7 @@ const searchQuery = ref<string>('')
 
 const categories = [
   { id: 'ALL', label: 'Toutes les analyses' },
+  { id: 'Rétrospective 2025', label: 'Rétrospective 2025 (Abuja)' },
   { id: 'Investissement', label: 'Investissement & Capital' },
   { id: 'Entrepreneuriat', label: 'Entrepreneuriat & PME' },
   { id: 'Cotonou 2026', label: 'Cotonou 2026 & Hub' },
@@ -188,6 +189,9 @@ const featuredPost = computed<BlogPost | undefined>(() => {
 <style scoped>
 .blog-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
 }
 

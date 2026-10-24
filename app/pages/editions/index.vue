@@ -46,22 +46,22 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
           </div>
           <h1 class="hero-title">Les Grandes Éditions de l’AYIF</h1>
           <p class="hero-lead">
-            D’Abuja à Cotonou et bientôt Dakar : découvrez l’histoire, les retombées économiques vérifiées et les ambitions futures du plus grand rassemblement d’investissement dédié à la jeunesse africaine.
+            D’Abuja 2025 à Cotonou 2026 et vers la prochaine destination continentale : découvrez l’histoire, les retombées économiques réelles et l'appel à candidatures pour accueillir la prochaine édition du forum.
           </p>
 
           <!-- QUICK COUNTER BADGES -->
           <div class="macro-badges">
             <div class="macro-badge">
-              <span class="macro-num">3</span>
-              <span class="macro-txt">Capitales d’Afrique</span>
+              <span class="macro-num">2</span>
+              <span class="macro-txt">Éditions Réalisées</span>
             </div>
             <div class="macro-badge">
-              <span class="macro-num">1 700+</span>
+              <span class="macro-num">920+</span>
               <span class="macro-txt">Délégués Cumulés</span>
             </div>
             <div class="macro-badge">
-              <span class="macro-num">$80M+</span>
-              <span class="macro-txt">Capitaux Mobilisés &amp; Ciblés</span>
+              <span class="macro-num">$33M+</span>
+              <span class="macro-txt">Capitaux Négociés &amp; Mobilisés</span>
             </div>
           </div>
         </div>
@@ -93,18 +93,10 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
             <button 
               type="button" 
               class="filter-btn" 
-              :class="{ active: currentFilter === 'current' }"
-              @click="currentFilter = 'current'"
-            >
-              En cours (Cotonou 2026)
-            </button>
-            <button 
-              type="button" 
-              class="filter-btn" 
               :class="{ active: currentFilter === 'past' }"
               @click="currentFilter = 'past'"
             >
-              Passées (Abuja 2025)
+              Éditions Terminées (Abuja &amp; Cotonou)
             </button>
             <button 
               type="button" 
@@ -112,7 +104,7 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
               :class="{ active: currentFilter === 'upcoming' }"
               @click="currentFilter = 'upcoming'"
             >
-              À venir (Dakar 2027)
+              Prochaine Édition (À définir)
             </button>
           </div>
         </div>
@@ -198,10 +190,10 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
     <section class="comparison-section navy">
       <div class="wrap">
         <div class="section-head text-center">
-          <span class="sub-kicker">Tableau Comparatif &amp; Évolution</span>
+          <span class="sub-kicker">Tableau Comparatif Réel</span>
           <h2 class="section-h2 text-white">Changement d’Échelle au Fil des Éditions</h2>
           <p class="section-lead-muted">
-            De la phase d’amorçage au Nigéria jusqu’à la vision prospective au Sénégal, visualisez la montée en puissance de l’AYIF.
+            De la fondation à Abuja jusqu'au déploiement de Cotonou et à l'ouverture des candidatures pour la prochaine édition.
           </p>
         </div>
 
@@ -215,82 +207,88 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
                   <span class="th-title">Abuja (Édition 1)</span>
                   <span class="th-status past">Terminée</span>
                 </th>
-                <th class="col-ed ed-current">
+                <th class="col-ed">
                   <span class="th-year">2026</span>
                   <span class="th-title">Cotonou (Édition 2)</span>
-                  <span class="th-status current">Édition Phare</span>
+                  <span class="th-status past">Terminée</span>
                 </th>
-                <th class="col-ed">
-                  <span class="th-year">2027</span>
-                  <span class="th-title">Dakar (Édition 3)</span>
-                  <span class="th-status upcoming">À Venir</span>
+                <th class="col-ed ed-current">
+                  <span class="th-year">À venir</span>
+                  <span class="th-title">Prochaine Édition (Édition 3)</span>
+                  <span class="th-status upcoming">À Définir Ultérieurement</span>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="td-metric">Pays &amp; Capitale</td>
+                <td class="td-metric">Pays &amp; Ville Hôte</td>
                 <td>Nigeria · Abuja</td>
-                <td class="td-current"><strong>Bénin · Cotonou</strong></td>
-                <td>Sénégal · Dakar / Diamniadio</td>
+                <td>Bénin · Cotonou</td>
+                <td class="td-current"><strong>À Définir Ultérieurement (Candidatures Ouvertes)</strong></td>
+              </tr>
+              <tr>
+                <td class="td-metric">Dates Officielles</td>
+                <td>20 — 22 Novembre 2025</td>
+                <td>03 — 05 Décembre 2026</td>
+                <td class="td-current"><strong>À fixer avec le pays hôte</strong></td>
               </tr>
               <tr>
                 <td class="td-metric">Lieu Officiel</td>
                 <td>Abuja Int. Conference Centre</td>
-                <td class="td-current"><strong>Palais des Congrès de Cotonou</strong></td>
-                <td>CICAD Diamniadio</td>
+                <td>Palais des Congrès de Cotonou</td>
+                <td class="td-current">Centre International sélectionné</td>
               </tr>
               <tr>
-                <td class="td-metric">Thématique Stratégique</td>
+                <td class="td-metric">Thématique &amp; Structure</td>
                 <td>L’Envol du Capital Jeunesse &amp; Intégration Ouest-Africaine</td>
-                <td class="td-current"><strong>Capital Patient, ZLECAf &amp; Passerelles Francophones-Anglophones</strong></td>
-                <td>Économie Bleue, Énergies Vertes &amp; Souveraineté Industrielle</td>
+                <td>Jour 1 Rassembler, Jour 2 Accélérer (Clinique AYIF), Jour 3 Transformer (Visites, Gala)</td>
+                <td class="td-current"><strong>Co-définie avec le pays hôte retenu</strong></td>
               </tr>
               <tr>
                 <td class="td-metric">Délégués &amp; Participants</td>
                 <td>420 participants accrédités</td>
-                <td class="td-current"><strong>500+ participants qualifiés</strong></td>
-                <td>800+ délégués attendus</td>
+                <td>500+ participants qualifiés</td>
+                <td class="td-current"><strong>800+ délégués attendus</strong></td>
               </tr>
               <tr>
                 <td class="td-metric">Pays Représentés</td>
                 <td>14 pays</td>
-                <td class="td-current"><strong>25+ pays</strong></td>
-                <td>30+ pays ciblés</td>
+                <td>25+ pays</td>
+                <td class="td-current"><strong>30+ pays ciblés</strong></td>
               </tr>
               <tr>
-                <td class="td-metric">Volume Deal Room</td>
+                <td class="td-metric">Volume Deal Room &amp; Investissements</td>
                 <td>$8.4M d'engagements signés</td>
-                <td class="td-current"><strong class="highlight-gold">$25M+ objectif d'intermédiation</strong></td>
-                <td>$50M+ enveloppe ciblée</td>
+                <td>$25M+ de pipeline et intentions d'affaires</td>
+                <td class="td-current"><strong class="highlight-gold">$50M+ objectif d'intermédiation</strong></td>
               </tr>
               <tr>
-                <td class="td-metric">Fonds &amp; Bailleurs</td>
-                <td>18 fonds &amp; banques</td>
-                <td class="td-current"><strong>35+ fonds &amp; syndicats d'anges</strong></td>
-                <td>50+ fonds souverains &amp; privés</td>
+                <td class="td-metric">Clinique Entrepreneuriale &amp; Diagnostics</td>
+                <td>Ateliers sectoriels</td>
+                <td>Clinique AYIF avec documents, chiffres réels et levée de fonds</td>
+                <td class="td-current">Clinique d'experts continentale à grande échelle</td>
               </tr>
               <tr>
-                <td class="td-metric">Pitch Competition</td>
-                <td>$450 000 mobilisés (3 lauréats)</td>
-                <td class="td-current"><strong>$500 000 en dotation globale</strong></td>
-                <td>$750 000 dotation prévisionnelle</td>
+                <td class="td-metric">Visites de Terrain Productives</td>
+                <td>Sessions en salle de conférence</td>
+                <td>Zone Industrielle de Glo-Djigbé (GDIZ), Usine Des Fruits Tillous, Ouidah</td>
+                <td class="td-current">Immersion dans les hubs industriels et culturels du pays hôte</td>
               </tr>
               <tr>
-                <td class="td-metric">Dossier Complet</td>
+                <td class="td-metric">Dossier &amp; Action</td>
                 <td>
                   <NuxtLink to="/editions/abuja-2025" class="table-link">
-                    Voir les archives 2025
+                    Consulter les archives 2025
+                  </NuxtLink>
+                </td>
+                <td>
+                  <NuxtLink to="/editions/cotonou-2026" class="table-link">
+                    Consulter les actes de Cotonou 2026
                   </NuxtLink>
                 </td>
                 <td class="td-current">
-                  <NuxtLink to="/editions/cotonou-2026" class="table-link-current">
-                    Consulter Cotonou 2026
-                  </NuxtLink>
-                </td>
-                <td>
-                  <NuxtLink to="/editions/dakar-2027" class="table-link">
-                    Découvrir la vision 2027
+                  <NuxtLink to="/partenaires#devenir-organisateur" class="table-link-current">
+                    Candidater &amp; Devenir Pays Hôte &rarr;
                   </NuxtLink>
                 </td>
               </tr>
@@ -301,19 +299,19 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
     </section>
 
     <!-- HOSTING ANNOUNCEMENT BANNER -->
-    <section class="host-cta-section">
+    <section id="prochain-organisateur" class="host-cta-section">
       <div class="wrap">
         <div class="host-banner">
           <div class="host-banner-text">
-            <span class="section-kicker">Candidatures &amp; Accueil</span>
-            <h3>Votre pays ou ville souhaite accueillir une prochaine édition ?</h3>
+            <span class="section-kicker">Appel aux Nations &amp; Partenaires Majeurs</span>
+            <h3>Et si ton pays devenait le prochain organisateur ?</h3>
             <p>
-              Le comité international d’organisation de l’AYIF étudie les dossiers des institutions, chambres de commerce et gouvernements souhaitant héberger l’AYIF au-delà de 2027.
+              Après le Nigéria (Abuja 2025) et le Bénin (Cotonou 2026), l’Africa Youth Investment Forum prépare sa 3ème grande édition. Ministères, chambres de commerce nationales, patronats ou grands groupes privés : déposez la candidature officielle de votre pays pour accueillir le forum, enregistrez votre structure et réglez les modalités de partenariat officiel.
             </p>
           </div>
           <div class="host-banner-actions">
-            <NuxtLink to="/partenaires#contact" class="btn primary">
-              Soumettre une candidature d’accueil
+            <NuxtLink to="/partenaires#devenir-organisateur" class="btn primary">
+              Candidater &amp; Enregistrement Partenaire
             </NuxtLink>
           </div>
         </div>
@@ -325,6 +323,9 @@ const getStatusBadgeClass = (status: ForumEdition['status']) => {
 <style scoped>
 .editions-index-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
   min-height: 100vh;
 }

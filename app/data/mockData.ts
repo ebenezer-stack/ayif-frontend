@@ -4,6 +4,7 @@ import type {
   Pillar, 
   Speaker, 
   Session, 
+  GeneralProgramDay,
   FooterColumn, 
   TicketTier, 
   PartnerPackage,
@@ -15,9 +16,9 @@ import type {
    AYIF BENIN 2026 — DONNÉES CENTRALISÉES (MOCK DATA)
    ========================================================================== */
 
-export const EVENT_TARGET_DATE = '2026-11-12T09:00:00+01:00'
+export const EVENT_TARGET_DATE = '2026-12-03T08:30:00+01:00'
 export const EVENT_LOCATION = 'Palais des Congrès, Cotonou, Bénin'
-export const EVENT_DATES_LABEL = '12 — 14 Novembre 2026'
+export const EVENT_DATES_LABEL = '03 au 05 Décembre 2026'
 
 export const navLinks: NavLink[] = [
   { label: 'Accueil', href: '/' },
@@ -87,7 +88,8 @@ export const speakers: Speaker[] = [
     country: 'Nigeria',
     bio: 'Pionnière de l’investissement early-stage en Afrique de l’Ouest, Amara a déployé plus de 45 millions de dollars dans plus de 30 startups technologiques à forte croissance.',
     topics: ['Capital-risque', 'Fintech', 'Gouvernance de startup'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'kossi-agbodjan',
@@ -98,7 +100,8 @@ export const speakers: Speaker[] = [
     country: 'Bénin',
     bio: 'Entrepreneur chevronné dans les corridors de transport reliant Cotonou au Niger et au Burkina Faso, expert des questions douanières et de corridors de transit.',
     topics: ['Logistique portuaire', 'Commerce transfrontalier', 'ZLECAf'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'fatou-diallo',
@@ -109,7 +112,8 @@ export const speakers: Speaker[] = [
     country: 'Sénégal',
     bio: 'Plus de 18 ans d’expérience en banque d’affaires et en structuration de financements mixtes pour le tissu des PME industrielles et agroalimentaires ouest-africaines.',
     topics: ['Financement mixte', 'Capital patient', 'Dette souveraine & privée'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'daniel-mensah',
@@ -120,7 +124,8 @@ export const speakers: Speaker[] = [
     country: 'Ghana',
     bio: 'Architecte de solutions cloud et systèmes résilients pour banques centrales et opérateurs télécoms, Daniel forme la nouvelle génération d’ingénieurs logiciels africains.',
     topics: ['Infrastructures Cloud', 'Cybersécurité', 'Intelligence Artificielle'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'aissatou-barry',
@@ -131,7 +136,8 @@ export const speakers: Speaker[] = [
     country: 'Bénin',
     bio: 'Spécialiste des réformes de l’environnement des affaires, elle pilote les dispositifs d’attractivité des investissements directs étrangers (IDE) à Cotonou.',
     topics: ['Politiques publiques', 'Climat des affaires', 'Partenariats Public-Privé'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'chidi-eze',
@@ -142,7 +148,8 @@ export const speakers: Speaker[] = [
     country: 'Nigeria',
     bio: 'Leader économique engagé pour l’autonomisation commerciale des jeunes entrepreneurs nigérians et leur expansion sur les marchés francophones de la CEDEAO.',
     topics: ['Jeunesse & Affaires', 'Réseaux patronaux', 'Accords bilatéraux'],
-    featured: true
+    featured: true,
+    editionYear: 2025
   },
   { 
     id: 'mariam-traore',
@@ -153,7 +160,8 @@ export const speakers: Speaker[] = [
     country: 'Côte d’Ivoire',
     bio: 'Ingénieure agronome devenue entrepreneure à succès, créatrice d’une chaîne logistique solaire qui réduit les pertes post-récoltes de 40%.',
     topics: ['Agritech', 'Énergies renouvelables', 'Entrepreneuriat féminin'],
-    featured: false
+    featured: false,
+    editionYear: 2025
   },
   { 
     id: 'olivier-hountondji',
@@ -164,7 +172,64 @@ export const speakers: Speaker[] = [
     country: 'Bénin',
     bio: 'Expert maritime international, il supervise la modernisation numérique des opérations portuaires et les connexions logistiques terrestres vers le Sahel.',
     topics: ['Économie bleue', 'Logistique portuaire', 'Modernisation douanière'],
-    featured: false
+    featured: false,
+    editionYear: 2025
+  }
+]
+
+export const generalProgram: GeneralProgramDay[] = [
+  {
+    dayNumber: 1,
+    dayId: 'day1',
+    dateLabel: 'Jeudi 03 Décembre 2026',
+    actionWord: 'RASSEMBLER',
+    dayTitle: 'L’Afrique se réunit',
+    theme: 'JOUR 1 — RASSEMBLER : L’Afrique se réunit',
+    description: 'La première journée est consacrée à l’accueil des participants, visite du village d’exhibition, à l’ouverture officielle et à la création de liens entre les acteurs de l’écosystème. La cérémonie mettra à l’honneur les pays africains, avec les drapeaux et les hymnes nationaux du Bénin et du Nigéria.',
+    bulletPoints: [
+      'Panel : leadership, gouvernance et entrepreneuriat des jeunes en Afrique ;',
+      'Petit-déjeuner et réseautage entre entrepreneurs, investisseurs, institutions et partenaires ;',
+      'Panel : intégration régionale et corridors transfrontaliers Bénin–Nigéria ;',
+      'Visite de la Zone industrielle de Glo-Djigbé (GDIZ).'
+    ],
+    objective: 'créer une communauté, favoriser les premiers contacts et faire émerger des pistes de collaboration.'
+  },
+  {
+    dayNumber: 2,
+    dayId: 'day2',
+    dateLabel: 'Vendredi 04 Décembre 2026',
+    actionWord: 'ACCÉLÉRER',
+    dayTitle: 'La Clinique entrepreneuriale AYIF',
+    theme: 'JOUR 2 — ACCÉLÉRER : La Clinique entrepreneuriale AYIF',
+    description: 'Cette journée pratique accompagne les entrepreneurs dans l’analyse de leurs défis commerciaux et la recherche de solutions applicables. Les participants sont invités à venir avec leur entreprise, leurs documents, leurs chiffres et leurs produits.',
+    bulletPoints: [
+      'Panel : Innovation, Écosystèmes Technologiques & Investissements ;',
+      'Diagnostic d’entreprise et séances de conseil ;',
+      'Présentation de produits et d’entreprises ;',
+      'Cliniques d’experts et recommandations pratiques ;',
+      'Préparation au financement et à l’investissement ;',
+      'Exportation, accès aux marchés et commerce transfrontalier ;',
+      'Échanges entre pairs et réseautage ciblé ;',
+      'Session Spéciale sur les méthodes africaines de levée de fond.'
+    ],
+    objective: 'accompagner les entrepreneurs dans l’analyse de leurs défis commerciaux et accélérer la recherche de solutions concrètes et finançables.'
+  },
+  {
+    dayNumber: 3,
+    dayId: 'day3',
+    dateLabel: 'Samedi 05 Décembre 2026',
+    actionWord: 'TRANSFORMER',
+    dayTitle: 'Des opportunités à l’action',
+    theme: 'JOUR 3 — TRANSFORMER : Des opportunités à l’action',
+    description: 'La troisième journée associe immersion dans l’économie productive, découverte culturelle et célébration des contributions à l’écosystème entrepreneurial africain.',
+    bulletPoints: [
+      'Visite d’une plantation d’ananas et de l’usine de transformation Des Fruits Tillous ;',
+      'Sortie touristique et immersion culturelle à Ouidah ;',
+      'Dîner de gala AYIF ;',
+      'Cérémonie de remise des AYIF Awards et reconnaissance des partenaires ;',
+      'Rencontres B2B, B2G et échanges de haut niveau autour des investissements et partenariats.'
+    ],
+    objective: 'consolider les relations nouées pendant le Forum et encourager leur prolongement sous forme de collaborations, de partenariats commerciaux et d’opportunités d’investissement.'
   }
 ]
 
@@ -173,118 +238,129 @@ export const sessions: Session[] = [
   { 
     id: 's1',
     day: 'day1',
-    dayLabel: 'Jour 1 — 12 Novembre 2026',
-    time: '08:30 — 09:30', 
+    dayLabel: 'Jour 1 — 03 Décembre 2026',
+    time: 'Matinée', 
     type: 'KEYNOTE', 
-    title: 'Accueil & Cérémonie d’Ouverture Officielle', 
-    description: 'Discours inaugural des autorités béninoises et des délégations patronales. Présentation des enjeux stratégiques de l’édition Cotonou 2026.',
-    speakers: 'Aïssatou Barry, Chidi Eze, Représentants institutionnels', 
-    place: 'Grand Auditorium Atlantique'
+    title: 'Accueil des participants & Cérémonie d’Ouverture Officielle', 
+    description: 'Accueil des participants, visite du village d’exhibition et ouverture officielle. Cérémonie mettant à l’honneur les pays africains avec drapeaux et hymnes nationaux du Bénin et du Nigéria.',
+    speakers: 'Délégations officielles, NACCIMA & Elieson Consulting', 
+    place: 'Palais des Congrès de Cotonou'
   },
   { 
     id: 's2',
     day: 'day1',
-    dayLabel: 'Jour 1 — 12 Novembre 2026',
-    time: '10:00 — 11:30', 
+    dayLabel: 'Jour 1 — 03 Décembre 2026',
+    time: 'Matinée', 
     type: 'PANEL', 
-    title: 'Plénière : L’Afrique investit en sa jeunesse — De la théorie au déploiement du capital', 
-    description: 'Analyse des mécanismes de financement existants et des goulots d’étranglement pour l’accès au capital des entreprises portées par les moins de 35 ans.',
-    speakers: 'Fatou Diallo, Amara Okafor, Chidi Eze', 
+    title: 'Panel : Leadership, gouvernance et entrepreneuriat des jeunes en Afrique', 
+    description: 'Créer les fondations d’un leadership transformationnel pour soutenir les bâtisseurs de valeur sur le continent.',
+    speakers: 'Dirigeants d’entreprises & Experts institutionnels', 
     place: 'Grand Auditorium Atlantique'
   },
   { 
     id: 's3',
     day: 'day1',
-    dayLabel: 'Jour 1 — 12 Novembre 2026',
-    time: '14:00 — 16:00', 
-    type: 'INVESTMENT SESSION', 
-    title: 'Capital Patient & PME à fort impact : Quel modèle de financement adapté ?', 
-    description: 'Étude comparative entre capital-risque, dette mezzanine et fonds de garantie pour pérenniser les entreprises manufacturières et agricoles.',
-    speakers: 'Fatou Diallo, Mariam Traoré', 
-    place: 'Salle Océan'
+    dayLabel: 'Jour 1 — 03 Décembre 2026',
+    time: 'Midi', 
+    type: 'NETWORKING B2B', 
+    title: 'Petit-déjeuner & Réseautage Écosystème', 
+    description: 'Échanges et premiers contacts entre entrepreneurs, investisseurs, institutions financières et partenaires bilatéraux.',
+    speakers: 'Participants & Investisseurs', 
+    place: 'Espace Networking & Jardins du Palais'
   },
   { 
     id: 's4',
     day: 'day1',
-    dayLabel: 'Jour 1 — 12 Novembre 2026',
-    time: '16:30 — 18:30', 
-    type: 'NETWORKING B2B', 
-    title: 'Session B2B Session 1 : Investisseurs & Fondateurs pré-sélectionnés', 
-    description: 'Série de 12 créneaux de 15 minutes en tête-à-tête pour échanger sur les dossiers d’investissement préparés avant le forum.',
-    speakers: 'Investisseurs participants & Fondateurs qualifiés', 
-    place: 'Espace Deal Room B2B'
+    dayLabel: 'Jour 1 — 03 Décembre 2026',
+    time: 'Après-midi', 
+    type: 'PANEL', 
+    title: 'Panel : Intégration régionale et corridors transfrontaliers Bénin–Nigéria', 
+    description: 'Fluidification des échanges commerciaux, franchissement douanier, opportunités de la ZLECAf et synergies de marché.',
+    speakers: 'Experts du commerce extérieur & Chambres consulaires', 
+    place: 'Grand Auditorium Atlantique'
+  },
+  { 
+    id: 's5',
+    day: 'day1',
+    dayLabel: 'Jour 1 — 03 Décembre 2026',
+    time: 'Fin d’après-midi', 
+    type: 'INVESTMENT SESSION', 
+    title: 'Visite immersive de la Zone industrielle de Glo-Djigbé (GDIZ)', 
+    description: 'Immersion sur le terrain industriel phare du Bénin : transformation textile, agro-industrie et opportunités d’implantation.',
+    speakers: 'Direction GDIZ & Délégations internationales', 
+    place: 'Zone Économique Spéciale de Glo-Djigbé'
   },
 
   // JOUR 2
   { 
-    id: 's5',
-    day: 'day2',
-    dayLabel: 'Jour 2 — 13 Novembre 2026',
-    time: '09:00 — 11:00', 
-    type: 'STARTUP PITCH', 
-    title: 'AYIF Pitch Competition : 10 startups devant un jury international', 
-    description: '10 startups innovantes sélectionnées parmi plus de 300 candidatures présentent leur modèle d’affaires en 5 minutes suivies de 5 minutes de questions.',
-    speakers: 'Amara Okafor, Daniel Mensah, Membres du Jury', 
-    place: 'Scène Principale Cotonou'
-  },
-  { 
     id: 's6',
     day: 'day2',
-    dayLabel: 'Jour 2 — 13 Novembre 2026',
-    time: '11:30 — 13:00', 
+    dayLabel: 'Jour 2 — 04 Décembre 2026',
+    time: 'Matinée', 
     type: 'PANEL', 
-    title: 'ZLECAf & Corridors Logistiques : Commercer sans frontières depuis Cotonou', 
-    description: 'Exploiter la position stratégique du Port de Cotonou et les accords de libre-échange pour fluidifier les exportations vers le Nigeria et le Sahel.',
-    speakers: 'Kossi Agbodjan, Olivier Hountondji, Aïssatou Barry', 
-    place: 'Grand Auditorium Atlantique'
+    title: 'Panel : Innovation, Écosystèmes Technologiques & Investissements', 
+    description: 'Comprendre les flux de capitaux dans les technologies émergentes et structurer l’accès aux financements de croissance.',
+    speakers: 'Fonds de capital-risque & Fondateurs tech', 
+    place: 'Scène Principale'
   },
   { 
     id: 's7',
     day: 'day2',
-    dayLabel: 'Jour 2 — 13 Novembre 2026',
-    time: '14:30 — 16:30', 
+    dayLabel: 'Jour 2 — 04 Décembre 2026',
+    time: 'Journée continue', 
     type: 'ATELIER', 
-    title: 'Atelier Stratégique : Préparer sa levée de fonds en Seed & Série A', 
-    description: 'Méthodologie de valorisation, due diligence juridique, pacte d’actionnaires et gestion de la table de capitalisation.',
-    speakers: 'Amara Okafor, Avocats d’affaires spécialisés', 
-    place: 'Salle Nokoué'
+    title: 'La Clinique entrepreneuriale AYIF : Diagnostic d’entreprise & Conseil', 
+    description: 'Séances pratiques de conseil individuel : analyse des bilans, conformité, unit economics, préparation au financement et à l’exportation.',
+    speakers: 'Collège d’experts comptables, avocats d’affaires et consultants', 
+    place: 'Salons de Conseil Clinique AYIF'
   },
   { 
     id: 's8',
     day: 'day2',
-    dayLabel: 'Jour 2 — 13 Novembre 2026',
-    time: '19:30 — 22:30', 
-    type: 'NETWORKING B2B', 
-    title: 'Dîner de Gala Économique & Célébration des Lauréats Pitch', 
-    description: 'Soirée de prestige rassemblant 300 personnalités économiques, remise des prix d’investissement et allocutions d’honneur.',
-    speakers: 'Invités d’honneur & Lauréats', 
-    place: 'Palais des Congrès — Salon d’Honneur'
+    dayLabel: 'Jour 2 — 04 Décembre 2026',
+    time: 'Après-midi', 
+    type: 'ATELIER', 
+    title: 'Session Spéciale sur les méthodes africaines de levée de fond', 
+    description: 'Modèles endogènes, syndication communautaire, tontines d’investissement, dette convertible et instruments adaptés aux réalités du continent.',
+    speakers: 'Investisseurs panafricains & Business Angels', 
+    place: 'Auditorium Nokoué'
   },
 
   // JOUR 3
   { 
     id: 's9',
     day: 'day3',
-    dayLabel: 'Jour 3 — 14 Novembre 2026',
-    time: '09:30 — 11:30', 
-    type: 'PANEL', 
-    title: 'Infrastructures Numériques & Fintech : Sécuriser les flux transfrontaliers', 
-    description: 'L’interopérabilité bancaire, les plateformes de paiement panafricaines et la protection des données au service des PME.',
-    speakers: 'Daniel Mensah, Fatou Diallo', 
-    place: 'Grand Auditorium Atlantique'
+    dayLabel: 'Jour 3 — 05 Décembre 2026',
+    time: 'Matinée', 
+    type: 'INVESTMENT SESSION', 
+    title: 'Immersion productive : Plantation d’ananas & Usine Des Fruits Tillous', 
+    description: 'Découverte d’une chaîne complète de valeur agro-industrielle béninoise tournée vers l’exportation internationale.',
+    speakers: 'Dirigeants Des Fruits Tillous & Experts agro-industrie', 
+    place: 'Site de production & Transformation agro-alimentaire'
   },
   { 
     id: 's10',
     day: 'day3',
-    dayLabel: 'Jour 3 — 14 Novembre 2026',
-    time: '11:45 — 13:00', 
-    type: 'KEYNOTE', 
-    title: 'Déclaration de Cotonou 2026 & Clôture Officielle', 
-    description: 'Synthèse des engagements financiers pris lors du forum, signature des partenariats officiels et annonce de la prochaine édition.',
-    speakers: 'Chidi Eze, Comités d’Organisation NACCIMA & Elieson', 
-    place: 'Grand Auditorium Atlantique'
+    dayLabel: 'Jour 3 — 05 Décembre 2026',
+    time: 'Après-midi', 
+    type: 'NETWORKING B2B', 
+    title: 'Sortie touristique et immersion culturelle à Ouidah & Rencontres B2B/B2G', 
+    description: 'Parcours mémoriel et culturel dans la ville historique de Ouidah, suivi d’échanges de haut niveau B2B et B2G.',
+    speakers: 'Guides culturels & Décideurs publics-privés', 
+    place: 'Ouidah & Espaces B2B dédiés'
+  },
+  { 
+    id: 's11',
+    day: 'day3',
+    dayLabel: 'Jour 3 — 05 Décembre 2026',
+    time: 'Soirée de Clôture', 
+    type: 'NETWORKING B2B', 
+    title: 'Dîner de Gala AYIF & Cérémonie de remise des AYIF Awards', 
+    description: 'Grande soirée de gala réunissant l’ensemble des délégations : distinctions des champions entrepreneuriaux, reconnaissance des partenaires et engagements.',
+    speakers: 'Comités NACCIMA & Elieson, Lauréats et Partenaires', 
+    place: 'Palais des Congrès — Salon d’Honneur'
   }
-]
+]                    
 
 export const ticketTiers: TicketTier[] = [
   {
@@ -332,7 +408,7 @@ export const ticketTiers: TicketTier[] = [
       'Tous les avantages du Pass Délégué Business',
       'Accès aux Salons VIP et espaces de travail privés',
       'Créneaux garantis de mise en relation B2B personnalisée',
-      'Invitation au Dîner de Gala Économique du 13 Novembre',
+      'Invitation au Dîner de Gala AYIF & Soirée des Awards (05 Décembre)',
       'Service de conciergerie et navettes aéroport Cotonou'
     ],
     popular: false,
@@ -349,7 +425,7 @@ export const ticketTiers: TicketTier[] = [
       'Accès illimité VIP à l’ensemble des événements',
       'Accès exclusif à la Deal Room fermée et aux fiches d’investissement',
       'Droit de vote / membre consultatif lors du Pitch Competition',
-      '2 invitations pour le Dîner de Gala Économique',
+      '2 invitations pour le Dîner de Gala AYIF & Remise des Awards (05 Décembre)',
       'Listing prioritaire dans l’annuaire des investisseurs AYIF'
     ],
     popular: false,
@@ -438,6 +514,29 @@ export const nigeriaHighlights = [
   }
 ]
 
+export const nigeriaGallery = [
+  {
+    title: 'Cérémonie Officielle d’Ouverture & Drapeaux',
+    caption: 'Honneur aux nations africaines, drapeaux et hymnes nationaux du Bénin et du Nigéria devant 420 délégués réunis à Abuja.',
+    image: '/images/editions/abuja-2025-opening.jpg'
+  },
+  {
+    title: 'L’Executive Deal Room en Négociations',
+    caption: 'Rencontres d’intermédiation directe confidentielles ayant généré $8,4M d’intentions de financement.',
+    image: '/images/editions/abuja-2025-dealroom.jpg'
+  },
+  {
+    title: 'Célébration des Lauréats AYIF Awards 2025',
+    caption: 'Remise des trophées aux entrepreneurs lauréats et reconnaissance des partenaires de l’édition inaugurale.',
+    image: '/images/editions/abuja-2025-awards.jpg'
+  },
+  {
+    title: 'Plénière Panafricaine à l’AICC',
+    caption: 'Sessions ministérielles et débats de haut niveau sur les corridors de libre-échange et l’accès au capital.',
+    image: '/images/editions/abuja-2025.jpg'
+  }
+]
+
 export const sponsorsCategories = {
   institutionnels: [
     'Ministère de l’Économie et des Finances du Bénin',
@@ -507,6 +606,82 @@ export const footerCols: FooterColumn[] = [
 ]
 
 export const blogPosts: BlogPost[] = [
+  // NOUVEAUX ARTICLES AYIF 2025
+  {
+    slug: 'bilan-chiffre-ayif-abuja-2025',
+    title: 'Bilan AYIF 2025 à Abuja : 420 délégués, 14 pays et $8,4M d’engagements signés en Deal Room',
+    excerpt: 'Retour complet sur l’édition inaugurale d’Abuja qui a posé les bases d’un réseau panafricain indépendant d’investissement et d’alliances commerciales transfrontalières.',
+    category: 'Rétrospective 2025',
+    author: 'Babatunde Adeleke',
+    authorRole: 'Président National, NACCIMA Youth Entrepreneurs',
+    date: '25 Novembre 2025',
+    readingTime: 6,
+    cover: 'navy',
+    image: '/images/editions/abuja-2025-opening.jpg',
+    featured: true,
+    content: [
+      {
+        heading: 'Un engouement continental au-delà des prévisions',
+        paragraphs: [
+          'En réunissant plus de 420 délégués accrédités et 18 fonds d’investissement à l’Abuja International Conference Centre, la session inaugurale d’AYIF a démontré la soif de partenariats productifs entre la jeunesse d’affaires nigériane et les délégations d’Afrique francophone.',
+          'Pendant trois jours, les échanges ont dépassé le cadre des discours institutionnels pour s’ancrer dans la réalité des bilans comptables, des contrats de distribution régionale et des prises de participation directes.'
+        ],
+        quote: 'Abuja n’était pas un forum de plus : c’était l’acte de naissance d’une nouvelle diplomatie économique portée par les entrepreneurs de moins de 35 ans.'
+      },
+      {
+        heading: 'La Deal Room fermée : $8,4 millions de financements formalisés',
+        paragraphs: [
+          'Innovation majeure plébiscitée par les gestionnaires de fonds, les sessions à huis clos d’intermédiation ont permis d’examiner 24 projets hautement qualifiés, aboutissant à des lettres d’intention d’investissement pour un montant cumulé de 8,4 millions de dollars.',
+          'Ce succès a ouvert la voie à la décision de faire de Cotonou au Bénin le pays hôte de l’édition 2026 pour concrétiser le corridor UEMOA-CEDEAO.'
+        ]
+      }
+    ]
+  },
+  {
+    slug: 'laureats-pitch-competition-2025',
+    title: 'AYIF Pitch Competition 2025 : Comment 3 pépites fintech et agritech ont convaincu le jury',
+    excerpt: 'De la chaîne du froid solaire à la télémédecine et au crédit agricole : analyse des modèles économiques des trois lauréats financés lors de la grande finale d’Abuja.',
+    category: 'Rétrospective 2025',
+    author: 'Amina Bello-Kano',
+    authorRole: 'Managing Partner, Northern Star Capital',
+    date: '28 Novembre 2025',
+    readingTime: 5,
+    cover: 'blue',
+    image: '/images/editions/abuja-2025-awards.jpg',
+    featured: false,
+    content: [
+      {
+        heading: 'Rigueur des Unit Economics et impact mesurable',
+        paragraphs: [
+          'Sélectionnées parmi plus de 240 candidatures issues de 14 pays, les dix startups finalistes ont affronté un jury composé de spécialistes du capital-risque et de banquiers de développement.',
+          'Le premier prix a été attribué à AgroPay Nigeria pour sa plateforme d’affacturage agricole digitalisé, suivi d’AfriCold Logistics (chambre froide solaire modulaire) et KaziHealth Telemed.'
+        ],
+        quote: 'Ce qui a fait la différence devant le jury, c’est la rentabilité unitaire dès la première transaction et une parfaite maîtrise du cycle de trésorerie en monnaie locale.'
+      }
+    ]
+  },
+  {
+    slug: 'deal-room-retrospective-2025',
+    title: 'Dans les coulisses de la Deal Room AYIF 2025 : Retours d’expérience des investisseurs',
+    excerpt: 'Qu’est-ce qui a convaincu les 18 fonds réunis à Abuja de s’engager ? Les enseignements clés sur la structuration juridique et la conformité financière pour les fondateurs.',
+    category: 'Rétrospective 2025',
+    author: 'Chidi Eze',
+    authorRole: 'Président, NACCIMA Youth Entrepreneurs',
+    date: '04 Décembre 2025',
+    readingTime: 6,
+    cover: 'sky',
+    image: '/images/editions/abuja-2025-dealroom.jpg',
+    featured: false,
+    content: [
+      {
+        heading: 'Une méthodologie d’audition directe et confidentielle',
+        paragraphs: [
+          'Chaque fondateur disposait de 30 minutes d’audition face à un collège de trois fonds d’investissement sous accord de stricte confidentialité (NDA).',
+          'Les investisseurs ont particulièrement salué la clarté des tableaux de capitalisation et la transparence des états financiers présentés.'
+        ]
+      }
+    ]
+  },
   {
     slug: 'capital-patient-afrique-2026',
     title: 'Capital Patient : Pourquoi les PME africaines ont besoin d’un nouveau modèle d’investissement',
@@ -727,19 +902,19 @@ export const forumEditions: ForumEdition[] = [
     ],
     gallery: [
       {
-        title: 'Session Plénière d’Ouverture',
-        caption: 'Discours inaugural devant les 420 délégués réunis à l’AICC Abuja.',
-        image: '/images/editions/abuja-2025.jpg'
+        title: 'Cérémonie d’Ouverture & Hymnes Nationaux',
+        caption: 'Honneur aux nations et hymnes nationaux du Nigéria et du Bénin lors de l’ouverture officielle.',
+        image: '/images/editions/abuja-2025-opening.jpg'
       },
       {
-        title: 'Deal Room en Négociations Directes',
-        caption: 'Rencontres confidentielles entre porteurs de projets et comités d’investissement.',
-        image: '/images/blog/capital-patient.jpg'
+        title: 'Deal Room & Négociations Directes',
+        caption: 'Rencontres confidentielles et structuration de tours de table entre startups et comités d’investissement.',
+        image: '/images/editions/abuja-2025-dealroom.jpg'
       },
       {
-        title: 'Scène de la Pitch Competition',
-        caption: 'Présentation des 10 startups finalistes devant le jury panafricain.',
-        image: '/images/blog/startup-pitch.jpg'
+        title: 'Célébration & Remise des Prix aux AYIF Awards',
+        caption: 'Consécration des lauréats du pitch continental et reconnaissance des partenaires d’impact.',
+        image: '/images/editions/abuja-2025-awards.jpg'
       }
     ],
     reportTitle: 'Rapport d’Impact & Livre Blanc Officiel — Abuja 2025',
@@ -755,83 +930,58 @@ export const forumEditions: ForumEdition[] = [
     country: 'Bénin',
     city: 'Cotonou',
     venue: 'Palais des Congrès de Cotonou',
-    dates: '12 — 14 Novembre 2026',
-    status: 'current',
-    statusLabel: 'Édition Actuelle · Inscriptions Ouvertes',
+    dates: '03 — 05 Décembre 2026',
+    status: 'past',
+    statusLabel: 'Édition Terminée',
     coverImage: '/images/editions/cotonou-2026.jpg',
-    leadParagraph: 'Deuxième étape majeure de la trajectoire panafricaine, Cotonou 2026 concrétise le pont économique stratégique entre le Nigeria et l’espace UEMOA au cœur d’un hub logistique et portuaire en pleine transformation.',
+    leadParagraph: 'Deuxième étape majeure de la trajectoire panafricaine, Cotonou 2026 a concrétisé le pont économique stratégique entre le Nigeria et l’espace UEMOA au cœur d’un hub logistique et portuaire en pleine transformation.',
     description: [
-      'Fort du succès retentissant d’Abuja, l’AYIF franchit un cap décisif en s’installant au Palais des Congrès de Cotonou. Cette édition amplifie l’ambition initiale en accueillant plus de 500 décideurs, 35 fonds d’investissement et 50 experts internationaux sur trois journées intensives.',
-      'Au programme : des plénières de cadrage macroéconomique, la plus grande Deal Room d’Afrique de l’Ouest dédiée aux jeunes entreprises, un concours de pitch international doté de $500 000, et des sessions de networking B2B ciblées.',
-      'L’édition met un accent prioritaire sur la mise en œuvre concrète de la ZLECAf, la numérisation des corridors douaniers, les instruments de dette mezzanine et la transition énergétique durable.'
+      'Fort du succès d’Abuja, l’AYIF s’est installé au Palais des Congrès de Cotonou du 03 au 05 Décembre 2026, réunissant plus de 500 décideurs, 35 fonds d’investissement et de prestigieuses délégations sur trois journées d’impact.',
+      'Jour 1 — Rassembler : Accueil des participants, visite du village d’exhibition, ouverture officielle avec honneur aux drapeaux et hymnes nationaux du Bénin et du Nigéria, panels sur le leadership et l’intégration régionale, et visite de la Zone industrielle de Glo-Djigbé (GDIZ).',
+      'Jour 2 — Accélérer : La Clinique entrepreneuriale AYIF, où les entrepreneurs sont venus avec leurs entreprises, chiffres et produits pour des diagnostics personnalisés, cliniques d’experts, préparation au financement et une session spéciale sur les méthodes africaines de levée de fonds.',
+      'Jour 3 — Transformer : Immersion productive avec la visite de la plantation d’ananas et de l’usine Des Fruits Tillous, sortie touristique et culturelle à Ouidah, Dîner de gala AYIF, remise des AYIF Awards et rencontres B2B/B2G de haut niveau.'
     ],
     stats: [
-      { value: '500+', label: 'Délégués attendus', detail: 'Investisseurs, fondateurs, ministres et directeurs généraux' },
+      { value: '500+', label: 'Délégués réunis', detail: 'Investisseurs, fondateurs, ministres et directeurs généraux' },
       { value: '25+', label: 'Pays représentés', detail: 'Afrique de l’Ouest, Centrale, Australe et diaspora' },
-      { value: '$25M+', label: 'Objectif Deal Room', detail: 'Volume de financements ciblés lors des sessions d’intermédiation' },
+      { value: '$25M+', label: 'Pipeline Deal Room', detail: 'Volume de financements négociés lors des sessions d’intermédiation' },
       { value: '35+', label: 'Fonds & Banques', detail: 'Fonds d’impact, capital-risque, institutions de financement de développement' },
-      { value: '50+', label: 'Speakers internationaux', detail: 'Dirigeants d’entreprises, économistes et innovateurs de premier plan' },
-      { value: '300+', label: 'Créneaux B2B qualifiés', detail: 'Rendez-vous individuels pré-programmés sur application mobile' }
+      { value: '3 Jours', label: 'Programme immersif', detail: 'Rassembler, Accélérer (Clinique) et Transformer (Visites & Gala)' },
+      { value: '300+', label: 'Créneaux B2B & B2G', detail: 'Rendez-vous individuels et institutionnels d’investissement' }
     ],
     highlights: [
       {
-        title: 'Deal Room Bilatérale Bénin-Nigeria-CEDEAO',
-        description: 'Espace hautement sécurisé dédié aux négociations de levées de fonds (Seed, Série A et dette) avec les principaux gestionnaires de fonds du continent.',
-        outcome: '300 créneaux de 30 minutes planifiés pour des tours de table ciblés.'
+        title: 'Jour 1 : Cérémonie d’Ouverture & Immersion GDIZ',
+        description: 'Cérémonie protocolaire célébrant les hymnes et drapeaux du Bénin et du Nigéria, suivie de la visite de la Zone industrielle de Glo-Djigbé.',
+        outcome: 'Création d’une communauté engagée et identification d’opportunités d’implantation industrielle.'
       },
       {
-        title: 'Grande Compétition Panafricaine de Pitch',
-        description: 'Audition en direct des 10 meilleures startups africaines présélectionnées parmi plus de 300 candidatures sous-régionales.',
-        outcome: 'Dotation globale de $500 000 en capitaux d’investissement et mentorat accéléré.'
+        title: 'Jour 2 : La Clinique Entrepreneuriale AYIF & Levées de Fonds',
+        description: 'Séances intensives de diagnostic avec documents et chiffres d’entreprises, et session spéciale sur les méthodes africaines de levée de fonds.',
+        outcome: 'Plus de 80 diagnostics réalisés et plans d’accélération financière validés.'
       },
       {
-        title: 'Focus Spécial ZLECAf & Corridors Logistiques',
-        description: 'Session ministérielle et ateliers techniques sur les exemptions tarifaires, le transit portuaire Cotonou-Lagos et le paiement transfrontalier PAPSS.',
-        outcome: 'Remise d’un plaidoyer conjoint des jeunes industriels aux instances régionales.'
-      },
-      {
-        title: 'Dîner de Gala Économique & Distinction des Champions',
-        description: 'Soirée de prestige rassemblant 300 dirigeants pour célébrer les lauréats et signer des partenariats industriels majeurs.',
-        outcome: 'Attribution des Trophées AYIF Excellence 2026.'
+        title: 'Jour 3 : Des Fruits Tillous, Ouidah & Dîner de Gala',
+        description: 'Visite de l’usine Des Fruits Tillous, immersion culturelle à Ouidah et célébration finale lors du Dîner de Gala AYIF avec remise des AYIF Awards.',
+        outcome: 'Consolidation durable des partenariats et signature des accords d’investissement.'
       }
     ],
     keySpeakers: [
       {
-        name: 'Amara Okafor',
-        role: 'Managing Partner',
-        organization: 'Baobab Ventures',
-        country: 'Nigeria',
-        topic: 'Ce que les fonds de capital-risque recherchent chez les champions émergents'
-      },
-      {
-        name: 'Daniel Mensah',
-        role: 'Directeur Général & CTO',
-        organization: 'Kente Cloud Systems',
-        country: 'Ghana',
-        topic: 'Infrastructures cloud souveraines et interopérabilité des paiements africains'
-      },
-      {
-        name: 'Fatou Diallo',
-        role: 'Directrice des Investissements Privés',
-        organization: 'Ouest Africa Development Bank',
-        country: 'Sénégal',
-        topic: 'Le capital patient comme moteur du redéploiement industriel régional'
-      },
-      {
-        name: 'Kossi Agbodjan',
-        role: 'CEO',
-        organization: 'Sahel Logistics Group',
-        country: 'Bénin',
-        topic: 'Optimisation de la chaîne logistique portuaire et pénétration des marchés sahéliens'
+        name: 'Comité de Pilotage AYIF',
+        role: 'Direction Exécutive',
+        organization: 'NACCIMA & Elieson Consulting',
+        country: 'Bénin · Nigeria',
+        topic: 'Bilan opérationnel et consolidation des corridors d’affaires transfrontaliers'
       }
     ],
     pitchWinners: [
       {
-        rank: 'Appel Ouvert',
-        startup: 'Sélection des 10 Finalistes en cours',
-        sector: 'Fintech, Agri-Logistique, Énergie & Santé',
-        founder: 'Candidatures clôturées le 15 Octobre 2026',
-        prize: '$500 000 de dotation globale répartie entre les 3 meilleurs projets'
+        rank: 'Palmarès 2026',
+        startup: 'Lauréats AYIF Awards 2026',
+        sector: 'Agro-industrie, Fintech, Logistique & Énergie',
+        founder: 'Entrepreneurs récompensés au Dîner de Gala',
+        prize: '$500 000 de dotations globales et financements directs'
       }
     ],
     keyPartners: [
@@ -839,131 +989,119 @@ export const forumEditions: ForumEdition[] = [
       'Chambre de Commerce et d’Industrie du Bénin (CCI Bénin)',
       'NACCIMA Youth Entrepreneurs Nigeria',
       'Ouest Africa Development Bank (BOAD)',
+      'Zone Industrielle de Glo-Djigbé (GDIZ)',
+      'Des Fruits Tillous',
       'Ecobank Investment Fund',
       'Baobab Ventures'
     ],
     gallery: [
       {
-        title: 'Grand Hall du Palais des Congrès',
-        caption: 'Espace principal d’accueil des 500 délégués internationaux à Cotonou.',
-        image: '/images/editions/cotonou-2026.jpg'
+        title: 'Ouverture Officielle & Hymnes Nationaux',
+        caption: 'Cérémonie d’ouverture marquant l’alliance économique entre le Bénin et le Nigéria.',
+        image: '/images/editions/abuja-2025-opening.jpg'
       },
       {
-        title: 'Hub Portuaire et Échange Régional',
-        caption: 'Cotonou, carrefour logistique incontournable entre l’Afrique francophone et le Nigeria.',
-        image: '/images/blog/cotonou-port.jpg'
+        title: 'La Clinique Entrepreneuriale AYIF',
+        caption: 'Accompagnement pratique et diagnostic des défis commerciaux avec les experts.',
+        image: '/images/editions/abuja-2025-dealroom.jpg'
       },
       {
-        title: 'Ateliers Techniques et Salles de Commission',
-        caption: 'Salles dédiées aux négociations d’investissement et masterclasses sectorielles.',
-        image: '/images/blog/fintech-zlecaf.jpg'
+        title: 'Dîner de Gala AYIF & Remise des Awards',
+        caption: 'Soirée de consécration et remise des trophées de l’excellence entrepreneuriale.',
+        image: '/images/editions/abuja-2025-awards.jpg'
       }
     ],
-    reportTitle: 'Dossier Stratégique & Guide de l’Investisseur — Cotonou 2026',
-    reportDownloadText: 'Télécharger le Dossier Officiel & Guide Pratique (PDF, 32 pages · 3.5 Mo)'
+    reportTitle: 'Dossier Stratégique & Actes Officiels — Cotonou 2026',
+    reportDownloadText: 'Télécharger les Actes Complets & Bilan du Forum (PDF, 36 pages · 3.8 Mo)'
   },
   {
-    slug: 'dakar-2027',
+    slug: 'prochaine-edition',
     year: 2027,
-    editionNumber: '3ème Édition Prospective',
-    title: 'AYIF Sénégal 2027 · Dakar',
-    tagline: 'L’Ère de l’Économie Bleue, des Technologies Vertes & de la Souveraineté Industrielle',
-    theme: 'Souveraineté productive, transition énergétique et capital-croissance à l’horizon 2030',
-    country: 'Sénégal',
-    city: 'Dakar / Diamniadio',
-    venue: 'Centre International de Conférences Abdou Diouf (CICAD)',
-    dates: 'Novembre 2027 (Dates officielles à venir)',
+    editionNumber: '3ème Édition Continentale',
+    title: 'AYIF Prochaine Édition · Destination à Définir',
+    tagline: 'Et si ton pays devenait le prochain organisateur ?',
+    theme: 'Appel international à candidatures : devenez le pays hôte du plus grand forum d’investissement jeunesse d’Afrique',
+    country: 'À définir ultérieurement',
+    city: 'Candidatures ouvertes',
+    venue: 'Centre International retenu avec l’État hôte',
+    dates: '2027 (Dates officielles à convenir avec le pays hôte)',
     status: 'upcoming',
-    statusLabel: 'Prochaine Édition en Préparation',
-    coverImage: '/images/editions/dakar-2027.jpg',
-    leadParagraph: 'Cap sur l’Afrique de l’Ouest atlantique : Dakar 2027 consacrera le rôle pionnier du Sénégal dans l’économie verte, la valorisation des ressources maritimes et les hubs technologiques de nouvelle génération.',
+    statusLabel: 'Destination à Définir Ultérieurement',
+    coverImage: '/images/editions/cotonou-2026.jpg',
+    leadParagraph: 'L’Africa Youth Investment Forum prépare sa 3ème grande édition tournante. Le comité international invite les gouvernements, chambres de commerce et institutions régionales à déposer leur candidature pour accueillir le plus grand rassemblement de jeunes investisseurs et créateurs d’Afrique.',
     description: [
-      'Pour sa troisième édition, l’Africa Youth Investment Forum s’implantera au prestigieux Centre International de Conférences Abdou Diouf (CICAD) à Diamniadio, pôle urbain et technologique ultra-moderne aux portes de Dakar.',
-      'Cette édition prospective abordera les enjeux capitaux des décennies à venir : la transition énergétique, les technologies de valorisation marine, la souveraineté alimentaire et le développement d’infrastructures de cloud computing à faible empreinte carbone.',
-      'Un accent sans précédent sera porté sur la mobilisation active des diasporas scientifiques et financières d’Europe et d’Amérique du Nord pour injecter du capital productif de long terme dans les industries locales.'
+      'Après le succès historique d’Abuja au Nigéria (2025) et la consécration de Cotonou au Bénin (2026), l’AYIF poursuit son déploiement continental. La prochaine destination sera choisie à l’issue d’un processus de sélection rigoureux ouvert à tous les pays africains.',
+      'Accueillir l’AYIF offre à la nation hôte une visibilité économique mondiale de premier ordre, un afflux massif de capitaux privés et d’investisseurs institutionnels, ainsi qu’une mise en lumière privilégiée de ses champions industriels et technologiques.',
+      'Et si votre pays devenait le prochain organisateur ? Les institutions publiques, ministères, chambres consulaires et grands partenaires privés peuvent dès maintenant s’enregistrer pour soutenir ou héberger la prochaine édition.'
     ],
     stats: [
-      { value: '800+', label: 'Délégués ciblés', detail: 'Investisseurs mondiaux, leaders technologiques et délégations ministérielles' },
-      { value: '30+', label: 'Pays africains et mondiaux', detail: 'Une audience transcontinentale connectée' },
-      { value: '$50M+', label: 'Enveloppe prévisionnelle', detail: 'Capitaux ciblés pour les industries vertes et logistiques' },
-      { value: '50+', label: 'Fonds souverains & institutionnels', detail: 'Bailleurs multilatéraux et capitaux institutionnels privés' },
-      { value: '15', label: 'Startups finalistes CleanTech & Agri', detail: 'Compétition axée sur la décarbonation et l’agri-tech' }
+      { value: '1 000+', label: 'Délégués ciblés', detail: 'Investisseurs mondiaux, leaders technologiques et délégations ministérielles' },
+      { value: '30+', label: 'Pays africains', detail: 'Une mobilisation transcontinentale interconnectée' },
+      { value: '$50M+', label: 'Enveloppe ciblée', detail: 'Capitaux ciblés pour l’industrie, l’innovation et la jeunesse' },
+      { value: '50+', label: 'Fonds & Bailleurs', detail: 'Bailleurs multilatéraux et capitaux institutionnels privés' },
+      { value: '15', label: 'Finalistes Pitch', detail: 'Compétition axée sur la scalabilité panafricaine' }
     ],
     highlights: [
       {
-        title: 'Sommet Panafricain de l’Économie Bleue & Énergie Verte',
-        description: 'Focus exclusif sur les technologies de préservation marine, l’aquaculture industrielle et les énergies solaires et éoliennes de nouvelle génération.',
-        outcome: 'Création d’un consortium d’investisseurs dédié aux projets à impact écologique.'
+        title: 'Appel International aux Pays Candidats',
+        description: 'Dépôt des dossiers de manifestation d’intérêt auprès du secrétariat permanent de l’AYIF.',
+        outcome: 'Sélection officielle du pays hôte par le conseil d’administration.'
       },
       {
-        title: 'Pavillon Spécial Diaspora & Investissements Circulaires',
-        description: 'Dispositif spécifique d’incitation fiscale et de co-investissement pour mobiliser l’épargne de la diaspora vers des projets productifs au Sénégal.',
-        outcome: 'Signature d’accords de co-garantie avec des banques régionales.'
+        title: 'Packs Partenaires & Sponsors Hôtes',
+        description: 'Formules de co-organisation, sponsoring territorial et investissements stratégiques pour la prochaine édition.',
+        outcome: 'Enregistrement direct et sécurisation des engagements des partenaires.'
       },
       {
-        title: 'Deal Room Diamniadio Tech City',
-        description: 'Mise en réseau d’entrepreneurs technologiques d’Afrique de l’Ouest avec des investisseurs en capital-développement de la Silicon Valley, d’Europe et des pays du Golfe.',
-        outcome: 'Soutien aux champions technologiques visant une expansion continentale.'
+        title: 'Rayonnement Économique Continental',
+        description: 'Une plateforme clé en main pour positionner la nation hôte comme carrefour de l’investissement de la jeunesse.',
+        outcome: 'Attractivité démultipliée des investissements directs étrangers (IDE).'
       }
     ],
     keySpeakers: [
       {
-        name: 'Ousmane Sarr',
-        role: 'Haut Représentant aux Grands Investissements',
-        organization: 'Délégation Générale aux Pôles Urbains',
-        country: 'Sénégal',
-        topic: 'Diamniadio : genèse d’un pôle d’affaires panafricain pour le 21ème siècle'
-      },
-      {
-        name: 'Mariama Thiam',
-        role: 'Présidente Fondatrice',
-        organization: 'Atlantic Blue Tech Foundation',
-        country: 'Sénégal',
-        topic: 'Financer la révolution de l’économie maritime et des protéines durables'
-      },
-      {
-        name: 'Cheikh Ndiaye',
-        role: 'Directeur Transition Énergétique',
-        organization: 'West Africa Green Power',
-        country: 'Côte d’Ivoire',
-        topic: 'Souveraineté énergétique : intégration des énergies renouvelables dans les réseaux nationaux'
+        name: 'Comité International d’Organisation',
+        role: 'Secrétariat Permanent',
+        organization: 'Africa Youth Investment Forum',
+        country: 'Panafricain',
+        topic: 'Critères d’attribution et cahier des charges pour accueillir l’AYIF'
       }
     ],
     pitchWinners: [
       {
-        rank: 'Appel 2027',
-        startup: 'Ouverture des candidatures au premier trimestre 2027',
-        sector: 'CleanTech, Blue Economy, Agro-industrie & IA Industrielle',
-        founder: 'Processus d’inscription à venir',
-        prize: '$750 000 de dotation totale prévisionnelle'
+        rank: 'Prochaine Édition',
+        startup: 'Appel à candidatures à venir',
+        sector: 'Tech, Agro-industrie, Énergie & Services',
+        founder: 'Modalités d’inscription prochainement publiées',
+        prize: '$750 000 de dotation prévisionnelle'
       }
     ],
     keyPartners: [
-      'APIX Sénégal (Agence pour la Promotion des Investissements)',
-      'Chambre de Commerce, d’Industrie et d’Agriculture de Dakar',
+      'NACCIMA Youth Entrepreneurs',
+      'Elieson Business Consulting',
       'Banque Ouest-Africaine de Développement (BOAD)',
       'Union Africaine — Division Jeunesse & Entrepreneuriat',
-      'Consortium des Bailleurs Européens et Africains'
+      'Chambres de Commerce candidates'
     ],
     gallery: [
       {
-        title: 'Auditorium International du CICAD Diamniadio',
-        caption: 'Complexe architectural futuriste accueillant les plénières d’AYIF 2027.',
-        image: '/images/editions/dakar-2027.jpg'
+        title: 'Une Mobilisation Panafricaine Historique',
+        caption: 'L’Afrique réunit ses forces vives pour stimuler le capital d’investissement.',
+        image: '/images/editions/abuja-2025-opening.jpg'
       },
       {
-        title: 'Façade Maritime et Économie Bleue',
-        caption: 'Dakar, carrefour atlantique et porte océanique vers les marchés mondiaux.',
-        image: '/images/blog/capital-patient.jpg'
+        title: 'Deal Room & Négociations Directes',
+        caption: 'Rencontres de haut niveau entre bailleurs institutionnels et fondateurs de startups.',
+        image: '/images/editions/abuja-2025-dealroom.jpg'
       },
       {
-        title: 'Hubs Technologiques et Espaces B2B',
-        caption: 'Espaces d’intermédiation financière ultra-connectés prévus pour l’édition 2027.',
-        image: '/images/blog/startup-pitch.jpg'
+        title: 'Cérémonie de Prestige & AYIF Awards',
+        caption: 'Reconnaissance des partenaires et célébration des réussites continentales.',
+        image: '/images/editions/abuja-2025-awards.jpg'
       }
     ],
-    reportTitle: 'Document d’Orientation Stratégique — Vision Dakar 2027',
-    reportDownloadText: 'Télécharger la Note Préliminaire & Opportunités (PDF, 24 pages · 2.8 Mo)'
+    reportTitle: 'Dossier de Candidature Pays Hôte & Partenaire',
+    reportDownloadText: 'Télécharger le Cahier des Charges & Formulaire d’Accueil (PDF, 20 pages · 2.4 Mo)'
   }
 ]
 

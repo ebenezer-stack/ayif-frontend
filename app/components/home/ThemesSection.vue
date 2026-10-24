@@ -42,6 +42,9 @@ const rowB = themes.slice(Math.ceil(themes.length / 2))
 <style scoped>
 .themes-section {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
   overflow: hidden;
 }

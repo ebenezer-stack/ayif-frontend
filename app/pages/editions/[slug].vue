@@ -153,7 +153,10 @@ useHead(() => {
 
         <!-- QUICK CTAS -->
         <div class="hero-actions-row">
-          <NuxtLink v-if="edition.status === 'current'" to="/reservation" class="btn primary">
+          <NuxtLink v-if="edition.status === 'upcoming'" to="/partenaires#devenir-organisateur" class="btn primary">
+            Candidater comme Pays Organisateur &amp; Partenaire &rarr;
+          </NuxtLink>
+          <NuxtLink v-else-if="edition.status === 'current'" to="/reservation" class="btn primary">
             Réserver mon Pass Cotonou 2026
           </NuxtLink>
           <button v-else-if="edition.reportTitle" type="button" class="btn primary" @click="handleDownloadReport">
@@ -162,14 +165,14 @@ useHead(() => {
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            <span>Télécharger le Rapport d'Impact</span>
+            <span>Télécharger les Actes Officiels &amp; Bilan</span>
           </button>
-          <NuxtLink v-else to="/partenaires#contact" class="btn primary">
+          <NuxtLink v-else to="/partenaires#devenir-organisateur" class="btn primary">
             Rejoindre les Partenaires de cette édition
           </NuxtLink>
 
           <NuxtLink to="/programme" class="btn secondary">
-            Consulter le Programme
+            Consulter le Programme Général
           </NuxtLink>
         </div>
       </div>
@@ -509,6 +512,9 @@ useHead(() => {
 <style scoped>
 .edition-detail-page {
   background-color: var(--bg-page);
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
   color: var(--text-page);
   min-height: 100vh;
 }
