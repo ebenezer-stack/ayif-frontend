@@ -7,34 +7,28 @@ const loop = [...sponsors, ...sponsors]
 const activeFilter = ref<string>('all')
 
 const filterOptions = [
-  { id: 'all', label: 'Toute la Coalition (12)' },
-  { id: 'titre', label: 'Partenaires Titre & Bailleurs' },
-  { id: 'fonds', label: 'Fonds VC & Capital-Investissement' },
-  { id: 'industrie', label: 'Industrie, Tech & Agro' }
+  { id: 'all', label: 'Tout le Comité (12)' },
+  { id: 'nigeria', label: 'Délégation Nigéria' },
+  { id: 'benin', label: 'Délégation Bénin' },
+  { id: 'pilotage', label: 'Direction & Pilotage' }
 ]
 
 const filteredPartners = computed(() => {
   if (activeFilter.value === 'all') return officialPartners
-  if (activeFilter.value === 'titre') {
+  if (activeFilter.value === 'nigeria') {
+    return officialPartners.filter(p => p.country === 'Nigeria')
+  }
+  if (activeFilter.value === 'benin') {
+    return officialPartners.filter(p => p.country === 'Bénin')
+  }
+  if (activeFilter.value === 'pilotage') {
     return officialPartners.filter(p => 
-      p.category.includes('Titre') || 
-      p.category.includes('Bailleur') || 
+      p.role.includes('Président') || 
+      p.role.includes('Directeur') || 
+      p.role.includes('Directrice') ||
+      p.role.includes('Managing') ||
+      p.role.includes('Général') ||
       p.tierBadge.includes('Platine')
-    )
-  }
-  if (activeFilter.value === 'fonds') {
-    return officialPartners.filter(p => 
-      p.category.includes('Fonds') || 
-      p.category.includes('Angels') || 
-      p.category.includes('FinTech')
-    )
-  }
-  if (activeFilter.value === 'industrie') {
-    return officialPartners.filter(p => 
-      p.category.includes('Industriel') || 
-      p.category.includes('Institutionnel') || 
-      p.category.includes('Agro') || 
-      p.category.includes('Groupe')
     )
   }
   return officialPartners
@@ -42,41 +36,41 @@ const filteredPartners = computed(() => {
 </script>
 
 <template>
-  <section class="sponsors-section" aria-label="Partenaires et Coalition des Capitaux AYIF 2026">
+  <section class="sponsors-section" aria-label="Comité d’Organisation Officiel AYIF 2026">
     <div class="wrap">
-      <!-- EN-TÊTE ÉDITORIAL DE LA COALITION (AÉRÉ, SANS BORDURES RIGIDES) -->
+      <!-- EN-TÊTE ÉDITORIAL DU COMITÉ D'ORGANISATION OFFICIEL -->
       <header class="sponsors-header">
         <div class="kicker-group" v-reveal>
           <span class="kicker-gem" aria-hidden="true">◆</span>
-          <span class="sub-kicker">Alliances Stratégiques &amp; Bailleurs Officiels</span>
+          <span class="sub-kicker">Comité d’Organisation Officiel</span>
         </div>
 
         <div class="header-split-row">
           <div class="header-text-col" v-reveal="{ effect: 'up', delay: 80 }">
             <h2 class="sponsors-title">
-              La Coalition des Capitaux &amp; Partenaires d’AYIF 2026
+              Comité d’Organisation Officiel d’AYIF 2026
             </h2>
             <p class="sponsors-lead">
-              Fonds d’investissement souverains, banques multilatérales de développement et consortiums manufacturiers engagés pour financer et propulser l’entrepreneuriat des jeunes en Afrique.
+              Les femmes et les hommes des délégations du Bénin et du Nigéria mobilisés pour coordonner les commissions stratégiques, accueillir les délégations internationales et garantir le succès du forum à Cotonou.
             </p>
           </div>
 
           <div class="header-action-col" v-reveal="{ effect: 'up', delay: 140 }">
-            <NuxtLink to="/partenaires" class="btn-partner-prestige">
-              <span>Devenir partenaire officiel</span>
+            <NuxtLink to="/a-propos" class="btn-partner-prestige">
+              <span>Découvrir l’organisation</span>
               <svg viewBox="0 0 20 20" fill="currentColor" class="cta-arrow" aria-hidden="true">
                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </NuxtLink>
             <span class="protocol-notice">
-              Homologations bilatérales validées au secrétariat permanent
+              Coordination conjointe Bénin &amp; Nigéria
             </span>
           </div>
         </div>
       </header>
 
       <!-- BARRE DES FILTRES DE NAVIGATION (DÉGAGÉE AVEC MARGES GÉNÉREUSES) -->
-      <nav class="partners-filter-wrapper" aria-label="Filtrer les partenaires par pôle d'activité">
+      <nav class="partners-filter-wrapper" aria-label="Filtrer les membres du comité d'organisation">
         <div class="filter-pills-row" role="tablist">
           <button
             v-for="opt in filterOptions"

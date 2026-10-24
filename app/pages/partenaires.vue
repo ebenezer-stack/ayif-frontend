@@ -89,13 +89,13 @@ const submitHostCountry = () => {
           </div>
         </div>
 
-        <!-- DÉLÉGATION DES DIRIGEANTS & DÉLÉGUÉS PARTENAIRES 2026 -->
+        <!-- DÉLÉGATION DU COMITÉ D'ORGANISATION OFFICIEL 2026 -->
         <div class="official-delegation-block">
           <div class="delegation-head">
-            <span class="delegation-badge">RÉSEAU OFFICIEL</span>
-            <h3 class="delegation-title">Dirigeants &amp; Représentants des Partenaires 2026</h3>
+            <span class="delegation-badge">GOUVERNANCE &amp; PILOTAGE</span>
+            <h3 class="delegation-title">Comité d’Organisation Officiel d’AYIF 2026</h3>
             <p class="delegation-lead">
-              Les femmes et les hommes à la tête des institutions financières, consortiums industriels et fonds d'investissement partenaires de l'édition Cotonou 2026.
+              Les femmes et les hommes des délégations du Bénin et du Nigéria mobilisés pour coordonner les commissions stratégiques, accueillir les partenaires et garantir le succès du forum à Cotonou.
             </p>
           </div>
 
