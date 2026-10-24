@@ -7,7 +7,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Associez votre institution ou votre entreprise à l’Africa Youth Investment Forum (AYIF) Cotonou 2026. Découvrez les formules de partenariat Platine, Or et Argent.'
+      content: 'Associez votre institution ou votre entreprise à l’Africa Youth Investment Forum (AYIF) Cotonou 2026. Découvrez le comité d’organisation, l’écosystème de partenaires et les formules de sponsoring.'
     }
   ]
 })
@@ -55,139 +55,182 @@ const submitHostCountry = () => {
 
 <template>
   <div class="partners-page">
-    <!-- HERO SECTION -->
+    <!-- =====================================================================
+         1. HERO SECTION SOUVERAIN (FOND BLEU NAVY AVEC MOTIF GÉOMÉTRIQUE)
+         ===================================================================== -->
     <section class="part-hero navy">
       <div class="wrap">
-        <span class="sub-kicker">Alliances &amp; Visibilité Panafricaine</span>
-        <h1 class="hero-title">Sponsors &amp; Partenaires Stratégiques</h1>
-        <p class="hero-lead">
+        <div class="kicker-group" v-reveal>
+          <span class="kicker-gem" aria-hidden="true">◆</span>
+          <span class="sub-kicker">Alliances &amp; Visibilité Panafricaine</span>
+        </div>
+        <h1 class="hero-title" v-reveal="{ effect: 'up', delay: 80 }">
+          Sponsors &amp; Partenaires Stratégiques
+        </h1>
+        <p class="hero-lead" v-reveal="{ effect: 'up', delay: 120 }">
           Positionnez votre organisation au cœur de l'événement économique majeur de l'année et engagez-vous activement auprès de la prochaine génération de leaders d'entreprises africaines.
         </p>
-        <div class="meta-strip">
-          <span>{{ EVENT_DATES_LABEL }}</span>
-          <span class="dot">·</span>
-          <span>{{ EVENT_LOCATION }}</span>
+        <div class="meta-strip" v-reveal="{ effect: 'up', delay: 160 }">
+          <span class="meta-capsule">{{ EVENT_DATES_LABEL }}</span>
+          <span class="meta-capsule">{{ EVENT_LOCATION }}</span>
+          <span class="meta-capsule gold">Palais des Congrès de Cotonou</span>
         </div>
       </div>
     </section>
 
-    <!-- LES CATÉGORIES DE PARTENAIRES -->
-    <section class="partners-wall-section">
+    <!-- =====================================================================
+         2. COMITÉ D'ORGANISATION OFFICIEL 2026 (FOND CLAIR PATTERN, SANS BORDER-LEFT, SANS POINT)
+         ===================================================================== -->
+    <section class="official-delegation-section">
       <div class="wrap">
-        <div class="section-head">
-          <span class="section-kicker">Écosystème Fédéré</span>
-          <h2>Ils soutiennent l’initiative</h2>
-          <p class="intro">Une convergence rare entre institutions publiques, banques régionales et géants technologiques.</p>
+        <div class="section-head" v-reveal>
+          <div class="kicker-group center">
+            <span class="kicker-gem" aria-hidden="true">◆</span>
+            <span class="section-kicker">GOUVERNANCE &amp; PILOTAGE CONJOINT</span>
+          </div>
+          <h2 class="section-title">Comité d’Organisation Officiel d’AYIF 2026</h2>
+          <p class="section-intro">
+            Les femmes et les hommes des délégations du Bénin et du Nigéria mobilisés pour coordonner les commissions stratégiques, accueillir les partenaires et garantir le succès du forum à Cotonou.
+          </p>
+
+          <!-- BANDEAU REGISTRE PROTOCOLAIRE ÉPURÉ : ZÉRO BORDER-LEFT, ZÉRO POINT -->
           <div class="protocol-registry-strip">
-            <div class="registry-header-badge">
-              <span class="registry-pulse-dot" aria-hidden="true"></span>
-              <span class="registry-badge-title">CYCLE D'ACCRÉDITATION OFFICIEL</span>
-            </div>
+            <span class="registry-badge-title">CYCLE D'ACCRÉDITATION OFFICIEL</span>
             <p class="registry-notice">
               Les accords bilatéraux, fonds partenaires et bailleurs multilatéraux sont homologués et officialisés au fur et à mesure par le comité de pilotage.
             </p>
           </div>
         </div>
 
-        <!-- DÉLÉGATION DU COMITÉ D'ORGANISATION OFFICIEL 2026 -->
-        <div class="official-delegation-block">
-          <div class="delegation-head">
-            <span class="delegation-badge">GOUVERNANCE &amp; PILOTAGE</span>
-            <h3 class="delegation-title">Comité d’Organisation Officiel d’AYIF 2026</h3>
-            <p class="delegation-lead">
-              Les femmes et les hommes des délégations du Bénin et du Nigéria mobilisés pour coordonner les commissions stratégiques, accueillir les partenaires et garantir le succès du forum à Cotonou.
-            </p>
-          </div>
-
-          <!-- Grille spacieuse à 2 colonnes des Partenaires et Sponsors -->
-          <div class="delegation-executive-grid">
-            <article
-              v-for="partner in officialPartners"
-              :key="partner.id"
-              class="delegation-prestige-plate"
-            >
-              <div class="del-avatar-frame">
-                <img
-                  :src="partner.image"
-                  :alt="partner.name"
-                  loading="lazy"
-                  class="del-avatar"
-                />
+        <!-- GRILLE SPATIEUSE À 2 COLONNES DES MEMBRES DU COMITÉ D'ORGANISATION -->
+        <div class="delegation-executive-grid" v-reveal="{ effect: 'up', delay: 100 }">
+          <article
+            v-for="partner in officialPartners"
+            :key="partner.id"
+            class="delegation-prestige-plate"
+          >
+            <div class="del-avatar-frame">
+              <img
+                :src="partner.image"
+                :alt="partner.name"
+                loading="lazy"
+                class="del-avatar"
+              />
+            </div>
+            <div class="del-info-col">
+              <div class="del-badges-row">
+                <span class="del-tier-badge">{{ partner.tierBadge }}</span>
+                <span class="del-country-badge">{{ partner.country }}</span>
               </div>
-              <div class="del-info-col">
-                <div class="del-badges-row">
-                  <span class="del-tier-badge">{{ partner.tierBadge }}</span>
-                  <span class="del-country-badge">{{ partner.country }}</span>
-                </div>
-                <h4 class="del-org-title">{{ partner.organization }}</h4>
-                <div class="del-patron-block">
-                  <span class="del-patron-name">{{ partner.name }}</span>
-                  <span class="del-patron-role">{{ partner.role }}</span>
-                </div>
-                <p class="del-desc-text">{{ partner.highlight }}</p>
+              <h3 class="del-org-title">{{ partner.organization }}</h3>
+              <div class="del-patron-block">
+                <span class="del-patron-name">{{ partner.name }}</span>
+                <span class="del-patron-role">{{ partner.role }}</span>
               </div>
-            </article>
-          </div>
-        </div>
-        <div class="category-block">
-          <h3 class="cat-title">Partenaires Institutionnels &amp; Gouvernementaux</h3>
-          <div class="cat-grid">
-            <div v-for="inst in sponsorsCategories.institutionnels" :key="inst" class="partner-tile">
-              <span>{{ inst }}</span>
+              <p class="del-desc-text">{{ partner.highlight }}</p>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. ÉCOSYSTÈME DES PARTENAIRES & ALLIANCES (FOND BLEU NAVY AVEC MOTIF GÉOMÉTRIQUE)
+         ===================================================================== -->
+    <section class="partners-ecosystem-section navy">
+      <div class="wrap">
+        <div class="section-head text-white" v-reveal>
+          <div class="kicker-group center">
+            <span class="kicker-gem gold" aria-hidden="true">◆</span>
+            <span class="section-kicker gold">Écosystème Fédéré &amp; Alliances</span>
           </div>
+          <h2 class="section-title text-white">Ils soutiennent l’initiative</h2>
+          <p class="section-intro text-white-muted">
+            Une convergence rare entre institutions publiques souveraines, banques régionales de développement et champions industriels africains.
+          </p>
         </div>
 
-        <!-- 2. Investisseurs -->
-        <div class="category-block">
-          <h3 class="cat-title">Fonds d’Investissement &amp; Capital-Développement</h3>
-          <div class="cat-grid">
-            <div v-for="inv in sponsorsCategories.investisseurs" :key="inv" class="partner-tile">
-              <span>{{ inv }}</span>
+        <div class="ecosystem-categories-stack">
+          <!-- 1. Institutionnels -->
+          <div class="category-block" v-reveal>
+            <div class="cat-header">
+              <span class="cat-gem" aria-hidden="true">✦</span>
+              <h3 class="cat-title">Partenaires Institutionnels &amp; Gouvernementaux</h3>
+            </div>
+            <div class="cat-grid">
+              <div v-for="inst in sponsorsCategories.institutionnels" :key="inst" class="partner-tile-navy">
+                <span>{{ inst }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 3. Tech & Logistique -->
-        <div class="category-block">
-          <h3 class="cat-title">Partenaires Technologiques &amp; Logistiques</h3>
-          <div class="cat-grid">
-            <div v-for="tech in sponsorsCategories.technologie" :key="tech" class="partner-tile">
-              <span>{{ tech }}</span>
+          <!-- 2. Investisseurs -->
+          <div class="category-block" v-reveal="{ effect: 'up', delay: 60 }">
+            <div class="cat-header">
+              <span class="cat-gem" aria-hidden="true">✦</span>
+              <h3 class="cat-title">Fonds d’Investissement &amp; Capital-Développement</h3>
+            </div>
+            <div class="cat-grid">
+              <div v-for="inv in sponsorsCategories.investisseurs" :key="inv" class="partner-tile-navy">
+                <span>{{ inv }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 4. Médias -->
-        <div id="presse" class="category-block">
-          <h3 class="cat-title">Médias &amp; Partenaires de Diffusion</h3>
-          <div class="cat-grid">
-            <div v-for="med in sponsorsCategories.medias" :key="med" class="partner-tile">
-              <span>{{ med }}</span>
+          <!-- 3. Tech & Logistique -->
+          <div class="category-block" v-reveal="{ effect: 'up', delay: 80 }">
+            <div class="cat-header">
+              <span class="cat-gem" aria-hidden="true">✦</span>
+              <h3 class="cat-title">Partenaires Technologiques &amp; Logistiques</h3>
+            </div>
+            <div class="cat-grid">
+              <div v-for="tech in sponsorsCategories.technologie" :key="tech" class="partner-tile-navy">
+                <span>{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Médias -->
+          <div id="presse" class="category-block" v-reveal="{ effect: 'up', delay: 100 }">
+            <div class="cat-header">
+              <span class="cat-gem" aria-hidden="true">✦</span>
+              <h3 class="cat-title">Médias &amp; Partenaires de Diffusion</h3>
+            </div>
+            <div class="cat-grid">
+              <div v-for="med in sponsorsCategories.medias" :key="med" class="partner-tile-navy">
+                <span>{{ med }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LES FORMULES DE PARTENARIAT -->
-    <section class="packages-section blue">
+    <!-- =====================================================================
+         4. FORMULES & PACKS DE PARTENARIAT (FOND CLAIR PATTERN, SANS BORDURES BOÎTIÈRES)
+         ===================================================================== -->
+    <section class="packages-section light">
       <div class="wrap">
-        <div class="section-head text-white">
-          <span class="cot-kicker">Offres &amp; Sponsoring</span>
-          <h2 class="text-white">Pack Partenariats AYIF : Construisons votre partenariat pour l’Afrique</h2>
-          <p class="intro-white">Des options de sponsoring calibrées pour maximiser votre impact, votre visibilité et vos retombées B2B.</p>
+        <div class="section-head" v-reveal>
+          <div class="kicker-group center">
+            <span class="kicker-gem" aria-hidden="true">◆</span>
+            <span class="section-kicker">Offres &amp; Sponsoring Stratégique</span>
+          </div>
+          <h2 class="section-title">Pack Partenariats AYIF : Construisons votre partenariat pour l’Afrique</h2>
+          <p class="section-intro">
+            Des options de sponsoring calibrées pour maximiser votre impact, votre visibilité continentale et vos retombées B2B.
+          </p>
         </div>
 
-        <div class="packages-grid">
+        <div class="packages-grid" v-reveal="{ effect: 'up', delay: 80 }">
           <div 
             v-for="pkg in partnerPackages" 
             :key="pkg.id" 
-            class="pkg-card navy"
+            class="pkg-card"
           >
             <div class="pkg-top">
               <span v-if="pkg.badge" class="pkg-badge">{{ pkg.badge }}</span>
-              <h3>{{ pkg.tier }}</h3>
+              <h3 class="pkg-tier-title">{{ pkg.tier }}</h3>
               <p class="pkg-summary">{{ pkg.summary }}</p>
             </div>
 
@@ -205,7 +248,7 @@ const submitHostCountry = () => {
               </li>
             </ul>
 
-            <a href="#contact-sponsor" class="btn primary pkg-btn">
+            <a href="#contact-sponsor" class="btn-pkg-gold">
               Demander le dossier sponsor
             </a>
           </div>
@@ -213,113 +256,130 @@ const submitHostCountry = () => {
       </div>
     </section>
 
-    <!-- FORMULAIRE CONTACT SPONSOR -->
-    <section id="contact-sponsor" class="sponsor-form-section">
+    <!-- =====================================================================
+         5. FORMULAIRE CONTACT SPONSORING (FOND BLEU NAVY AVEC MOTIF GÉOMÉTRIQUE)
+         ===================================================================== -->
+    <section id="contact-sponsor" class="sponsor-form-section navy">
       <div class="wrap sp-split">
-        <div class="sp-text">
-          <span class="sub-kicker">Accompagnement Sur Mesure</span>
-          <h2>Construisons votre partenariat pour Cotonou 2026</h2>
-          <p class="intro">
-            Notre équipe de commissariat général est à votre disposition pour élaborer une formule adaptée à vos objectifs stratégiques, qu'il s'agisse de visibilité de marque, d'animation de session ou d'attribution d'un prix d'innovation.
+        <div class="sp-text" v-reveal>
+          <div class="kicker-group">
+            <span class="kicker-gem gold" aria-hidden="true">◆</span>
+            <span class="sub-kicker gold">Accompagnement Sur Mesure</span>
+          </div>
+          <h2 class="sp-form-title">Construisons votre partenariat pour Cotonou 2026</h2>
+          <p class="sp-intro">
+            Notre équipe de commissariat général est à votre entière disposition pour élaborer une formule adaptée à vos objectifs stratégiques : visibilité de marque, animation de panel officiel, attribution d'un prix d'innovation ou salon d'exposition VIP.
           </p>
-          <div class="contact-direct">
-            <div class="c-line">
-              <strong>Email partenariats :</strong>
-              <span>sponsors@ayifbenin2026.org</span>
+          <div class="contact-direct-cards">
+            <div class="c-line-card">
+              <span class="c-kicker">Email officiel</span>
+              <span class="c-val">sponsors@ayifbenin2026.org</span>
             </div>
-            <div class="c-line">
-              <strong>Comité Bénin :</strong>
-              <span>Elieson Business Consulting, Cotonou</span>
+            <div class="c-line-card">
+              <span class="c-kicker">Comité d'Organisation Bénin</span>
+              <span class="c-val">Elieson Business Consulting, Cotonou</span>
             </div>
-            <div class="c-line">
-              <strong>Comité Nigeria :</strong>
-              <span>NACCIMA Youth Entrepreneurs, Lagos / Abuja</span>
+            <div class="c-line-card">
+              <span class="c-kicker">Comité d'Organisation Nigéria</span>
+              <span class="c-val">NACCIMA Youth Entrepreneurs, Lagos / Abuja</span>
             </div>
           </div>
         </div>
 
-        <div class="sp-form-card">
-          <div v-if="partnerForm.submitted" class="sp-success navy">
-            <h3>Demande enregistrée</h3>
-            <p>Nous vous remercions pour votre intérêt. Notre responsable des partenariats vous adressera le dossier officiel complet et vous contactera sous 24h.</p>
-            <button type="button" class="btn primary" @click="partnerForm.submitted = false">
-              Nouvelle demande
-            </button>
+        <div class="sp-form-col" v-reveal="{ effect: 'up', delay: 100 }">
+          <div class="sp-form-card">
+            <div v-if="partnerForm.submitted" class="sp-success">
+              <div class="success-gem-badge" aria-hidden="true">◆</div>
+              <h3 class="success-heading">Demande de Partenariat Enregistrée</h3>
+              <p class="success-desc">
+                Nous vous remercions pour votre intérêt stratégique. Notre responsable des partenariats et des délégations vous adressera le dossier officiel complet sous 24 heures ouvrées.
+              </p>
+              <button type="button" class="btn-form-reset" @click="partnerForm.submitted = false">
+                Nouvelle demande
+              </button>
+            </div>
+
+            <form v-else class="partner-form" @submit.prevent="submitPartnerInquiry">
+              <h3 class="form-title">Formulaire d’Intérêt Partenariat</h3>
+              
+              <div class="f-group">
+                <label for="pComp">Nom de l’Entreprise ou Institution *</label>
+                <input id="pComp" v-model="partnerForm.company" type="text" required placeholder="Ex: Banque Régionale de Développement" class="pure-input" />
+              </div>
+
+              <div class="f-group">
+                <label for="pName">Nom et Prénom du Contact *</label>
+                <input id="pName" v-model="partnerForm.contactName" type="text" required placeholder="Ex: Dr. Aïcha Ouédraogo" class="pure-input" />
+              </div>
+
+              <div class="f-group">
+                <label for="pEmail">Email professionnel *</label>
+                <input id="pEmail" v-model="partnerForm.email" type="email" required placeholder="direction@groupe.com" class="pure-input" />
+              </div>
+
+              <div class="f-group">
+                <label for="pPhone">Téléphone / WhatsApp</label>
+                <input id="pPhone" v-model="partnerForm.phone" type="tel" placeholder="+229 / +234..." class="pure-input" />
+              </div>
+
+              <div class="f-group">
+                <label for="pTier">Formule pressentie</label>
+                <select id="pTier" v-model="partnerForm.selectedTier" class="pure-select">
+                  <option value="platine">Partenaire Platine (Exclusivité Majeure)</option>
+                  <option value="or">Partenaire Or</option>
+                  <option value="argent">Partenaire Argent</option>
+                  <option value="media">Partenaire Média &amp; Presse</option>
+                  <option value="autre">Sur mesure / Autre</option>
+                </select>
+              </div>
+
+              <div class="f-group">
+                <label for="pMsg">Précisions ou besoins spécifiques</label>
+                <textarea id="pMsg" v-model="partnerForm.message" rows="3" placeholder="Indiquez vos attentes clés (stand d'exposition, panel, naming, deal room...)." class="pure-textarea"></textarea>
+              </div>
+
+              <button type="submit" class="btn-partner-submit">
+                Recevoir le kit de partenariat complet
+              </button>
+            </form>
           </div>
-
-          <form v-else class="partner-form" @submit.prevent="submitPartnerInquiry">
-            <h3>Formulaire d’Intérêt Partenariat</h3>
-            <div class="f-group">
-              <label for="pComp">Nom de l’Entreprise ou Institution *</label>
-              <input id="pComp" v-model="partnerForm.company" type="text" required placeholder="Ex: Banque de Développement Régionale" />
-            </div>
-
-            <div class="f-group">
-              <label for="pName">Nom et Prénom du Contact *</label>
-              <input id="pName" v-model="partnerForm.contactName" type="text" required placeholder="Ex: Aïcha Ouédraogo" />
-            </div>
-
-            <div class="f-group">
-              <label for="pEmail">Email professionnel *</label>
-              <input id="pEmail" v-model="partnerForm.email" type="email" required placeholder="direction@groupe.com" />
-            </div>
-
-            <div class="f-group">
-              <label for="pPhone">Téléphone / WhatsApp</label>
-              <input id="pPhone" v-model="partnerForm.phone" type="tel" placeholder="+229 / +234..." />
-            </div>
-
-            <div class="f-group">
-              <label for="pTier">Formule pressentie</label>
-              <select id="pTier" v-model="partnerForm.selectedTier">
-                <option value="platine">Partenaire Platine (Exclusivité)</option>
-                <option value="or">Partenaire Or</option>
-                <option value="argent">Partenaire Argent</option>
-                <option value="media">Partenaire Média &amp; Presse</option>
-                <option value="autre">Sur mesure / Autre</option>
-              </select>
-            </div>
-
-            <div class="f-group">
-              <label for="pMsg">Précisions ou besoins spécifiques</label>
-              <textarea id="pMsg" v-model="partnerForm.message" rows="3" placeholder="Indiquez vos attentes clés (stand d'exposition, panel, naming...)."></textarea>
-            </div>
-
-            <button type="submit" class="btn primary sp-submit-btn">
-              Recevoir le kit de partenariat complet
-            </button>
-          </form>
         </div>
       </div>
     </section>
 
-    <!-- SECTION CANDIDATURE PAYS HÔTE & ENREGISTREMENT PARTENAIRE -->
-    <section id="devenir-organisateur" class="host-country-section navy">
+    <!-- =====================================================================
+         6. CANDIDATURE PAYS HÔTE & ORGANISATEUR (FOND CLAIR PATTERN, SANS POINT)
+         ===================================================================== -->
+    <section id="devenir-organisateur" class="host-country-section light">
       <div class="wrap">
         <div class="host-split">
-          <div class="host-info-col">
-            <span class="sub-kicker">Prochaine Édition Continentale</span>
+          <div class="host-info-col" v-reveal>
+            <div class="kicker-group">
+              <span class="kicker-gem" aria-hidden="true">◆</span>
+              <span class="sub-kicker">Prochaine Édition Continentale</span>
+            </div>
             <h2 class="host-section-title">Et si ton pays devenait le prochain organisateur ?</h2>
             <p class="host-intro">
               L'Africa Youth Investment Forum voyage à travers les grandes capitales économiques africaines. Après Abuja (Nigéria 2025) et Cotonou (Bénin 2026), le comité international ouvre l'appel aux candidatures officielles pour la 3ème édition.
             </p>
+            
             <div class="host-perks-list">
               <div class="perk-item">
-                <span class="perk-bullet"></span>
+                <span class="perk-gem" aria-hidden="true">✦</span>
                 <div>
                   <strong>Rayonnement Panafricain Direct</strong>
                   <p>Attirez plus de 800 investisseurs, ministres, bailleurs et fondateurs de plus de 30 pays africains et de la diaspora dans votre capitale.</p>
                 </div>
               </div>
               <div class="perk-item">
-                <span class="perk-bullet"></span>
+                <span class="perk-gem" aria-hidden="true">✦</span>
                 <div>
                   <strong>Dynamisation de l’Économie Nationale</strong>
                   <p>Mettez en avant vos zones économiques spéciales, vos corridors logistiques et votre jeunesse entrepreneuriale à l'échelle continentale.</p>
                 </div>
               </div>
               <div class="perk-item">
-                <span class="perk-bullet"></span>
+                <span class="perk-gem" aria-hidden="true">✦</span>
                 <div>
                   <strong>Accompagnement Opérationnel Structuré</strong>
                   <p>Bénéficiez du commissariat général expérimenté d'AYIF pour la programmation, la Deal Room et la logistique protocolaire.</p>
@@ -328,7 +388,7 @@ const submitHostCountry = () => {
             </div>
           </div>
 
-          <div class="host-form-col">
+          <div class="host-form-col" v-reveal="{ effect: 'up', delay: 100 }">
             <div class="host-form-card">
               <div v-if="hostCountryForm.submitted" class="host-success-box">
                 <span class="success-kicker">Candidature &amp; Enregistrement Reçus</span>
@@ -340,7 +400,7 @@ const submitHostCountry = () => {
                   <strong>Modalité de règlement sélectionnée :</strong>
                   <p class="pay-choice">{{ hostCountryForm.paymentMethod === 'virement' ? 'Virement bancaire institutionnel (RIB/IBAN transmis par email)' : hostCountryForm.paymentMethod === 'facture' ? 'Facture officielle proforma avec bon de commande étatique' : 'Paiement sécurisé par carte bancaire / Mobile Money' }}</p>
                 </div>
-                <button type="button" class="btn primary" @click="hostCountryForm.submitted = false">
+                <button type="button" class="btn-host-reset" @click="hostCountryForm.submitted = false">
                   Soumettre une autre demande
                 </button>
               </div>
@@ -354,27 +414,27 @@ const submitHostCountry = () => {
                 <div class="f-row">
                   <div class="f-group">
                     <label for="hCountry">Pays Candidat *</label>
-                    <input id="hCountry" v-model="hostCountryForm.country" type="text" required placeholder="Ex: Sénégal, Côte d'Ivoire, Rwanda, Cameroun..." />
+                    <input id="hCountry" v-model="hostCountryForm.country" type="text" required placeholder="Ex: Sénégal, Côte d'Ivoire, Rwanda, Cameroun..." class="pure-input-light" />
                   </div>
                   <div class="f-group">
                     <label for="hCity">Ville / Capitale Pressentie</label>
-                    <input id="hCity" v-model="hostCountryForm.proposedCity" type="text" placeholder="Ex: Dakar, Abidjan, Kigali, Douala..." />
+                    <input id="hCity" v-model="hostCountryForm.proposedCity" type="text" placeholder="Ex: Dakar, Abidjan, Kigali, Douala..." class="pure-input-light" />
                   </div>
                 </div>
 
                 <div class="f-group">
                   <label for="hOrg">Organisation / Ministère / Chambre de Commerce *</label>
-                  <input id="hOrg" v-model="hostCountryForm.organization" type="text" required placeholder="Ex: Ministère du Commerce et de l'Industrie / Patronat" />
+                  <input id="hOrg" v-model="hostCountryForm.organization" type="text" required placeholder="Ex: Ministère du Commerce et de l'Industrie / Patronat" class="pure-input-light" />
                 </div>
 
                 <div class="f-row">
                   <div class="f-group">
                     <label for="hContact">Nom et Titre du Responsable *</label>
-                    <input id="hContact" v-model="hostCountryForm.contactName" type="text" required placeholder="Ex: S.E. ou M./Mme..." />
+                    <input id="hContact" v-model="hostCountryForm.contactName" type="text" required placeholder="Ex: S.E. ou M./Mme..." class="pure-input-light" />
                   </div>
                   <div class="f-group">
                     <label for="hRole">Type de Structure</label>
-                    <select id="hRole" v-model="hostCountryForm.roleCategory">
+                    <select id="hRole" v-model="hostCountryForm.roleCategory" class="pure-select-light">
                       <option value="ministere">Gouvernement / Ministère</option>
                       <option value="chambre_commerce">Chambre de Commerce &amp; d'Industrie</option>
                       <option value="patronat">Patronat / Confédération Patronale</option>
@@ -386,18 +446,18 @@ const submitHostCountry = () => {
                 <div class="f-row">
                   <div class="f-group">
                     <label for="hEmail">Email officiel *</label>
-                    <input id="hEmail" v-model="hostCountryForm.email" type="email" required placeholder="cabinet@ministere.gouv..." />
+                    <input id="hEmail" v-model="hostCountryForm.email" type="email" required placeholder="cabinet@ministere.gouv..." class="pure-input-light" />
                   </div>
                   <div class="f-group">
                     <label for="hPhone">Téléphone / WhatsApp</label>
-                    <input id="hPhone" v-model="hostCountryForm.phone" type="tel" placeholder="+..." />
+                    <input id="hPhone" v-model="hostCountryForm.phone" type="tel" placeholder="+..." class="pure-input-light" />
                   </div>
                 </div>
 
                 <!-- OPTION DE PAIEMENT / FRAIS DE DOSSIER ET PARTENARIAT -->
                 <div class="f-group">
                   <label for="hPay">Modalité de Règlement &amp; Frais de Partenariat *</label>
-                  <select id="hPay" v-model="hostCountryForm.paymentMethod">
+                  <select id="hPay" v-model="hostCountryForm.paymentMethod" class="pure-select-light">
                     <option value="virement">Virement bancaire institutionnel (Sur compte séquestre AYIF)</option>
                     <option value="facture">Facture officielle proforma avec bon de commande étatique</option>
                     <option value="carte">Carte bancaire internationale / Mobile Money sécurisé</option>
@@ -406,11 +466,11 @@ const submitHostCountry = () => {
 
                 <div class="f-group">
                   <label for="hMsg">Notes préliminaires ou atouts du pays candidat</label>
-                  <textarea id="hMsg" v-model="hostCountryForm.message" rows="2" placeholder="Infrastructures d'accueil, salles de conférence, soutiens institutionnels..."></textarea>
+                  <textarea id="hMsg" v-model="hostCountryForm.message" rows="2" placeholder="Infrastructures d'accueil, salles de conférence, soutiens institutionnels..." class="pure-textarea-light"></textarea>
                 </div>
 
-                <button type="submit" class="btn primary host-submit-btn">
-                  Valider la candidature &amp; Accéder aux modalités de règlement
+                <button type="submit" class="btn-host-submit">
+                  Valider la candidature &amp; Accéder aux modalités
                 </button>
               </form>
             </div>
@@ -422,245 +482,229 @@ const submitHostCountry = () => {
 </template>
 
 <style scoped>
+/* ==========================================================================
+   PAGE PARTENAIRES & SPONSORS — ARCHITECTURE ÉDITORIALE HAUTE-COUTURE
+   ALTERNANCE FOND BLEU SOUVERAIN / FOND CLAIR PATTERN CONTINU
+   ZÉRO DÉGRADÉ · ZÉRO BORDURE TRONQUANTE (TOP/LEFT/BOTTOM) · ZÉRO ÉMOJI · ZÉRO POINT
+   ========================================================================== */
 .partners-page {
+  --page-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z M28 12 L44 28 L28 44 L12 28 Z M28 23 L33 28 L28 33 L23 28 Z M0 12 L12 0 M44 0 L56 12 M0 44 L12 56 M44 56 L56 44 M0 23 L5 28 L0 33 M56 23 L51 28 L56 33 M23 0 L28 5 L33 0 M23 56 L28 51 L33 56' fill='none' stroke='%23082B55' stroke-width='1.1' stroke-opacity='0.08'/%3E%3C/svg%3E");
+  --navy-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z M28 12 L44 28 L28 44 L12 28 Z M28 23 L33 28 L28 33 L23 28 Z M0 12 L12 0 M44 0 L56 12 M0 44 L12 56 M44 56 L56 44 M0 23 L5 28 L0 33 M56 23 L51 28 L56 33 M23 0 L28 5 L33 0 M23 56 L28 51 L33 56' fill='none' stroke='%232EA7F2' stroke-width='1.1' stroke-opacity='0.085'/%3E%3C/svg%3E");
   background-color: var(--bg-page);
-  background-image: var(--bg-pattern);
+  background-image: var(--page-pattern);
   background-repeat: repeat;
   background-size: 56px 56px;
   color: var(--text-page);
+  border: none;
 }
 
-.part-hero {
-  padding-top: 150px;
-  padding-bottom: 70px;
-  background-color: var(--navy-bg);
-  color: var(--navy-text);
-  border-bottom: 1px solid var(--navy-line);
-}
-
-.sub-kicker {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-gold);
+/* Kicker Group Commun */
+.kicker-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 12px;
 }
 
-.hero-title {
-  font-size: var(--fs-h1);
+.kicker-group.center {
+  justify-content: center;
+}
+
+.kicker-gem {
+  color: var(--color-gold, #d9a21b);
+  font-size: 11px;
+}
+
+.sub-kicker,
+.section-kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
   font-weight: 800;
-  line-height: 1.05;
-  margin: 0 0 18px;
-  color: var(--navy-text);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent, #2ea7f2);
+}
+
+.sub-kicker.gold,
+.section-kicker.gold {
+  color: var(--color-gold, #d9a21b);
+}
+
+.section-head {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 56px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  color: var(--text-page);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.section-intro {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-white-muted {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION PARTENAIRES (FOND BLEU NAVY AVEC PATTERN CONTINU)
+   -------------------------------------------------------------------------- */
+.part-hero {
+  padding-top: 154px;
+  padding-bottom: 84px;
+  background-color: var(--navy-bg, #082b55);
+  background-image: var(--navy-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  color: var(--navy-text, #ffffff);
+  border: none;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.2vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 20px;
+  color: #ffffff;
+  max-width: 960px;
 }
 
 .hero-lead {
-  font-size: var(--fs-lead);
-  line-height: 1.55;
-  color: var(--navy-muted);
-  max-width: 760px;
-  margin: 0 0 28px;
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.8vw, 1.18rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 820px;
+  margin: 0 0 32px;
 }
 
 .meta-strip {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--color-accent);
-  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.meta-strip .dot {
-  opacity: 0.5;
-}
-
-/* Wall section */
-.partners-wall-section {
-  padding: 88px 0;
-}
-
-.section-head {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 56px;
-}
-
-.section-kicker {
-  display: block;
+.meta-capsule {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 999px;
   font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: none;
 }
 
-.section-head h2 {
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  color: var(--text-page);
-  margin: 0 0 10px;
+.meta-capsule.gold {
+  background-color: rgba(217, 162, 27, 0.18);
+  color: var(--color-gold, #d9a21b);
 }
 
+/* --------------------------------------------------------------------------
+   2. SECTION COMITÉ D'ORGANISATION OFFICIEL (FOND CLAIR, SANS BORDER-LEFT, SANS POINT)
+   -------------------------------------------------------------------------- */
+.official-delegation-section {
+  padding: 92px 0 104px;
+  background-color: var(--bg-page);
+  background-image: var(--page-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  border: none;
+}
+
+/* BANDEAU REGISTRE PROTOCOLAIRE : ZÉRO BORDER-LEFT, ZÉRO POINT */
 .protocol-registry-strip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(217, 162, 27, 0.4);
-  border-left: 3px solid var(--color-gold);
-  border-radius: 12px;
-  padding: 10px 18px;
-  margin-top: 18px;
+  gap: 16px;
+  background-color: rgba(8, 43, 85, 0.04);
+  border: none;
+  border-radius: 14px;
+  padding: 12px 24px;
+  margin-top: 24px;
   flex-wrap: wrap;
   text-align: left;
 }
 
-.registry-header-badge {
+.registry-badge-title {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(217, 162, 27, 0.18);
-  border: 1px solid rgba(217, 162, 27, 0.4);
-  padding: 4px 10px;
-  border-radius: 99px;
-  flex-shrink: 0;
-}
-
-.registry-pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-gold);
-  box-shadow: 0 0 8px var(--color-gold);
-}
-
-.registry-badge-title {
   font-family: var(--font-sans);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #8C6D1F;
-}
-
-:root.dark .registry-badge-title,
-.dark .registry-badge-title {
-  color: var(--color-gold);
+  color: var(--color-gold, #d9a21b);
+  background-color: rgba(217, 162, 27, 0.14);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
 }
 
 .registry-notice {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-muted);
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
-/* ==========================================================================
-   DÉLÉGATION PARTENAIRES 2026 AVEC PHOTOS (DOSSIER ILOVEZIP)
-   ========================================================================== */
-.official-delegation-block {
-  margin-bottom: 64px;
-}
-
-.delegation-head {
-  margin-bottom: 28px;
-  max-width: 780px;
-}
-
-.delegation-badge {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  background-color: rgba(217, 162, 27, 0.1);
-  padding: 4px 12px;
-  border-radius: 999px;
-  margin-bottom: 10px;
-}
-
-.delegation-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
-  font-weight: 700;
-  color: var(--text-page);
-  line-height: 1.25;
-  margin: 0 0 10px 0;
-}
-
-.delegation-lead {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.delegation-flagship-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: 32px;
-}
-
-.delegation-featured-card {
-  background-color: var(--color-surface, #FFFFFF);
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.045);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: none;
-}
-
+/* Grille des membres du Comité d'Organisation */
 .delegation-executive-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 32px;
   width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 56px;
 }
 
 .delegation-prestige-plate {
-  background-color: var(--color-surface, #FFFFFF);
-  border-radius: 18px;
-  padding: 22px;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 26px 28px;
   display: flex;
   align-items: flex-start;
-  gap: 20px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+  gap: 22px;
+  box-shadow: 0 8px 26px rgba(8, 43, 85, 0.04);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   border: none;
-  min-width: 0;
-  box-sizing: border-box;
 }
 
 .delegation-prestige-plate:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(8, 43, 85, 0.08);
 }
 
 .del-avatar-frame {
-  width: 96px;
-  height: 116px;
-  border-radius: 12px;
+  width: 104px;
+  height: 128px;
+  border-radius: 14px;
   overflow: hidden;
   flex-shrink: 0;
-  background-color: var(--color-navy, #0c2340);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  background-color: var(--navy-bg, #082b55);
 }
 
 .del-avatar {
@@ -686,72 +730,58 @@ const submitHostCountry = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   flex-wrap: wrap;
 }
 
 .del-tier-badge {
   font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background-color: rgba(212, 175, 55, 0.15);
-  color: #8C6D1F;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
-:root.dark .del-tier-badge,
-.dark .del-tier-badge {
-  color: var(--color-gold, #d4af37);
-  background-color: rgba(212, 175, 55, 0.22);
+  background-color: rgba(217, 162, 27, 0.14);
+  color: var(--color-gold, #d9a21b);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: none;
 }
 
 .del-country-badge {
   font-family: var(--font-sans);
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
-  font-weight: 600;
-  background-color: rgba(12, 35, 64, 0.04);
-  padding: 2px 7px;
+  font-weight: 700;
+  background-color: rgba(8, 43, 85, 0.04);
+  padding: 4px 10px;
   border-radius: 999px;
-}
-
-:root.dark .del-country-badge,
-.dark .del-country-badge {
-  background-color: rgba(255, 255, 255, 0.06);
-  color: #d1d5db;
+  border: none;
 }
 
 .del-org-title {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 16.5px;
   font-weight: 700;
   color: var(--text-page);
-  line-height: 1.34;
-  margin: 0 0 6px 0;
+  line-height: 1.35;
+  margin: 0 0 8px;
   word-break: break-word;
 }
 
 .del-patron-block {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background-color: rgba(12, 35, 64, 0.03);
-  margin-bottom: 8px;
-}
-
-:root.dark .del-patron-block,
-.dark .del-patron-block {
-  background-color: rgba(255, 255, 255, 0.04);
+  gap: 3px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: rgba(8, 43, 85, 0.03);
+  margin-bottom: 10px;
+  border: none;
 }
 
 .del-patron-name {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
   color: var(--text-page);
   line-height: 1.25;
@@ -759,104 +789,105 @@ const submitHostCountry = () => {
 
 .del-patron-role {
   font-family: var(--font-sans);
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--color-accent, #2ea7f2);
+  font-weight: 600;
   line-height: 1.35;
 }
 
 .del-desc-text {
   font-family: var(--font-sans);
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 12.5px;
+  line-height: 1.55;
   color: var(--text-muted);
   margin: 0;
 }
 
-@media (max-width: 980px) {
-  .delegation-executive-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
+/* --------------------------------------------------------------------------
+   3. SECTION ÉCOSYSTÈME DES PARTENAIRES (FOND BLEU NAVY AVEC MOTIF GÉOMÉTRIQUE)
+   -------------------------------------------------------------------------- */
+.partners-ecosystem-section.navy {
+  padding: 104px 0;
+  background-color: var(--navy-bg, #082b55);
+  background-image: var(--navy-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  color: #ffffff;
+  border: none;
 }
 
-@media (max-width: 480px) {
-  .delegation-prestige-plate {
-    flex-direction: column;
-  }
-
-  .del-avatar-frame {
-    width: 100%;
-    height: 160px;
-  }
+.ecosystem-categories-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
 }
 
 .category-block {
-  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cat-gem {
+  color: var(--color-gold, #d9a21b);
+  font-size: 12px;
 }
 
 .cat-title {
-  font-family: var(--font-sans);
-  font-size: var(--fs-body);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--ayif-blue);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-line);
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0;
 }
 
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
-.partner-tile {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-line);
-  padding: 24px 16px;
-  height: 96px;
+.partner-tile-navy {
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  padding: 26px 20px;
+  min-height: 104px;
   display: grid;
   place-items: center;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 14px;
   font-family: var(--font-serif);
-  font-size: var(--fs-body);
+  font-size: 15.5px;
   font-weight: 600;
-  color: var(--text-muted);
-  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.95);
+  border: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
-.partner-tile:hover {
-  border-color: var(--color-accent);
-  color: var(--ayif-blue);
+.partner-tile-navy:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+  color: var(--color-gold, #d9a21b);
+}
+
+/* --------------------------------------------------------------------------
+   4. SECTION FORMULES & PACKS (FOND CLAIR AVEC MOTIF GÉOMÉTRIQUE)
+   -------------------------------------------------------------------------- */
+.packages-section.light {
+  padding: 104px 0;
   background-color: var(--bg-page);
-}
-
-/* Packages */
-.packages-section {
-  padding: 96px 0;
-  background-color: var(--ayif-blue);
-}
-
-.text-white {
-  color: var(--ayif-white) !important;
-}
-
-.intro-white {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: var(--fs-body);
-}
-
-.cot-kicker {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 8px;
+  background-image: var(--page-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  border: none;
 }
 
 .packages-grid {
@@ -866,58 +897,78 @@ const submitHostCountry = () => {
 }
 
 .pkg-card {
-  padding: 32px 24px;
-  border-radius: 4px;
-  border: 1px solid var(--navy-line);
+  padding: 36px 28px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 32px rgba(8, 43, 85, 0.05);
   display: flex;
   flex-direction: column;
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pkg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(8, 43, 85, 0.1);
 }
 
 .pkg-badge {
   display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-gold);
-  background-color: rgba(217, 162, 27, 0.12);
-  padding: 3px 8px;
-  border-radius: 99px;
-  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+  color: var(--color-gold, #d9a21b);
+  background-color: rgba(217, 162, 27, 0.14);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  border: none;
 }
 
-.pkg-top h3 {
-  font-size: var(--fs-h4);
+.pkg-tier-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
   font-weight: 700;
   margin: 0 0 10px;
-  color: var(--navy-text);
+  color: var(--text-page);
+  line-height: 1.2;
 }
 
 .pkg-summary {
-  font-size: 13px;
-  color: var(--navy-muted);
-  line-height: 1.45;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
   margin: 0 0 20px;
-  min-height: 54px;
+  min-height: 58px;
 }
 
 .pkg-prices {
   padding: 16px 0;
-  border-top: 1px solid var(--navy-line);
-  border-bottom: 1px solid var(--navy-line);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  border: none;
+  background-color: rgba(8, 43, 85, 0.03);
+  border-radius: 12px;
+  text-align: center;
 }
 
 .price-xof {
   font-family: var(--font-serif);
-  font-size: var(--fs-h4);
+  font-size: 1.45rem;
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-accent, #2ea7f2);
+  line-height: 1.15;
 }
 
 .price-usd {
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--navy-muted);
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .pkg-benefits {
@@ -926,216 +977,289 @@ const submitHostCountry = () => {
   margin: 0 0 28px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   flex: 1;
 }
 
 .pkg-benefits li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--navy-muted);
-  line-height: 1.4;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-page);
+  line-height: 1.45;
 }
 
 .check-svg {
-  width: 15px;
-  height: 15px;
-  min-width: 15px;
-  color: var(--color-accent);
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  color: var(--color-gold, #d9a21b);
   margin-top: 1px;
 }
 
-.pkg-btn {
-  text-align: center;
-  font-size: 13px;
-  padding: 10px 16px;
+.btn-pkg-gold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--navy-bg, #082b55);
+  color: var(--color-gold, #d9a21b);
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Contact form */
-.sponsor-form-section {
-  padding: 96px 0;
+.btn-pkg-gold:hover {
+  background-color: #051d3b;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION CONTACT SPONSORING (FOND BLEU NAVY AVEC MOTIF GÉOMÉTRIQUE)
+   -------------------------------------------------------------------------- */
+.sponsor-form-section.navy {
+  padding: 104px 0;
+  background-color: var(--navy-bg, #082b55);
+  background-image: var(--navy-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  color: #ffffff;
+  border: none;
 }
 
 .sp-split {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 56px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
   align-items: start;
 }
 
-.sp-text h2 {
-  font-size: var(--fs-h2);
+.sp-form-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   margin: 0 0 16px;
-  color: var(--text-page);
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.contact-direct {
-  margin-top: 32px;
+.sp-intro {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 32px;
+}
+
+.contact-direct-cards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border-top: 1px solid var(--border-line);
-  padding-top: 24px;
+  gap: 14px;
 }
 
-.c-line strong {
-  display: block;
-  font-size: 13px;
-  color: var(--text-page);
+.c-line-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  padding: 16px 20px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: none;
 }
 
-.c-line span {
-  font-size: 14px;
-  color: var(--color-accent);
+.c-kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold, #d9a21b);
 }
 
+.c-val {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Formulaire Épuré Translucide */
 .sp-form-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-line);
-  padding: 40px;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  padding: 44px 48px;
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
 }
 
-.partner-form h3 {
-  font-size: var(--fs-h3);
+.form-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
   font-weight: 700;
+  color: #ffffff;
   margin: 0 0 20px;
-  color: var(--text-page);
 }
 
 .f-group {
   margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .f-group label {
-  display: block;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 6px;
-  color: var(--text-page);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.f-group input,
-.f-group select,
-.f-group textarea {
+.pure-input,
+.pure-select,
+.pure-textarea {
   width: 100%;
-  padding: 10px 14px;
+  padding: 14px 18px;
   font-family: var(--font-sans);
-  font-size: 14px;
-  border: 1px solid var(--border-line);
-  border-radius: 4px;
-  background-color: var(--bg-page);
-  color: var(--text-page);
-}
-
-.f-group input:focus,
-.f-group select:focus,
-.f-group textarea:focus {
+  font-size: 14.5px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   outline: none;
-  border-color: var(--color-accent);
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.sp-submit-btn {
+.pure-select option {
+  background-color: var(--navy-bg, #082b55);
+  color: #ffffff;
+}
+
+.pure-input::placeholder,
+.pure-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pure-input:focus,
+.pure-select:focus,
+.pure-textarea:focus {
+  background-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 2px var(--color-gold, #d9a21b);
+}
+
+.btn-partner-submit {
   width: 100%;
-  padding: 14px;
+  padding: 16px;
+  border-radius: 999px;
+  background-color: var(--color-gold, #d9a21b);
+  color: var(--navy-bg, #082b55);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 800;
   border: none;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-partner-submit:hover {
+  background-color: #c49114;
+  transform: translateY(-2px);
 }
 
 .sp-success {
-  padding: 32px;
-  border-radius: 4px;
+  padding: 32px 10px;
   text-align: center;
 }
 
-.sp-success h3 {
-  font-size: var(--fs-h3);
-  color: var(--navy-text);
-  margin-bottom: 10px;
-}
-
-.sp-success p {
-  color: var(--navy-muted);
-  font-size: var(--fs-body);
-  margin-bottom: 24px;
-}
-
-@media (max-width: 1024px) {
-  .cat-grid,
-  .packages-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sp-split {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-}
-
-@media (max-width: 600px) {
-  .cat-grid,
-  .packages-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sp-form-card {
-    padding: 24px 18px;
-  }
-}
-
-/* NOTICE SPONSORS LIVE */
-.sponsors-live-notice {
-  display: inline-flex;
+.success-gem-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background-color: rgba(217, 162, 27, 0.18);
+  color: var(--color-gold, #d9a21b);
+  display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 14px;
-  background-color: rgba(200, 168, 75, 0.12);
-  border: 1px solid rgba(200, 168, 75, 0.35);
-  padding: 8px 16px;
-  border-radius: 99px;
-  font-size: 13.5px;
-  color: var(--text-page);
-  font-weight: 600;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 18px;
 }
 
-.live-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-gold);
-  flex-shrink: 0;
+.success-heading {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: #ffffff;
+  margin: 0 0 12px;
 }
 
-/* SECTION PAYS HÔTE & ENREGISTREMENT */
-.host-country-section {
-  padding: 88px 0;
-  background-color: var(--navy-bg);
-  border-top: 1px solid var(--navy-line);
+.success-desc {
+  font-family: var(--font-sans);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.btn-form-reset {
+  background-color: var(--color-gold, #d9a21b);
+  color: var(--navy-bg, #082b55);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-form-reset:hover {
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   6. SECTION PAYS HÔTE & ENREGISTREMENT (FOND CLAIR PATTERN, SANS POINT)
+   -------------------------------------------------------------------------- */
+.host-country-section.light {
+  padding: 104px 0;
+  background-color: var(--bg-page);
+  background-image: var(--page-pattern);
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  border: none;
 }
 
 .host-split {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 56px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
   align-items: flex-start;
 }
 
 .host-section-title {
-  font-size: var(--fs-h2);
-  font-weight: 800;
-  color: var(--navy-text);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text-page);
   margin: 0 0 16px;
-  line-height: 1.15;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .host-intro {
+  font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.6;
-  color: var(--navy-muted);
+  line-height: 1.65;
+  color: var(--text-muted);
   margin: 0 0 32px;
 }
 
@@ -1151,54 +1275,57 @@ const submitHostCountry = () => {
   gap: 14px;
 }
 
-.perk-bullet {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--color-gold);
-  margin-top: 6px;
+/* Typographic gem replaces colored bullet dot */
+.perk-gem {
+  color: var(--color-gold, #d9a21b);
+  font-size: 12px;
+  margin-top: 4px;
   flex-shrink: 0;
 }
 
 .perk-item strong {
   display: block;
+  font-family: var(--font-sans);
   font-size: 15px;
-  color: var(--navy-text);
+  font-weight: 700;
+  color: var(--text-page);
   margin-bottom: 4px;
 }
 
 .perk-item p {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 13.5px;
-  color: var(--navy-muted);
-  line-height: 1.5;
+  color: var(--text-muted);
+  line-height: 1.55;
 }
 
-/* FORMULAIRE PAYS HÔTE */
+/* Formulaire Pays Hôte en Carte Vitreuse Blanche */
 .host-form-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: 8px;
-  padding: 36px 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 44px 44px;
+  box-shadow: 0 12px 36px rgba(8, 43, 85, 0.06);
+  border: none;
 }
 
 .host-registration-form .form-header {
   margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-line);
+  border: none;
 }
 
 .host-registration-form .form-header h3 {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--ayif-blue);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-page);
   margin: 0 0 6px;
 }
 
 .host-registration-form .form-header p {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 13.5px;
   color: var(--text-muted);
 }
@@ -1209,81 +1336,169 @@ const submitHostCountry = () => {
   gap: 14px;
 }
 
-.host-submit-btn {
+.pure-input-light,
+.pure-select-light,
+.pure-textarea-light {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(8, 43, 85, 0.04);
+  color: var(--text-page);
+  outline: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pure-input-light:focus,
+.pure-select-light:focus,
+.pure-textarea-light:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--color-accent, #2ea7f2);
+}
+
+.btn-host-submit {
   width: 100%;
   padding: 16px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
+  border-radius: 999px;
+  background-color: var(--navy-bg, #082b55);
+  color: var(--color-gold, #d9a21b);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 800;
   border: none;
+  cursor: pointer;
   margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-host-submit:hover {
+  background-color: #051d3b;
+  transform: translateY(-2px);
 }
 
 .host-success-box {
-  padding: 32px 20px;
+  padding: 32px 10px;
   text-align: center;
 }
 
 .success-kicker {
   display: inline-block;
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #8c6d1f;
-  background-color: rgba(200, 168, 75, 0.2);
+  color: var(--color-gold, #d9a21b);
+  background-color: rgba(217, 162, 27, 0.14);
   padding: 4px 12px;
-  border-radius: 99px;
+  border-radius: 999px;
   margin-bottom: 14px;
+  border: none;
 }
 
 .host-success-box h3 {
-  font-size: 22px;
-  color: var(--ayif-blue);
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: var(--text-page);
   margin: 0 0 12px;
 }
 
 .host-success-box p {
-  color: var(--text-page);
+  font-family: var(--font-sans);
+  color: var(--text-muted);
   font-size: 14.5px;
   line-height: 1.55;
   margin: 0 0 20px;
 }
 
 .payment-ack {
-  background-color: rgba(10, 26, 47, 0.04);
-  border: 1px solid var(--border-line);
-  padding: 14px 18px;
-  border-radius: 6px;
+  background-color: rgba(8, 43, 85, 0.04);
+  padding: 16px 20px;
+  border-radius: 12px;
   margin-bottom: 24px;
   text-align: left;
+  border: none;
 }
 
 .payment-ack strong {
   display: block;
-  font-size: 12px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
   text-transform: uppercase;
   color: var(--text-muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   margin-bottom: 4px;
 }
 
 .pay-choice {
-  font-size: 14px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
   font-weight: 700;
-  color: var(--ayif-blue);
+  color: var(--color-accent, #2ea7f2);
   margin: 0;
 }
 
-@media (max-width: 900px) {
+.btn-host-reset {
+  background-color: var(--navy-bg, #082b55);
+  color: var(--color-gold, #d9a21b);
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-host-reset:hover {
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE DESIGN FLUIDE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .delegation-executive-grid,
+  .sp-split,
   .host-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
+  }
+
+  .cat-grid,
+  .packages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .cat-grid,
+  .packages-grid {
+    grid-template-columns: 1fr;
   }
 
   .f-row {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .delegation-prestige-plate {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .del-avatar-frame {
+    width: 100%;
+    height: 180px;
+  }
+
+  .sp-form-card,
+  .host-form-card {
+    padding: 32px 20px;
   }
 }
 </style>
