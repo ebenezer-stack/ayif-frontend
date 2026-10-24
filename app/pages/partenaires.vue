@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { partnerPackages, sponsorsCategories, EVENT_DATES_LABEL, EVENT_LOCATION } from '../data/mockData'
+import { partnerPackages, sponsorsCategories, officialPartners, EVENT_DATES_LABEL, EVENT_LOCATION } from '../data/mockData'
 
 useHead({
   title: 'Partenaires & Sponsors — AYIF Bénin 2026',
@@ -89,7 +89,46 @@ const submitHostCountry = () => {
           </div>
         </div>
 
-        <!-- 1. Institutionnels -->
+        <!-- DÉLÉGATION DES DIRIGEANTS & DÉLÉGUÉS PARTENAIRES 2026 -->
+        <div class="official-delegation-block">
+          <div class="delegation-head">
+            <span class="delegation-badge">RÉSEAU OFFICIEL</span>
+            <h3 class="delegation-title">Dirigeants &amp; Représentants des Partenaires 2026</h3>
+            <p class="delegation-lead">
+              Les femmes et les hommes à la tête des institutions financières, consortiums industriels et fonds d'investissement partenaires de l'édition Cotonou 2026.
+            </p>
+          </div>
+
+          <!-- Grille spacieuse à 2 colonnes des Partenaires et Sponsors -->
+          <div class="delegation-executive-grid">
+            <article
+              v-for="partner in officialPartners"
+              :key="partner.id"
+              class="delegation-prestige-plate"
+            >
+              <div class="del-avatar-frame">
+                <img
+                  :src="partner.image"
+                  :alt="partner.name"
+                  loading="lazy"
+                  class="del-avatar"
+                />
+              </div>
+              <div class="del-info-col">
+                <div class="del-badges-row">
+                  <span class="del-tier-badge">{{ partner.tierBadge }}</span>
+                  <span class="del-country-badge">{{ partner.country }}</span>
+                </div>
+                <h4 class="del-org-title">{{ partner.organization }}</h4>
+                <div class="del-patron-block">
+                  <span class="del-patron-name">{{ partner.name }}</span>
+                  <span class="del-patron-role">{{ partner.role }}</span>
+                </div>
+                <p class="del-desc-text">{{ partner.highlight }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
         <div class="category-block">
           <h3 class="cat-title">Partenaires Institutionnels &amp; Gouvernementaux</h3>
           <div class="cat-grid">
@@ -523,6 +562,232 @@ const submitHostCountry = () => {
   font-weight: 600;
   line-height: 1.45;
   margin: 0;
+}
+
+/* ==========================================================================
+   DÉLÉGATION PARTENAIRES 2026 AVEC PHOTOS (DOSSIER ILOVEZIP)
+   ========================================================================== */
+.official-delegation-block {
+  margin-bottom: 64px;
+}
+
+.delegation-head {
+  margin-bottom: 28px;
+  max-width: 780px;
+}
+
+.delegation-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background-color: rgba(217, 162, 27, 0.1);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.delegation-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+  font-weight: 700;
+  color: var(--text-page);
+  line-height: 1.25;
+  margin: 0 0 10px 0;
+}
+
+.delegation-lead {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.delegation-flagship-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.delegation-featured-card {
+  background-color: var(--color-surface, #FFFFFF);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.045);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.delegation-executive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 56px;
+}
+
+.delegation-prestige-plate {
+  background-color: var(--color-surface, #FFFFFF);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.delegation-prestige-plate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.del-avatar-frame {
+  width: 96px;
+  height: 116px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--color-navy, #0c2340);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.del-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+}
+
+.delegation-prestige-plate:hover .del-avatar {
+  transform: scale(1.05);
+}
+
+.del-info-col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.del-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.del-tier-badge {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background-color: rgba(212, 175, 55, 0.15);
+  color: #8C6D1F;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+:root.dark .del-tier-badge,
+.dark .del-tier-badge {
+  color: var(--color-gold, #d4af37);
+  background-color: rgba(212, 175, 55, 0.22);
+}
+
+.del-country-badge {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  background-color: rgba(12, 35, 64, 0.04);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+:root.dark .del-country-badge,
+.dark .del-country-badge {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #d1d5db;
+}
+
+.del-org-title {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-page);
+  line-height: 1.34;
+  margin: 0 0 6px 0;
+  word-break: break-word;
+}
+
+.del-patron-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: rgba(12, 35, 64, 0.03);
+  margin-bottom: 8px;
+}
+
+:root.dark .del-patron-block,
+.dark .del-patron-block {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.del-patron-name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-page);
+  line-height: 1.25;
+}
+
+.del-patron-role {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.del-desc-text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .delegation-executive-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .delegation-prestige-plate {
+    flex-direction: column;
+  }
+
+  .del-avatar-frame {
+    width: 100%;
+    height: 160px;
+  }
 }
 
 .category-block {

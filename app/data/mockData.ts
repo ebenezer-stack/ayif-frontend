@@ -3,6 +3,8 @@ import type {
   Stat, 
   Pillar, 
   Speaker, 
+  TeamMember,
+  PartnerProfile,
   Session, 
   GeneralProgramDay,
   FooterColumn, 
@@ -183,10 +185,18 @@ export const generalProgram: GeneralProgramDay[] = [
     dayId: 'day1',
     dateLabel: 'Jeudi 03 Décembre 2026',
     actionWord: 'RASSEMBLER',
+    action: 'RASSEMBLER',
     dayTitle: 'L’Afrique se réunit',
     theme: 'JOUR 1 — RASSEMBLER : L’Afrique se réunit',
     description: 'La première journée est consacrée à l’accueil des participants, visite du village d’exhibition, à l’ouverture officielle et à la création de liens entre les acteurs de l’écosystème. La cérémonie mettra à l’honneur les pays africains, avec les drapeaux et les hymnes nationaux du Bénin et du Nigéria.',
+    narrative: 'La première journée est consacrée à l’accueil des participants, visite du village d’exhibition, à l’ouverture officielle et à la création de liens entre les acteurs de l’écosystème. La cérémonie mettra à l’honneur les pays africains, avec les drapeaux et les hymnes nationaux du Bénin et du Nigéria.',
     bulletPoints: [
+      'Panel : leadership, gouvernance et entrepreneuriat des jeunes en Afrique ;',
+      'Petit-déjeuner et réseautage entre entrepreneurs, investisseurs, institutions et partenaires ;',
+      'Panel : intégration régionale et corridors transfrontaliers Bénin–Nigéria ;',
+      'Visite de la Zone industrielle de Glo-Djigbé (GDIZ).'
+    ],
+    items: [
       'Panel : leadership, gouvernance et entrepreneuriat des jeunes en Afrique ;',
       'Petit-déjeuner et réseautage entre entrepreneurs, investisseurs, institutions et partenaires ;',
       'Panel : intégration régionale et corridors transfrontaliers Bénin–Nigéria ;',
@@ -199,9 +209,11 @@ export const generalProgram: GeneralProgramDay[] = [
     dayId: 'day2',
     dateLabel: 'Vendredi 04 Décembre 2026',
     actionWord: 'ACCÉLÉRER',
+    action: 'ACCÉLÉRER',
     dayTitle: 'La Clinique entrepreneuriale AYIF',
     theme: 'JOUR 2 — ACCÉLÉRER : La Clinique entrepreneuriale AYIF',
     description: 'Cette journée pratique accompagne les entrepreneurs dans l’analyse de leurs défis commerciaux et la recherche de solutions applicables. Les participants sont invités à venir avec leur entreprise, leurs documents, leurs chiffres et leurs produits.',
+    narrative: 'Cette journée pratique accompagne les entrepreneurs dans l’analyse de leurs défis commerciaux et la recherche de solutions applicables. Les participants sont invités à venir avec leur entreprise, leurs documents, leurs chiffres et leurs produits.',
     bulletPoints: [
       'Panel : Innovation, Écosystèmes Technologiques & Investissements ;',
       'Diagnostic d’entreprise et séances de conseil ;',
@@ -212,17 +224,36 @@ export const generalProgram: GeneralProgramDay[] = [
       'Échanges entre pairs et réseautage ciblé ;',
       'Session Spéciale sur les méthodes africaines de levée de fond.'
     ],
-    objective: 'accompagner les entrepreneurs dans l’analyse de leurs défis commerciaux et accélérer la recherche de solutions concrètes et finançables.'
+    items: [
+      'Panel : Innovation, Écosystèmes Technologiques & Investissements ;',
+      'Diagnostic d’entreprise et séances de conseil ;',
+      'Présentation de produits et d’entreprises ;',
+      'Cliniques d’experts et recommandations pratiques ;',
+      'Préparation au financement et à l’investissement ;',
+      'Exportation, accès aux marchés et commerce transfrontalier ;',
+      'Échanges entre pairs et réseautage ciblé ;',
+      'Session Spéciale sur les méthodes africaines de levée de fond.'
+    ],
+    objective: 'accompagner les entrepreneurs dans l’analyse de leurs défis commerciaux et la recherche de solutions applicables.'
   },
   {
     dayNumber: 3,
     dayId: 'day3',
     dateLabel: 'Samedi 05 Décembre 2026',
     actionWord: 'TRANSFORMER',
+    action: 'TRANSFORMER',
     dayTitle: 'Des opportunités à l’action',
     theme: 'JOUR 3 — TRANSFORMER : Des opportunités à l’action',
     description: 'La troisième journée associe immersion dans l’économie productive, découverte culturelle et célébration des contributions à l’écosystème entrepreneurial africain.',
+    narrative: 'La troisième journée associe immersion dans l’économie productive, découverte culturelle et célébration des contributions à l’écosystème entrepreneurial africain.',
     bulletPoints: [
+      'Visite d’une plantation d’ananas et de l’usine de transformation Des Fruits Tillous ;',
+      'Sortie touristique et immersion culturelle à Ouidah ;',
+      'Dîner de gala AYIF ;',
+      'Cérémonie de remise des AYIF Awards et reconnaissance des partenaires ;',
+      'Rencontres B2B, B2G et échanges de haut niveau autour des investissements et partenariats.'
+    ],
+    items: [
       'Visite d’une plantation d’ananas et de l’usine de transformation Des Fruits Tillous ;',
       'Sortie touristique et immersion culturelle à Ouidah ;',
       'Dîner de gala AYIF ;',
@@ -1104,4 +1135,255 @@ export const forumEditions: ForumEdition[] = [
     reportDownloadText: 'Télécharger le Cahier des Charges & Formulaire d’Accueil (PDF, 20 pages · 2.4 Mo)'
   }
 ]
+
+/* ==========================================================================
+   ÉQUIPE ORGANISATRICE D'AYIF 2026
+   Les femmes et les hommes engagés derrière le succès de l’édition 2026
+   ========================================================================== */
+export const organizingTeam: TeamMember[] = [
+  {
+    id: 'team-1',
+    name: 'Immanuel J. Erne',
+    role: 'Co-Initiateur AYIF & Coordonnateur Général',
+    organization: 'NACCIMA Youth Entrepreneurs',
+    country: 'Nigeria',
+    image: '/images/team/team-01.jpg',
+    highlight: 'Pilote stratégique de la session inaugurale d’Abuja 2025 et de l’expansion Cotonou 2026.'
+  },
+  {
+    id: 'team-2',
+    name: 'Direction des Partenariats & Alliances',
+    role: 'Directrice des Relations Institutionnelles',
+    organization: 'Comité d’Organisation AYIF 2026',
+    country: 'Bénin',
+    image: '/images/team/team-02.jpg',
+    highlight: 'Coordination des délégations officielles, des bailleurs multilatéraux et des banques partenaires.'
+  },
+  {
+    id: 'team-3',
+    name: 'Commissariat Deal Room & Investissements',
+    role: 'Responsable Deal Room & Relations Fonds VC',
+    organization: 'NACCIMA Youth Entrepreneurs',
+    country: 'Nigeria',
+    image: '/images/team/team-03.jpg',
+    highlight: 'Intermédiation financière, structuration des tours de table et sélection des fonds accrédités.'
+  },
+  {
+    id: 'team-4',
+    name: 'Chefferie du Protocole & Affaires Consulaires',
+    role: 'Directrice du Protocole & Accueil International',
+    organization: 'Comité Bilatéral Bénin–Nigéria',
+    country: 'Nigeria',
+    image: '/images/team/team-04.jpg',
+    highlight: 'Gestion protocolaire des délégations ministérielles et diplomatiques de la CEDEAO.'
+  },
+  {
+    id: 'team-5',
+    name: 'Coordination Territoriale & Opérations',
+    role: 'Directeur des Opérations & Logistique Cotonou',
+    organization: 'Elieson Business Consulting',
+    country: 'Bénin',
+    image: '/images/team/team-05.jpg',
+    highlight: 'Supervision logistique, hébergement, transports et accueil au Palais des Congrès de Cotonou.'
+  },
+  {
+    id: 'team-6',
+    name: 'Présidence du Conseil Consultatif',
+    role: 'Superviseure de la Gouvernance & Éthique',
+    organization: 'Conseil d’Orientation Panafricain',
+    country: 'Bénin',
+    image: '/images/team/team-06.jpg',
+    highlight: 'Gouvernance, conformité réglementaire et validation des résolutions du sommet.'
+  },
+  {
+    id: 'team-7',
+    name: 'Direction de l’Ingénierie Financière',
+    role: 'Conseiller Spécial Financements & Grands Comptes',
+    organization: 'Elieson Business Consulting',
+    country: 'Bénin',
+    image: '/images/team/team-07.jpg',
+    highlight: 'Structuration des partenariats public-privé et mobilisation des institutions financières régionales.'
+  },
+  {
+    id: 'team-8',
+    name: 'Pôle Commerce Transfrontalier & ZLECAf',
+    role: 'Commissaire Intégration Régionale',
+    organization: 'NACCIMA Youth Entrepreneurs',
+    country: 'Nigeria',
+    image: '/images/team/team-08.jpg',
+    highlight: 'Accélération des corridors de libre-échange et facilitation douanière Bénin–Nigéria.'
+  },
+  {
+    id: 'team-9',
+    name: 'Direction de la Communication & Médias',
+    role: 'Responsable Médias, Presse & Image Panafricaine',
+    organization: 'Comité d’Organisation AYIF 2026',
+    country: 'Nigeria',
+    image: '/images/team/team-09.jpg',
+    highlight: 'Relations presse continentales, couverture audiovisuelle et diffusion internationale.'
+  },
+  {
+    id: 'team-10',
+    name: 'Commissariat Clinique AYIF & PME',
+    role: 'Coordinatrice Clinique Entrepreneuriale',
+    organization: 'Pôle Accélération Entreprises',
+    country: 'Bénin',
+    image: '/images/team/team-10.jpg',
+    highlight: 'Diagnostic stratégique 360°, préparation à la levée de fonds et cliniques d’experts.'
+  },
+  {
+    id: 'team-11',
+    name: 'Délégation Féminine & Diaspora Panafricaine',
+    role: 'Ambassadrice Entrepreneuriat Féminin & Diaspora',
+    organization: 'Comité Bilatéral AYIF',
+    country: 'Nigeria',
+    image: '/images/team/team-11.jpg',
+    highlight: 'Mobilisation des femmes leaders d’entreprises et connexions avec les réseaux de la diaspora.'
+  },
+  {
+    id: 'team-12',
+    name: 'Conseil Diplomatique & Relations d’États',
+    role: 'Liaison Institutionnelle Bénin–Nigéria',
+    organization: 'Comité Intergouvernemental',
+    country: 'Bénin',
+    image: '/images/team/team-12.jpg',
+    highlight: 'Alignement stratégique avec les ministères de l’Économie, du Commerce et des Affaires Étrangères.'
+  }
+]
+
+export const officialPartners: PartnerProfile[] = [
+  {
+    id: 'partner-1',
+    name: 'Immanuel J. Erne',
+    role: 'Président du Conseil Consultatif des Entreprises',
+    organization: 'NACCIMA Investment Network',
+    category: 'Partenaire Titre',
+    tierBadge: 'Platine Élite',
+    country: 'Nigeria',
+    image: '/images/partners/partner-01.jpg',
+    highlight: 'Syndication d’investissements transfrontaliers et accès privilégié aux fonds de croissance et family offices nigérians.'
+  },
+  {
+    id: 'partner-2',
+    name: 'Amina Bello-Sanusi',
+    role: 'Managing Director & Associée Gérante',
+    organization: 'West Africa Venture Capitalists',
+    category: 'Fonds d’Investissement',
+    tierBadge: 'Sponsor Platine',
+    country: 'Nigeria',
+    image: '/images/partners/partner-02.jpg',
+    highlight: 'Mobilisation d’un tour de table de $15M pour l’amorçage et la série A des champions technologiques et logistiques régionaux.'
+  },
+  {
+    id: 'partner-3',
+    name: 'Babajide Adeleke',
+    role: 'Directeur Général Pôle Agro-industrie & Export',
+    organization: 'Atlantic Trade & Industrial Hub',
+    category: 'Partenaire Industriel',
+    tierBadge: 'Sponsor Or',
+    country: 'Nigeria',
+    image: '/images/partners/partner-03.jpg',
+    highlight: 'Développement des chaînes de valeur agro-industrielles intégrées aux corridors logistiques Bénin–Nigéria.'
+  },
+  {
+    id: 'partner-4',
+    name: 'Fatouma Sékou',
+    role: 'Directrice des Financements Structurés & Garanties',
+    organization: 'Banque d’Investissement et de Développement (BIDC)',
+    category: 'Bailleur Multilatéral',
+    tierBadge: 'Partenaire Institutionnel',
+    country: 'Bénin',
+    image: '/images/partners/partner-04.jpg',
+    highlight: 'Déploiement de lignes de crédit concessionnelles et de garanties souveraines pour les PME innovantes de la CEDEAO.'
+  },
+  {
+    id: 'partner-5',
+    name: 'Koffi Mensah',
+    role: 'Directeur des Alliances Stratégiques & Expansion',
+    organization: 'Glo-Djigbé Industrial Park (GDIZ) Consortium',
+    category: 'Partenaire Industriel',
+    tierBadge: 'Sponsor Platine',
+    country: 'Bénin',
+    image: '/images/partners/partner-05.jpg',
+    highlight: 'Accélération des implantations industrielles, régimes fiscaux préférentiels et valorisation manufacturière locale.'
+  },
+  {
+    id: 'partner-6',
+    name: 'Zainab Dangote-Alhassan',
+    role: 'Vice-Présidente Développement Afrique & Transition Énergétique',
+    organization: 'Sahara Energy & Infrastructure Group',
+    category: 'Grand Groupe',
+    tierBadge: 'Sponsor Or',
+    country: 'Nigeria',
+    image: '/images/partners/partner-06.jpg',
+    highlight: 'Financement des infrastructures énergétiques décentralisées et du transport commercial propre transfrontalier.'
+  },
+  {
+    id: 'partner-7',
+    name: 'Olivier Dossou-Yovo',
+    role: 'Associé Gérant — Private Equity & Croissance',
+    organization: 'Cotonou Capital Partners',
+    category: 'Fonds d’Investissement',
+    tierBadge: 'Sponsor Or',
+    country: 'Bénin',
+    image: '/images/partners/partner-07.jpg',
+    highlight: 'Prises de participation minoritaires et structuration financière pour les startups franchissant le cap des $1M de revenus.'
+  },
+  {
+    id: 'partner-8',
+    name: 'Chinedu Okafor',
+    role: 'Secrétaire Général & Porte-Parole Innovation',
+    organization: 'Pan-African Fintech Alliance',
+    category: 'Innovation & FinTech',
+    tierBadge: 'Sponsor Argent',
+    country: 'Nigeria',
+    image: '/images/partners/partner-08.jpg',
+    highlight: 'Interopérabilité des systèmes de paiement instantané et dématérialisation des flux commerciaux intra-africains.'
+  },
+  {
+    id: 'partner-9',
+    name: 'Mariam Diallo',
+    role: 'Présidente Exécutive & Cheffe de file Impact',
+    organization: 'Fonds d’Appui aux Entrepreneures Africaines (FAEA)',
+    category: 'Fonds d’Investissement',
+    tierBadge: 'Sponsor Argent',
+    country: 'Sénégal',
+    image: '/images/partners/partner-09.jpg',
+    highlight: 'Fonds dédié à l’égalité des chances entrepreneuriales et à l’autonomisation financière des fondatrices africaines.'
+  },
+  {
+    id: 'partner-10',
+    name: 'Jean-Luc Agbokou',
+    role: 'Délégué Permanent aux Affaires Bilatérales & Patronat',
+    organization: 'Chambre de Commerce & d’Industrie du Bénin (CCI Bénin)',
+    category: 'Partenaire Institutionnel',
+    tierBadge: 'Partenaire Institutionnel',
+    country: 'Bénin',
+    image: '/images/partners/partner-10.jpg',
+    highlight: 'Intermédiation consulaire, facilitation administrative et accueil des missions d’acheteurs internationaux.'
+  },
+  {
+    id: 'partner-11',
+    name: 'Nneka Uzoma',
+    role: 'Co-Fondatrice & Directrice des Sélections Deal Room',
+    organization: 'Lagos Angel Network & Deal Room AYIF',
+    category: 'Réseau Business Angels',
+    tierBadge: 'Partenaire Deal Room',
+    country: 'Nigeria',
+    image: '/images/partners/partner-11.jpg',
+    highlight: 'Sélection et préparation intensive des 30 startups finalistes aux présentations devant les investisseurs providentiels.'
+  },
+  {
+    id: 'partner-12',
+    name: 'Séraphin Houndété',
+    role: 'Président Directeur Général & Pionnier Agro-industriel',
+    organization: 'Des Fruits Tillous & Agro-Business Group',
+    category: 'Partenaire Agro-Industrie',
+    tierBadge: 'Partenaire Immersion',
+    country: 'Bénin',
+    image: '/images/partners/partner-12.jpg',
+    highlight: 'Hôte d’honneur de la visite de terrain du Jour 3 et référence continentale de la valorisation de la filière ananas export.'
+  }
+]
+
 

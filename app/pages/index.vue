@@ -29,7 +29,7 @@ useHead({
     <AboutSection />
     <ThemesSection />
     <StatsSection />
-    <SpeakersSection />
+    <!-- <SpeakersSection /> Section intervenants mise en attente temporaire de validation protocolaire -->
     <ProgramSection />
     <NigeriaSection />
     <SponsorsSection />

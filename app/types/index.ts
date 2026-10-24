@@ -23,7 +23,7 @@ export interface Pillar {
 
 export interface Speaker {
   id: string
-  initials: string
+  initials?: string
   name: string
   role: string
   organization: string
@@ -32,6 +32,28 @@ export interface Speaker {
   topics: string[]
   featured?: boolean
   editionYear?: number
+}
+
+export interface TeamMember {
+  id: string
+  name: string
+  role: string
+  organization: string
+  country?: string
+  image: string
+  highlight?: string
+}
+
+export interface PartnerProfile {
+  id: string
+  name: string
+  role: string
+  organization: string
+  category: string
+  tierBadge: string
+  country: string
+  image: string
+  highlight?: string
 }
 
 export interface GeneralProgramDay {

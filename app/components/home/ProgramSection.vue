@@ -4,47 +4,52 @@ import { generalProgram } from '../../data/mockData'
 
 const selectedDay = ref<number>(1)
 
-// Points forts structurants par journée (synthétiques et hautement lisibles)
+// Points forts structurants par journée (synthétiques et fidèles au programme officiel)
 const dayHighlights: Record<number, string[]> = {
   1: [
-    'Accueil solennel des délégations & ouverture officielle',
-    'Panel bilatéral Bénin–Nigéria : intégration & ZLECAf',
-    'Immersion de terrain dans la Zone industrielle de Glo-Djigbé (GDIZ)'
+    'Panel : leadership, gouvernance et entrepreneuriat des jeunes en Afrique',
+    'Petit-déjeuner et réseautage entre entrepreneurs, investisseurs, institutions et partenaires',
+    'Panel : intégration régionale et corridors transfrontaliers Bénin–Nigéria',
+    'Visite de la Zone industrielle de Glo-Djigbé (GDIZ)'
   ],
   2: [
-    'Clinique AYIF : diagnostic 360° et conformité fiscale des PME',
-    'Salons Deal Rooms fermés avec fonds de capital-risque',
-    'Masterclass stratégique : levée de fonds & méthodes africaines'
+    'Panel : Innovation, Écosystèmes Technologiques & Investissements',
+    'Diagnostic d’entreprise, séances de conseil et cliniques d’experts',
+    'Préparation au financement, exportation et accès aux marchés',
+    'Session Spéciale sur les méthodes africaines de levée de fond'
   ],
   3: [
-    'Visite agro-industrielle : usine et plantations Des Fruits Tillous',
-    'Immersion culturelle et historique à la Cité mémoire de Ouidah',
-    'Dîner de prestige officiel, signatures d’accords & AYIF Awards'
+    'Visite d’une plantation d’ananas et usine Des Fruits Tillous',
+    'Sortie touristique et immersion culturelle à Ouidah',
+    'Dîner de gala AYIF, remise des AYIF Awards & partenaires',
+    'Rencontres B2B, B2G et échanges de haut niveau sur les investissements'
   ]
 }
 
-// Répartition des modules horaires pour chaque journée
+// Répartition des modules horaires fidèles au programme validé
 const dayTimeSlots: Record<number, Array<{ time: string; tag: string; title: string; location?: string }>> = {
   1: [
-    { time: '08h30', tag: 'Protocole', title: 'Accueil officiel des délégations, remise des badges VIP et visite du village d’exhibition', location: 'Hall d\'Honneur' },
-    { time: '10h00', tag: 'Cérémonial', title: 'Ouverture solennelle avec honneur aux drapeaux et hymnes nationaux du Bénin et du Nigéria', location: 'Salle Plénière Sémè' },
-    { time: '11h30', tag: 'Plénière', title: 'Panel de haut niveau : Leadership, gouvernance et entrepreneuriat des jeunes en Afrique', location: 'Amphithéâtre Central' },
-    { time: '13h00', tag: 'Networking', title: 'Déjeuner d’affaires et réseautage direct entre investisseurs, ministres et créateurs de valeur', location: 'Espace Salons VIP' },
-    { time: '14h30', tag: 'Stratégie', title: 'Panel bilatéral : Intégration régionale, corridors transfrontaliers Bénin–Nigéria et ZLECAf', location: 'Salle Plénière Sémè' },
-    { time: '16h30', tag: 'Immersion', title: 'Visite opérationnelle de la Zone industrielle de Glo-Djigbé (GDIZ) et des unités de transformation', location: 'Corridor GDIZ' }
+    { time: '08h30', tag: 'Accueil', title: 'Accueil des participants & visite du village d’exhibition', location: 'Hall d\'Exposition' },
+    { time: '10h00', tag: 'Cérémonie Officielle', title: 'Ouverture solennelle : honneur aux pays africains, drapeaux et hymnes nationaux du Bénin et du Nigéria', location: 'Salle Plénière Sémè' },
+    { time: '11h30', tag: 'Réseautage', title: 'Petit-déjeuner et réseautage entre entrepreneurs, investisseurs, institutions et partenaires', location: 'Salons Diplomatiques' },
+    { time: '13h00', tag: 'Panel', title: 'Panel : Leadership, gouvernance et entrepreneuriat des jeunes en Afrique', location: 'Grand Auditorium' },
+    { time: '14h45', tag: 'Panel Transfrontalier', title: 'Panel : Intégration régionale et corridors transfrontaliers Bénin–Nigéria', location: 'Grand Auditorium' },
+    { time: '16h30', tag: 'Immersion Terrain', title: 'Visite de terrain de la Zone industrielle de Glo-Djigbé (GDIZ)', location: 'Zone Économique GDIZ' }
   ],
   2: [
-    { time: '09h00', tag: 'Keynote', title: 'Innovation de rupture, écosystèmes technologiques et capitaux patients en Afrique de l’Ouest', location: 'Amphithéâtre Central' },
-    { time: '10h30', tag: 'Clinique AYIF', title: 'Diagnostic personnalisé des PME : finance, gouvernance, conformité fiscale et scalabilité', location: 'Pavillon Cliniques' },
-    { time: '13h30', tag: 'Deal Rooms', title: 'Sessions fermées de pitch et négociation directe avec les gérants de fonds de capital-risque', location: 'Salons Deal Rooms' },
-    { time: '15h30', tag: 'Export', title: 'Masterclass : Accès aux marchés transfrontaliers et levée de fonds selon les méthodes africaines', location: 'Atelier A' },
-    { time: '17h00', tag: 'Synthèse', title: 'Synthèse des cliniques d’experts et feuilles de route d’accélération financière', location: 'Salle Plénière Sémè' }
+    { time: '08h30', tag: 'Panel Tech', title: 'Panel : Innovation, Écosystèmes Technologiques & Investissements', location: 'Grand Auditorium' },
+    { time: '10h00', tag: 'Clinique AYIF', title: 'Diagnostic d’entreprise et séances de conseil personnalisé avec experts', location: 'Pavillon Cliniques' },
+    { time: '11h30', tag: 'Showcase', title: 'Présentation de produits et d’entreprises & cliniques de recommandations pratiques', location: 'Village Innovation' },
+    { time: '14h00', tag: 'Financement', title: 'Préparation au financement et à l’investissement direct', location: 'Salons Deal Rooms' },
+    { time: '15h30', tag: 'Commerce ZLECAf', title: 'Exportation, accès aux marchés et commerce transfrontalier', location: 'Atelier A' },
+    { time: '17h00', tag: 'Session Spéciale', title: 'Session Spéciale sur les méthodes africaines de levée de fond & échanges entre pairs', location: 'Salle Plénière Sémè' }
   ],
   3: [
-    { time: '09h00', tag: 'Immersion Agro', title: 'Visite de terrain : Plantations d’ananas et usine de transformation agro-industrielle Des Fruits Tillous', location: 'Pôle Agro-industriel' },
-    { time: '12h00', tag: 'Patrimoine', title: 'Immersion culturelle et historique à Ouidah : Cité mémoire et convergence des diasporas', location: 'Cité Historique Ouidah' },
-    { time: '16h00', tag: 'B2B / B2G', title: 'Rencontres institutionnelles finales, signature de protocoles d’accord et partenariats', location: 'Salons Diplomatiques' },
-    { time: '19h30', tag: 'Soirée de Gala', title: 'Dîner de prestige officiel AYIF, remise des AYIF Awards et célébration des alliances', location: 'Grand Palais des Congrès' }
+    { time: '08h30', tag: 'Immersion Agro', title: 'Visite d’une plantation d’ananas et de l’usine de transformation Des Fruits Tillous', location: 'Pôle Agro-industriel Allada' },
+    { time: '12h00', tag: 'Patrimoine', title: 'Sortie touristique et immersion culturelle à Ouidah', location: 'Cité Historique Ouidah' },
+    { time: '16h00', tag: 'Deal Making', title: 'Rencontres B2B, B2G et échanges de haut niveau autour des investissements et partenariats', location: 'Salons B2B' },
+    { time: '19h00', tag: 'Célébration', title: 'Cérémonie de remise des AYIF Awards et reconnaissance officielle des partenaires', location: 'Grand Palais' },
+    { time: '20h30', tag: 'Prestige', title: 'Dîner de gala officiel AYIF et scellement des alliances économiques', location: 'Grand Palais des Congrès' }
   ]
 }
 
